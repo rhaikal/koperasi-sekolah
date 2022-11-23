@@ -18,6 +18,7 @@ return new class extends Migration
             $table->float('discount', 3, 2);
             $table->tinyInteger('max_used');
             $table->string('description', 255);
+            $table->timestamp('expired_at');
             $table->timestamps();
         });
     }

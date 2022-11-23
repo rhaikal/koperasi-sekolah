@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('keranjang_id');
             $table->foreignId('order_id');
+            $table->foreignId('item_id');
             $table->tinyInteger('quantity');
             $table->integer('total_price');
             $table->timestamps();
