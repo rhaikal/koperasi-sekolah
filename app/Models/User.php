@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function coupons()
+    {
+        $this->belongsToMany(Coupon::class, 'used_coupons')->withPivot('used_at');
+    }
 }
