@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('coupons', function (Blueprint $table) {
+            $table->id();
             $table->char('code', 6);
             $table->float('discount', 3, 2);
             $table->tinyInteger('max_used');
