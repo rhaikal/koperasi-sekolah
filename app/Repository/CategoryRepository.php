@@ -22,7 +22,7 @@ class CategoryRepository
 
     public function update(Category $category, $data)
     {
-        $category = $category->update($data);
+        $category->update($data);
 
         return $category;
     }
