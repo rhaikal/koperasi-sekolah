@@ -12,4 +12,11 @@ class productRepository
 
         return $products;
     }
+
+    public function create($data)
+    {
+        $product = Product::create($data);
+
+        return $product;
+    }
 }

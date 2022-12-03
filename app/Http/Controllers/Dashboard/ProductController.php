@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Service\ProductService;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Product\StoreProductRequest;
 
 class ProductController extends Controller
 {
@@ -41,12 +42,16 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Product\StoreProductRequest;  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+
+        $product = $this->ProductService->create($validatedData);
+
+        return response()->json($product);
     }
 
     /**
