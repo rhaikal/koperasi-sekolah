@@ -19,7 +19,7 @@ class Category extends Model
         'slug',
     ];
 
-    public function items()
+    public function products()
     {
         return $this->hasMany(Item::class);
     }

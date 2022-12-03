@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    public function items(){
+    public function products(){
         return $this->belongsToMany(Item::class, 'carts')->withPivot('quantity', 'total_price')->withTimestamps();
     }
 

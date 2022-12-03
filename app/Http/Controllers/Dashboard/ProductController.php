@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
-use App\Models\Item;
-use App\Service\ItemService;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Service\ProductService;
+use App\Http\Controllers\Controller;
 
-class ItemController extends Controller
+class ProductController extends Controller
 {
-    private ItemService $itemService;
+    private ProductService $ProductService;
 
-    public function __construct(ItemService $itemService)
+    public function __construct(ProductService $productService)
     {
-        $this->itemService = $itemService;
+        $this->productService = $productService;
     }
 
     /**
@@ -23,9 +23,9 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = $this->itemService->getItems();
+        $products = $this->productService->getProducts();
 
-        return response()->json($items);
+        return response()->json($products);
     }
 
     /**
@@ -52,10 +52,10 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Product  $Product
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item)
+    public function show(Product $product)
     {
         //
     }
@@ -63,10 +63,10 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Product  $Product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item)
+    public function edit(Product $product)
     {
         //
     }
@@ -75,10 +75,10 @@ class ItemController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, Product $product)
     {
         //
     }
@@ -86,10 +86,10 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy(Product $product)
     {
         //
     }
