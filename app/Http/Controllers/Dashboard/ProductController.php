@@ -100,6 +100,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        return response()->json($this->productService->delete($product));
     }
 }

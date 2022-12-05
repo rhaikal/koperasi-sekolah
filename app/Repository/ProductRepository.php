@@ -24,4 +24,9 @@ class productRepository
     {
         return $product->update($data);
     }
+
+    public function delete(Product $product)
+    {
+        return $product->delete();
+    }
 }

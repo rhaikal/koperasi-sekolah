@@ -45,6 +45,15 @@ class ProductService
         return $this->productRepository->update($product, $data);
     }
 
+    public function delete(Product $product)
+    {
+        if($product->image){
+            $this->deleteImage($product->image);
+        }
+
+        return $this->productRepository->delete($product);
+    }
+
     public function storeImage(UploadedFile $file)
     {
         $url = $file->store('/products');
