@@ -10,7 +10,7 @@ use App\Http\Requests\Product\UpdateProductRequest;
 
 class ProductController extends Controller
 {
-    private ProductService $ProductService;
+    private ProductService $productService;
 
     public function __construct(ProductService $productService)
     {
@@ -49,7 +49,7 @@ class ProductController extends Controller
     {
         $validatedData = $request->validated();
 
-        $product = $this->ProductService->create($validatedData);
+        $product = $this->productService->create($validatedData);
 
         return response()->json($product);
     }
@@ -87,7 +87,7 @@ class ProductController extends Controller
     {
         $validatedData = $request->validated();
 
-        $this->ProductService->update($product, $validatedData);
+        $this->productService->update($product, $validatedData);
 
         return response()->json($product);
     }
