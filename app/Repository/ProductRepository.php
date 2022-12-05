@@ -19,4 +19,9 @@ class productRepository
 
         return $product;
     }
+
+    public function update(Product $product, $data)
+    {
+        return $product->update($data);
+    }
 }

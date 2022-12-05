@@ -2,8 +2,10 @@
 
 namespace App\Service;
 
+use App\Models\Product;
 use Illuminate\Http\UploadedFile;
 use App\Repository\ProductRepository;
+use Illuminate\Support\Facades\Storage;
 
 class ProductService
 {
@@ -23,17 +25,35 @@ class ProductService
 
     public function create($data)
     {
-        $data['image'] = $this->storeImage($data['image'], $data['slug']);
+        $data['image'] = $this->storeImage($data['image']);
 
         $product = $this->productRepository->create($data);
 
         return $product;
     }
 
-    public function storeImage(UploadedFile $file, $slug)
+    public function update(Product $product, $data)
     {
-        $url = $file->store('/products/' . $slug);
+        if($data['image']){
+            if($product->image){
+                $this->deleteImage($product->image);
+            }
+
+            $data['image'] = $this->storeImage($data['image']);
+        }
+
+        return $this->productRepository->update($product, $data);
+    }
+
+    public function storeImage(UploadedFile $file)
+    {
+        $url = $file->store('/products');
 
         return $url;
+    }
+
+    public function deleteImage($url)
+    {
+        return Storage::delete($url);
     }
 }
