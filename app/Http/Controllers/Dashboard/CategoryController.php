@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Category;
-use App\Service\CategoryService;
+use App\Services\CategoryService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryRequest;
 

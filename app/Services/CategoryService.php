@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Service;
+namespace App\Services;
 
 use App\Models\Category;
-use App\Repository\CategoryRepository;
+use App\Repositories\CategoryRepository;
 
 class CategoryService
 {
@@ -17,7 +17,7 @@ class CategoryService
     public function getCategories()
     {
         $category = $this->categoryRepository->getAll();
-        
+
         return $category;
     }
 
