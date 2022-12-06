@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Category\StoreCategoryRequest;
-use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Service\CategoryService;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Category\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -46,7 +44,7 @@ class CategoryController extends Controller
      * @param  \App\Http\Requests\Category\StoreCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(CategoryRequest $request)
     {
         $validatedData = $request->validated();
 
@@ -68,11 +66,11 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Category\UpdateCategoryRequest  $request
+     * @param  \App\Http\Requests\Category\CategoryRequest  $request
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         $validatedData = $request->validated();
 
