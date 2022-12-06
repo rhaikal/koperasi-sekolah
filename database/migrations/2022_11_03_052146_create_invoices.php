@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id');
-            $table->string('method', 30);
+            $table->string('method');
             $table->char('status', 1);
             $table->integer('ammount');
             $table->timestamp('created_at');
