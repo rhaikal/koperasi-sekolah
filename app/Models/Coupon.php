@@ -9,6 +9,19 @@ class Coupon extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'code',
+        'discount',
+        'max_used',
+        'description',
+        'expired_at'
+    ];
+
     public function orders()
     {
         return $this->hasMany(Order::class);

@@ -19,4 +19,13 @@ class CouponService
 
         return $coupons;
     }
+
+    public function create($data)
+    {
+        $data['discount'] = $data['discount'] / 100;
+
+        $coupon = $this->couponRepository->create($data);
+
+        return $coupon;
+    }
 }

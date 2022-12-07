@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Coupon\CouponRequest;
 use App\Models\Coupon;
 use App\Services\CouponService;
 use Illuminate\Http\Request;
@@ -44,9 +45,13 @@ class CouponController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CouponRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+
+        $coupon = $this->couponService->create($validatedData);
+
+        return response()->json($coupon);
     }
 
     /**

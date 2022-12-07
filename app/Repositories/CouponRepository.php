@@ -12,4 +12,11 @@ class CouponRepository
 
         return $coupons;
     }
+
+    public function create($data)
+    {
+        $coupon = Coupon::create($data);
+
+        return $coupon;
+    }
 }
