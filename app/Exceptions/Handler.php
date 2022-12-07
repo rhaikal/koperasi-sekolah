@@ -2,8 +2,9 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -46,5 +47,14 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+
+        if(request()->is('api/*')){
+            $this->renderable(function (ValidationException $e, $request) {
+                return response()->json([
+                    'message' => 'Validation Error',
+                    'errors' => $e->errors()
+                ], 422);
+            });
+        }
     }
 }
