@@ -62,7 +62,7 @@ class CouponController extends Controller
      */
     public function show(Coupon $coupon)
     {
-        //
+        return response()->json($coupon);
     }
 
     /**
