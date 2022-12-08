@@ -42,7 +42,7 @@ class CouponController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Coupon\CouponRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CouponRequest $request)
@@ -79,13 +79,17 @@ class CouponController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Coupon\CouponRequest  $request
      * @param  \App\Models\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Coupon $coupon)
+    public function update(CouponRequest $request, Coupon $coupon)
     {
-        //
+        $validatedData = $request->validated();
+
+        $this->couponService->update($coupon, $validatedData);
+
+        return response()->json($coupon);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Coupon;
 use App\Repositories\CouponRepository;
 
 class CouponService
@@ -27,5 +28,12 @@ class CouponService
         $coupon = $this->couponRepository->create($data);
 
         return $coupon;
+    }
+
+    public function update(Coupon $coupon, $data)
+    {
+        $data['discount'] = $data['discount'] / 100;
+
+        return $this->couponRepository->update($coupon, $data);
     }
 }

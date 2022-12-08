@@ -19,4 +19,9 @@ class CouponRepository
 
         return $coupon;
     }
+
+    public function update(Coupon $coupon, $data)
+    {
+        return $coupon->update($data);
+    }
 }
