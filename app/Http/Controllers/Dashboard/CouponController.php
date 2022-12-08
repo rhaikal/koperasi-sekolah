@@ -100,6 +100,6 @@ class CouponController extends Controller
      */
     public function destroy(Coupon $coupon)
     {
-        //
+        return response()->json($this->couponService->delete($coupon));
     }
 }

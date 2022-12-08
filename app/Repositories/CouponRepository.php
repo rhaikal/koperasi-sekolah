@@ -24,4 +24,9 @@ class CouponRepository
     {
         return $coupon->update($data);
     }
+
+    public function delete(Coupon $coupon)
+    {
+        return $coupon->delete();
+    }
 }

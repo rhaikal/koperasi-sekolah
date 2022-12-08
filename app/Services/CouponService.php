@@ -36,4 +36,9 @@ class CouponService
 
         return $this->couponRepository->update($coupon, $data);
     }
+
+    public function delete(Coupon $coupon)
+    {
+        return $this->couponRepository->delete($coupon);
+    }
 }
