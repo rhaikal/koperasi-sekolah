@@ -12,4 +12,11 @@ class UserService
     {
         $this->userRepository = $userRepository;
     }
+
+    public function getUsers()
+    {
+        $users = $this->userRepository->getAll();
+
+        return $users;
+    }
 }
