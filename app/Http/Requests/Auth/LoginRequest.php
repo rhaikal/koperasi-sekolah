@@ -11,6 +11,9 @@ use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
 {
+    protected $field;
+    protected $value;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -22,6 +25,18 @@ class LoginRequest extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $this->field = filter_var($this->post('identity'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        $this->value = $this->input('identity');
+        $this->merge([$this->field => $this->value]);
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -29,7 +44,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'email' => ['required_without:username', 'string', 'email'],
+            'username' => ['required_without:email', 'string'],
             'password' => ['required', 'string'],
         ];
     }
@@ -45,7 +61,7 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        if (! Auth::attempt($this->only($this->field, 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

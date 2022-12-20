@@ -14,7 +14,7 @@ import { Head, Link, useForm } from '@inertiajs/inertia-react';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
+        identity: '',
         password: '',
         remember: '',
     });
@@ -44,17 +44,17 @@ export default function Login({ status, canResetPassword }) {
             <form onSubmit={submit}>
                 <div>
                     <InputLabel>
-                        <Label>Email</Label>
+                        <Label>Email / Username</Label>
                         <TextInput
                             type="text"
-                            name="email"
-                            value={data.email}
+                            name="identity"
+                            value={data.identity}
                             className="mt-1 block w-full"
                             autoComplete="username"
                             isFocused={true}
                             handleChange={onHandleChange}
                         />
-                        <InputError message={errors.email} className="mt-2" />
+                        <InputError message={errors.identity} className="mt-2" />
                     </InputLabel>
                 </div>
 
