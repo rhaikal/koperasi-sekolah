@@ -1,8 +1,9 @@
 import React from 'react';
 import Image from '@/Components/Image';
+import Header from '@/Components/Header';
 import { Link } from '@inertiajs/inertia-react';
 
-export default function Guest({ children, imgSrc = '', imgDarkSrc = '', imgAlt =''}) {
+export default function Guest({ children, header = '', imgSrc = '', imgDarkSrc = '', imgAlt = ''}) {
     return (
         <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
             <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
@@ -13,6 +14,8 @@ export default function Guest({ children, imgSrc = '', imgDarkSrc = '', imgAlt =
                     </div>
                     <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
                         <div className="w-full">
+                            <Header>{ header }</Header>
+
                             {children}
                         </div>
                     </div>

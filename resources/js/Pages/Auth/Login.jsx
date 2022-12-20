@@ -5,6 +5,11 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
+import Label from '@/Components/Label';
+import Header from '@/Components/Header';
+import SecondaryButton from '@/Components/SecondaryButton';
+import { FaGithub } from 'react-icons/fa'
+import { FcGoogle } from 'react-icons/fc'
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
 
 export default function Login({ status, canResetPassword }) {
@@ -31,41 +36,42 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <GuestLayout>
+        <GuestLayout header='Login' imgSrc='http://127.0.0.1:8000/img/auth/login-office.jpeg' imgDarkSrc='http://127.0.0.1:8000/img/auth/login-office-dark.jpeg' imgAlt='Office...'>
             <Head title="Log in" />
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel forInput="email" value="Email" />
-
-                    <TextInput
-                        type="text"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        handleChange={onHandleChange}
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
+                    <InputLabel>
+                        <Label>Email</Label>
+                        <TextInput
+                            type="text"
+                            name="email"
+                            value={data.email}
+                            className="mt-1 block w-full"
+                            autoComplete="username"
+                            isFocused={true}
+                            handleChange={onHandleChange}
+                        />
+                        <InputError message={errors.email} className="mt-2" />
+                    </InputLabel>
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel forInput="password" value="Password" />
+                    <InputLabel>
+                        <Label>Password</Label>
+                        <TextInput
+                            type="password"
+                            name="password"
+                            value={data.password}
+                            className="mt-1 block w-full"
+                            autoComplete="current-password"
+                            handleChange={onHandleChange}
+                        />
 
-                    <TextInput
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                        handleChange={onHandleChange}
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
+                        <InputError message={errors.password} className="mt-2" />
+                    </InputLabel>
                 </div>
 
                 <div className="block mt-4">
@@ -75,21 +81,45 @@ export default function Login({ status, canResetPassword }) {
                     </label>
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
-
-                    <PrimaryButton className="ml-4" processing={processing}>
+                <div className='block ms-0 mt-4'>
+                    <PrimaryButton processing={processing} className="w-full justify-center bg-indigo-500">
                         Log in
                     </PrimaryButton>
                 </div>
             </form>
+
+            <hr className='my-8'/>
+
+            <div className='block ms-0 mt-4'>
+                <SecondaryButton processing={processing} className='w-full justify-center hover:ring-1 hover:ring-gray-500'>
+                    <FaGithub className='text-base mr-2' />
+                    Github
+                </SecondaryButton>
+            </div>
+
+            <div className='block ms-0 mt-4'>
+                <SecondaryButton processing={processing} className='w-full justify-center hover:ring-1 hover:ring-gray-500'>
+                    <FcGoogle className='text-base mr-2'/>
+                    Google
+                </SecondaryButton>
+            </div>
+
+            <div className="flex items-center justify-between mt-4">
+                <Link
+                    href={route('register')}
+                    className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                    Create new account
+                </Link>
+                {canResetPassword && (
+                    <Link
+                        href={route('password.request')}
+                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                        Forgot your password?
+                    </Link>
+                )}
+            </div>
         </GuestLayout>
     );
 }

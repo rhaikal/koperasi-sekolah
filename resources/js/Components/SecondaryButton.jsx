@@ -6,7 +6,7 @@ export default function SecondaryButton({ type = 'button', className = '', proce
             type={type}
             onClick={onClick}
             className={
-                `inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 ${
+                `inline-flex items-center px-4 py-2 text-m font-semibold leading-5 text-dark-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray ${
                     processing && 'opacity-25'
                 } ` + className
             }

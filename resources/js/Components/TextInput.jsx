@@ -19,7 +19,7 @@ export default forwardRef(function TextInput(
                 name={name}
                 value={value}
                 className={
-                    `border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm ` +
+                    `border-gray-300 focus:border-indigo-400 focus:outline-none focus:shadow-outline-indigo dark:text-gray-300 dark:focus:shadow-outline-gray focus:ring-indigo-500 rounded-md shadow-sm ` +
                     className
                 }
                 ref={input}
