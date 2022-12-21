@@ -118,8 +118,6 @@ export default function Authenticated({ auth, header, children }) {
                         </ResponsiveNavLink>
                     </div>
 
-                    <hr className='my-4 mx-5' />
-
                     { auth.user ?
                         <div className="pt-4 pb-1 border-t border-gray-200">
                             <div className="px-4">
@@ -137,14 +135,14 @@ export default function Authenticated({ auth, header, children }) {
                             </div>
                         </div>
                     :
-                        <>
+                        <div className='pt-4 pb-1 border-t border-gray-200'>
                             <ResponsiveNavLink href={route('login')}>
                                 Log In
                             </ResponsiveNavLink>
                             <ResponsiveNavLink href={route('register')}>
                                 Register
                             </ResponsiveNavLink>
-                        </>
+                        </div>
                     }
                 </div>
             </nav>
