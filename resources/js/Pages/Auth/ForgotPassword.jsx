@@ -2,7 +2,7 @@ import React from 'react';
 import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+import InputFloatingLabel from '@/Components/InputFloatingLabel';
 import { Head, useForm } from '@inertiajs/inertia-react';
 
 export default function ForgotPassword({ status }) {
@@ -21,7 +21,7 @@ export default function ForgotPassword({ status }) {
     };
 
     return (
-        <GuestLayout>
+        <GuestLayout header='Forgot Password' imgSrc='http://127.0.0.1:8000/img/auth/forgot-password-office.jpeg' imgDarkSrc='http://forgot-password-office-dark.jpeg' imgAlt='Office'>
             <Head title="Forgot Password" />
 
             <div className="mb-4 text-sm text-gray-600">
@@ -32,20 +32,22 @@ export default function ForgotPassword({ status }) {
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
             <form onSubmit={submit}>
-                <TextInput
+                <InputFloatingLabel
+                    id="email"
                     type="text"
                     name="email"
+                    placeholder="Email"
                     value={data.email}
-                    className="mt-1 block w-full"
+                    className=""
                     isFocused={true}
                     handleChange={onHandleChange}
                 />
 
                 <InputError message={errors.email} className="mt-2" />
 
-                <div className="flex items-center justify-end mt-4">
-                    <PrimaryButton className="ml-4" processing={processing}>
-                        Email Password Reset Link
+                <div className="flex items-center mt-4">
+                    <PrimaryButton className="block justify-center bg-indigo-500 w-full" processing={processing}>
+                        Send To Email
                     </PrimaryButton>
                 </div>
             </form>
