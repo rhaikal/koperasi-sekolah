@@ -1,10 +1,12 @@
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import React from "react";
 
-export default function(props) {
+const Dashboard = () => {
     return (
-        <DashboardLayout auth={props.auth}>
-
-        </DashboardLayout>
-    );
+        <></>
+    )
 }
+
+Dashboard.layout = page => <DashboardLayout children={page} header="Dashboard" user={page.props.auth.user} />
+
+export default Dashboard;
