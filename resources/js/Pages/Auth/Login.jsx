@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
-import Checkbox from '@/Components/Checkbox';
+import Checkbox from '@/Components/Input/Checkbox';
 import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import Label from '@/Components/Label';
-import Header from '@/Components/Header';
-import SecondaryButton from '@/Components/SecondaryButton';
+import InputError from '@/Components/Input/InputError';
+import InputLabel from '@/Components/Input/InputLabel';
+import PrimaryButton from '@/Components/Button/PrimaryButton';
+import TextInput from '@/Components/Input/TextInput';
+import Label from '@/Components/Input/Label';
+import SecondaryButton from '@/Components/Button/SecondaryButton';
 import { FaGithub } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 import { Head, Link, useForm } from '@inertiajs/inertia-react';

@@ -1,8 +1,8 @@
 import React from 'react';
 import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import PrimaryButton from '@/Components/PrimaryButton';
-import InputFloatingLabel from '@/Components/InputFloatingLabel';
+import InputError from '@/Components/Input/InputError';
+import PrimaryButton from '@/Components/Button/PrimaryButton';
+import FloatingLabel from '@/Components/Input/FloatingLabel';
 import { Head, useForm } from '@inertiajs/inertia-react';
 
 export default function ForgotPassword({ status }) {
@@ -32,7 +32,7 @@ export default function ForgotPassword({ status }) {
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
             <form onSubmit={submit}>
-                <InputFloatingLabel
+                <FloatingLabel
                     id="email"
                     type="text"
                     name="email"

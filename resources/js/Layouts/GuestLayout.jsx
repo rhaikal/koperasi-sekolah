@@ -1,6 +1,6 @@
 import React from 'react';
-import Image from '@/Components/Image';
-import Header from '@/Components/Header';
+import Image from '@/Components/Auth/Image';
+import Header from '@/Components/Auth/Header';
 import { Link } from '@inertiajs/inertia-react';
 
 export default function Guest({ children, header = '', imgSrc = '', imgDarkSrc = '', imgAlt = ''}) {
