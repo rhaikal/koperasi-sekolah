@@ -1,5 +1,5 @@
 import React from "react";
-import Dropdown from "../../Dropdown";
+import Dropdown from "../Dropdown/Dropdown";
 import { BiExit } from "react-icons/bi";
 
 export default function Navbar({name}) {
