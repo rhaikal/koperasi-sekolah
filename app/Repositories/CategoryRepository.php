@@ -8,9 +8,9 @@ class CategoryRepository
 {
     public function getAll()
     {
-        $category = Category::all();
+        $categories = Category::all(['id', 'name', 'slug']);
 
-        return $category;
+        return $categories;
     }
 
     public function create($data)

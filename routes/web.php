@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::inertia('/dashboard', 'Dashboard/Dashboard')->name('dashboard');
+    Route::get('/dashboard/category', [CategoryController::class, 'index'])->name('category');
 });
 
 require __DIR__.'/auth.php';
