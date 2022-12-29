@@ -11,7 +11,7 @@ export default function Navbar({name}) {
                         <Dropdown>
                             <Dropdown.Trigger>
                                 <button type="button" className="flex items-center align-middle rounded-full focus:shadow-outline-purple focus:outline-none">
-                                    <p className="font-bold text-sky-800/75 dark:text-indigo-200 mr-4">{ name }</p>
+                                    <p className="font-bold text-blue-800/75 dark:text-indigo-200 mr-4">{ name }</p>
                                     <img
                                         className="object-cover w-8 h-8 rounded-full"
                                         src="http:\\127.0.0.1:8000\img\user\profile\default.png"
