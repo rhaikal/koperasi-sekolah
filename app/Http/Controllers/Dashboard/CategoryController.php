@@ -53,7 +53,10 @@ class CategoryController extends Controller
 
         $this->categoryService->create($validatedData);
 
-        return Redirect::route('categories.store');
+        return Redirect::route('categories.store')->with('alert', [
+            'icon' => 'success',
+            'message' => 'Berhasil membuat kategori baru',
+        ]);
     }
 
     /**

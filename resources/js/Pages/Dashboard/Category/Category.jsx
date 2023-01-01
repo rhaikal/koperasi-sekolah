@@ -1,11 +1,8 @@
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import React, { createContext, useState } from "react";
-import PrimaryButton from "@/Components/Button/PrimaryButton";
 import Table from "@/Components/Card/Table/Table";
 import Dropdown from "@/Components/Dropdown/Dropdown";
 import { SlOptionsVertical } from 'react-icons/sl'
-import { Link } from "@inertiajs/inertia-react";
-import CategoryModalForm from "@/Components/Dashboard/Modal/CategoryModalForm";
 import CreateCategory from "./Partials/CreateCategory";
 
 export const ModalContext = createContext()

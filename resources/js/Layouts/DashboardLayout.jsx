@@ -1,8 +1,27 @@
+import { usePage } from "@inertiajs/inertia-react";
 import React from "react";
 import DashboardNavbar from "../Components/Dashboard/DashboardNavbar";
 import DashboardSidebar from "../Components/Dashboard/Sidebar/DashboardSidebar";
+import Swal from "sweetalert2/dist/sweetalert2.all";
 
 export default function Dashboard({children, header, user}) {
+    const { flash } = usePage().props
+
+    if(!(_.isEmpty(flash.alert))){
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+        })
+
+        Toast.fire({
+            icon: flash.alert.icon,
+            title: flash.alert.message
+        })
+    }
+
     return (
         <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
             <DashboardSidebar />
