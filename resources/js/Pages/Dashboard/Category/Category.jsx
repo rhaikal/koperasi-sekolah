@@ -19,7 +19,7 @@ const Category = ({categories}) => {
 
     return (
         <ModalContext.Provider value={{ open, setOpen, openModal }}>
-            <div className="min-w-0 p-4 rounded-lg shadow-lg">
+            <div className="min-w-0 p-4 overflow-x-auto rounded-lg shadow-lg">
                 <CreateCategory />
                 <Table>
                     <Table.Head>
