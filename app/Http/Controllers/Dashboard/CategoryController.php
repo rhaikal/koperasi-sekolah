@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Category;
 use App\Services\CategoryService;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Category\CategoryRequest;
 
 class CategoryController extends Controller
@@ -50,8 +51,9 @@ class CategoryController extends Controller
     {
         $validatedData = $request->validated();
 
-        $category = $this->categoryService->create($validatedData);
-        return $category;
+        $this->categoryService->create($validatedData);
+
+        return Redirect::route('categories.store');
     }
 
     /**

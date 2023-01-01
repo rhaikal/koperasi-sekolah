@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::inertia('/dashboard', 'Dashboard/Dashboard')->name('dashboard');
-    Route::get('/dashboard/category', [CategoryController::class, 'index'])->name('category');
+    Route::apiResource('dashboard/categories', CategoryController::class)->except('show');
 });
 
 require __DIR__.'/auth.php';
