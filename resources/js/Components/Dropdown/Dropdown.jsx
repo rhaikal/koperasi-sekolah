@@ -70,13 +70,24 @@ const Content = ({ align = 'right', width = '48', contentClasses = 'py-1 bg-whit
     );
 };
 
-const DropdownLink = ({ href, method, as, children }) => {
+const DropdownLink = ({ onClick, href, method, as, children }) => {
+    const className = "flex w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out";
+
+    if(onClick){
+        return (
+            <a onClick={onClick} className={className}>
+                {children}
+            </a>
+        )
+    }
+
     return (
         <Link
+            onClick={onClick}
             href={href}
             method={method}
             as={as}
-            className="flex w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+            className={className}
         >
             {children}
         </Link>
