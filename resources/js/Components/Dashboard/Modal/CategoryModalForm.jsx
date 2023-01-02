@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm, usePage } from '@inertiajs/inertia-react';
 import { ModalContext } from "@/Pages/Dashboard/Category/Category";
 import PrimaryButton from "@/Components/Button/PrimaryButton";
@@ -8,7 +8,7 @@ import InputLabel from "@/Components/Input/InputLabel";
 import TextInput from "@/Components/Input/TextInput";
 import InputError from "@/Components/Input/InputError";
 
-export default function CategoryModalForm({onSubmit, header, button}) {
+export default function CategoryModalForm({onSubmit, header, button, category}) {
     const { open, setOpen } = useContext(ModalContext)
     const { errors } = usePage().props
 
@@ -22,6 +22,16 @@ export default function CategoryModalForm({onSubmit, header, button}) {
         slug: '',
     });
 
+    useEffect(() => {
+        if(category && open){
+            setData({
+                name: category.name,
+                slug: category.slug
+            })
+        }
+    }, [open])
+
+
     const closeModal = () => {
         setOpen(false);
         reset();
@@ -34,9 +44,7 @@ export default function CategoryModalForm({onSubmit, header, button}) {
     const handleSubmit = (e) => {
         e.preventDefault()
         onSubmit(data)
-        if(_.isEmpty(errors)) {
-            closeModal()
-        }
+        closeModal()
     }
 
     return (

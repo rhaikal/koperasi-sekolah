@@ -4,19 +4,29 @@ import Table from "@/Components/Card/Table/Table";
 import Dropdown from "@/Components/Dropdown/Dropdown";
 import { SlOptionsVertical } from 'react-icons/sl'
 import CreateCategory from "./Partials/CreateCategory";
+import UpdateCategory from "./Partials/UpdateCategory";
+import CategoryModalForm from "@/Components/Dashboard/Modal/CategoryModalForm";
 
 export const ModalContext = createContext()
 
 const Category = ({categories}) => {
     const [open, setOpen] = useState(false);
+    const [modal, setModal] = useState(Object);
 
-    const openModal = () => {
+    const openModal = (onSubmit, header, button, category=null) => {
+        setModal({
+            onSubmit: onSubmit,
+            header: header,
+            button: button,
+            category: category ?? null
+        })
         setOpen(true);
     };
 
     return (
         <ModalContext.Provider value={{ open, setOpen, openModal }}>
             <div className="min-w-0 p-4 overflow-x-auto rounded-lg shadow-lg">
+                <CategoryModalForm onSubmit={modal.onSubmit} header={modal.header} button={modal.button} category={modal.category} />
                 <CreateCategory />
                 <Table>
                     <Table.Head>
@@ -37,7 +47,7 @@ const Category = ({categories}) => {
                                             <SlOptionsVertical className="float-right hover:cursor-pointer" />
                                         </Dropdown.Trigger>
                                         <Dropdown.Content>
-                                            <Dropdown.Link href="/">Test</Dropdown.Link>
+                                            <UpdateCategory category={category} />
                                         </Dropdown.Content>
                                     </Dropdown>
                                 </Table.Content>
