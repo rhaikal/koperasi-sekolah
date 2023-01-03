@@ -77,6 +77,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        return $this->categoryService->delete($category);
+        if($this->categoryService->delete($category)) {
+            return Redirect::route('categories.index')->with('alert', [
+                'icon' => 'success',
+                'message' => 'Berhasil menghapus kategori',
+            ]);
+        }
     }
 }

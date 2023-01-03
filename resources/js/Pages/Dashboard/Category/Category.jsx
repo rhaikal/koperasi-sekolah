@@ -6,6 +6,7 @@ import { SlOptionsVertical } from 'react-icons/sl'
 import CreateCategory from "./Partials/CreateCategory";
 import UpdateCategory from "./Partials/UpdateCategory";
 import CategoryModalForm from "@/Components/Dashboard/Modal/CategoryModalForm";
+import DeleteDrodownLink from "@/Components/Dashboard/Form/DeleteDropdownLink";
 
 export const ModalContext = createContext()
 
@@ -48,6 +49,7 @@ const Category = ({categories}) => {
                                         </Dropdown.Trigger>
                                         <Dropdown.Content>
                                             <UpdateCategory category={category} />
+                                            <DeleteDrodownLink href={route('categories.destroy', category)} />
                                         </Dropdown.Content>
                                     </Dropdown>
                                 </Table.Content>
