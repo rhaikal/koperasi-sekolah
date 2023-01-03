@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm, usePage } from '@inertiajs/inertia-react';
 import { ModalContext } from "@/Pages/Dashboard/Category/Category";
 import PrimaryButton from "@/Components/Button/PrimaryButton";
@@ -10,42 +10,42 @@ import InputError from "@/Components/Input/InputError";
 
 export default function CategoryModalForm({onSubmit, header, button, category}) {
     const { open, setOpen } = useContext(ModalContext)
-    const { errors } = usePage().props
+    const [ submit, setSubmit ] = useState(false)
 
-    const {
-        data,
-        setData,
-        processing,
-        reset,
-    } = useForm({
+    const form = useForm({
         name: '',
         slug: '',
     });
 
     useEffect(() => {
         if(category && open){
-            setData({
+            form.setData({
                 name: category.name,
                 slug: category.slug
             })
         }
     }, [open])
 
-
     const closeModal = () => {
-        setOpen(false);
-        reset();
+        setOpen(false)
+        form.reset()
     };
 
     const handleChange = (event) => {
-        setData(event.target.name, event.target.value)
+        form.setData(event.target.name, event.target.value)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        onSubmit(data)
-        closeModal()
+        onSubmit(form)
+        setSubmit(true)
     }
+
+    useEffect(() => {
+        if(submit && !form.hasErrors){
+            closeModal()
+        }
+    }, [form.errors])
 
     return (
         <Modal show={open} onClose={closeModal}>
@@ -61,14 +61,14 @@ export default function CategoryModalForm({onSubmit, header, button, category}) 
                         id="name"
                         type="text"
                         name="name"
-                        value={data.name}
+                        value={form.data.name}
                         handleChange={handleChange}
                         className="mt-1 block w-full"
                         isFocused
                         placeholder="Name"
                     />
 
-                    <InputError message={errors.name} className="mt-2" />
+                    {form.hasErrors && <InputError message={form.errors.name} className="mt-2" />}
                 </div>
 
                 <div className="mt-6">
@@ -78,19 +78,19 @@ export default function CategoryModalForm({onSubmit, header, button, category}) 
                         id="slug"
                         type="text"
                         name="slug"
-                        value={data.slug}
+                        value={form.data.slug}
                         handleChange={handleChange}
                         className="mt-1 block w-full"
                         placeholder="Slug"
                     />
 
-                    <InputError message={errors.slug} className="mt-2" />
+                    {form.hasErrors && <InputError message={form.errors.slug} className="mt-2" />}
                 </div>
 
                 <div className="mt-6 flex justify-end">
                     <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
 
-                    <PrimaryButton className="ml-3" processing={processing}>
+                    <PrimaryButton className="ml-3" processing={form.processing}>
                         {button ?? 'Submit'}
                     </PrimaryButton>
                 </div>

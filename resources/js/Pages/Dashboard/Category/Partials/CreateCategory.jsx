@@ -6,8 +6,8 @@ import { Inertia } from "@inertiajs/inertia";
 export default function CreateCategory() {
     const { openModal } = useContext(ModalContext);
 
-    const handleSubmit = (data) => {
-        Inertia.post(route('categories.store'), data)
+    const handleSubmit = (form) => {
+        form.post(route('categories.store'));
     }
 
     return (

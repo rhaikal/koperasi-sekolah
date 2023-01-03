@@ -27,7 +27,7 @@ const Category = ({categories}) => {
     return (
         <ModalContext.Provider value={{ open, setOpen, openModal }}>
             <div className="min-w-0 p-4 overflow-x-auto rounded-lg shadow-lg">
-                <CategoryModalForm onSubmit={modal.onSubmit} header={modal.header} button={modal.button} category={modal.category} />
+                { open && <CategoryModalForm onSubmit={modal.onSubmit} header={modal.header} button={modal.button} category={modal.category} /> }
                 <CreateCategory />
                 <Table>
                     <Table.Head>
