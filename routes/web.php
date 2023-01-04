@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,7 @@ Route::middleware('auth')->group(function () {
 
     Route::inertia('/dashboard', 'Dashboard/Dashboard')->name('dashboard');
     Route::apiResource('dashboard/categories', CategoryController::class)->except('show');
+    Route::resource('dashboard/products', ProductController::class);
 });
 
 require __DIR__.'/auth.php';

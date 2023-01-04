@@ -8,7 +8,7 @@ class productRepository
 {
     public function getAll()
     {
-        $products = Product::all();
+        $products = Product::with('category')->paginate(5);
 
         return $products;
     }

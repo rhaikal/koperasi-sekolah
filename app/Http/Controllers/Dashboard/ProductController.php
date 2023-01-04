@@ -26,7 +26,9 @@ class ProductController extends Controller
     {
         $products = $this->productService->getProducts();
 
-        return response()->json($products);
+        return inertia('Dashboard/Product/Product', [
+            'products' => $products
+        ]);
     }
 
     /**
