@@ -14,7 +14,7 @@ export default function Navbar({name}) {
                                     <p className="font-bold text-blue-800/75 dark:text-indigo-200 mr-4">{ name }</p>
                                     <img
                                         className="object-cover w-8 h-8 rounded-full"
-                                        src="http:\\127.0.0.1:8000\img\user\profile\default.png"
+                                        src="\img\user\profile\default.png"
                                         alt=""
                                         aria-hidden="true"
                                     />
