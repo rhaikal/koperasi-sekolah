@@ -7,6 +7,7 @@ use App\Services\ProductService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
@@ -102,6 +103,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        return response()->json($this->productService->delete($product));
+        if($this->productService->delete($product)){
+            return Redirect::back()->with('alert', [
+                'icon' => 'success',
+                'message' => 'Berhasil menghapus product',
+            ]);
+        }
     }
 }
