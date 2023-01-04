@@ -10,9 +10,9 @@ const Table = ({children}) => {
     )
 }
 
-const Row = ({children}) => {
+const Row = ({children, className}) => {
     return (
-        <tr>{children}</tr>
+        <tr className={className}>{children}</tr>
     )
 }
 
@@ -42,7 +42,7 @@ const Header = ({children}) => {
     )
 }
 
-const Content = ({className="", type="text", children}) => {
+const Content = ({className="", type="text", colSpan,  children}) => {
     let contentClass = "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ";
 
     if(type === 'image' || type === 'header'){
@@ -50,13 +50,13 @@ const Content = ({className="", type="text", children}) => {
         else if(type === 'header') contentClass += "text-left flex items-center font-bold "
 
         return (
-            <th className={contentClass + className}>
+            <th colSpan={colSpan} className={contentClass + className}>
                 {children}
             </th>
         )
     } else {
         return (
-            <td className={contentClass + className}>
+            <td colSpan={colSpan} className={contentClass + className}>
                 {children}
             </td>
         )

@@ -44,7 +44,7 @@ class CategoryController extends Controller
 
         $this->categoryService->create($validatedData);
 
-        return Redirect::route('categories.index')->with('alert', [
+        return Redirect::back()->with('alert', [
             'icon' => 'success',
             'message' => 'Berhasil membuat kategori baru',
         ]);
@@ -63,7 +63,7 @@ class CategoryController extends Controller
 
         $this->categoryService->update($category, $validatedData);
 
-        return Redirect::route('categories.index')->with('alert', [
+        return Redirect::back()->with('alert', [
             'icon' => 'success',
             'message' => 'Berhasil mengubah kategori',
         ]);
@@ -78,7 +78,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if($this->categoryService->delete($category)) {
-            return Redirect::route('categories.index')->with('alert', [
+            return Redirect::back()->with('alert', [
                 'icon' => 'success',
                 'message' => 'Berhasil menghapus kategori',
             ]);

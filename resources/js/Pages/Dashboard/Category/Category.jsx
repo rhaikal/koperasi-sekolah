@@ -7,6 +7,7 @@ import CreateCategory from "./Partials/CreateCategory";
 import UpdateCategory from "./Partials/UpdateCategory";
 import CategoryModalForm from "@/Components/Dashboard/Modal/CategoryModalForm";
 import DeleteDrodownLink from "@/Components/Dashboard/Form/DeleteDropdownLink";
+import Pagination from "@/Components/Pagination/Pagination";
 
 export const ModalContext = createContext()
 
@@ -37,9 +38,9 @@ const Category = ({categories}) => {
                         <Table.Header></Table.Header>
                     </Table.Head>
                     <Table.Body>
-                        {categories.map((category) => (
+                        {categories.data.map((category) => (
                             <Table.Row key={category.id}>
-                                <Table.Content type="header">{category.id}</Table.Content>
+                                <Table.Content type="header" className="w-auto">{category.id}</Table.Content>
                                 <Table.Content>{category.name}</Table.Content>
                                 <Table.Content>{category.slug}</Table.Content>
                                 <Table.Content>
@@ -55,6 +56,11 @@ const Category = ({categories}) => {
                                 </Table.Content>
                             </Table.Row>
                         ))}
+                        <Table.Row>
+                            <Table.Content colSpan={4} className="pb-0">
+                                <Pagination links={categories.links} from={categories.from} to={categories.to} total={categories.total} />
+                            </Table.Content>
+                        </Table.Row>
                     </Table.Body>
                 </Table>
             </div>
