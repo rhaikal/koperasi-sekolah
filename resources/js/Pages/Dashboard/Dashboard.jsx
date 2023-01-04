@@ -7,6 +7,6 @@ const Dashboard = () => {
     )
 }
 
-Dashboard.layout = page => <DashboardLayout children={page} header="Dashboard" user={page.props.auth.user} />
+Dashboard.layout = page => <DashboardLayout children={page} header="Dashboard"/>
 
 export default Dashboard;

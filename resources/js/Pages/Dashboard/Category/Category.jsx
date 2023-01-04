@@ -68,6 +68,6 @@ const Category = ({categories}) => {
     )
 }
 
-Category.layout = page => <DashboardLayout children={page} header="Category" user={page.props.auth.user} />
+Category.layout = page => <DashboardLayout children={page} header="Category"/>
 
 export default Category
