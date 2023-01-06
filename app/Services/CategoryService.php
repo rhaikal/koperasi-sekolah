@@ -14,11 +14,16 @@ class CategoryService
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function getCategories()
+    public function getCategories($paginate = null)
     {
-        $category = $this->categoryRepository->getAll();
+        $categories = null;
+        if($paginate) {
+            $categories = $this->categoryRepository->paginate($paginate);
+        } else {
+            $categories = $this->categoryRepository->getAll();
+        }
 
-        return $category;
+        return $categories;
     }
 
     public function create($data)

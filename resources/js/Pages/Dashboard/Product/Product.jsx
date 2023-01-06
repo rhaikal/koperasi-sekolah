@@ -10,10 +10,9 @@ import PrimaryButton from "@/Components/Button/PrimaryButton";
 import { Link } from "@inertiajs/inertia-react";
 
 const Product = ({products}) => {
-    console.log(products);
     return (
         <div className="min-w-0 p-4 overflow-x-auto rounded-lg shadow-lg">
-            <PrimaryButton className="mb-4 text-gray-500 float-right"><Link href={route("products.store")}>Create Product</Link></PrimaryButton>
+            <PrimaryButton className="mb-4 text-gray-500 float-right"><Link href={route("products.create")}>Create Product</Link></PrimaryButton>
             <Table>
                 <Table.Head>
                     <Table.Header>Id</Table.Header>
@@ -28,7 +27,7 @@ const Product = ({products}) => {
                     {products.data.map((product) => (
                         <Table.Row key={product.id}>
                             <Table.Content type="header" className="w-auto">{product.id}</Table.Content>
-                            <Table.Content type="image"><img src={product.image} alt="test" /></Table.Content>
+                            <Table.Content type="image"><img src={ "/storage/"+product.image} alt="test" /></Table.Content>
                             <Table.Content>{product.name}</Table.Content>
                             <Table.Content>{product.category.name}</Table.Content>
                             <Table.Content>{currencyFormat(product.price)}</Table.Content>

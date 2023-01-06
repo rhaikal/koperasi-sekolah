@@ -17,7 +17,7 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'image' => "/img/product/placeholder.jpg",
+            'image' => "/img/products/placeholder.jpg",
             'name' => fake()->words(rand(1, 2), true),
             'slug' => fake()->slug(2, true),
             'category_id' => rand(1,10),

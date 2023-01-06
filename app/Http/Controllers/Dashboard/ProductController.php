@@ -4,18 +4,21 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Product;
 use App\Services\ProductService;
+use App\Services\CategoryService;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
-use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
     private ProductService $productService;
+    private CategoryService $categoryService;
 
-    public function __construct(ProductService $productService)
+    public function __construct(ProductService $productService, CategoryService $categoryService)
     {
         $this->productService = $productService;
+        $this->categoryService = $categoryService;
     }
 
     /**
@@ -25,7 +28,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = $this->productService->getProducts();
+        $products = $this->productService->getProducts(5);
 
         return inertia('Dashboard/Product/Product', [
             'products' => $products
@@ -39,7 +42,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = $this->categoryService->getCategories();
+
+        return inertia('Dashboard/Product/Partials/CreateProduct', [
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -54,7 +61,10 @@ class ProductController extends Controller
 
         $product = $this->productService->create($validatedData);
 
-        return response()->json($product);
+        return Redirect::route('products.index')->with('alert', [
+            'icon' => 'success',
+            'message' => 'Berhasil menambahkan produk baru',
+        ]);
     }
 
     /**
@@ -65,6 +75,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+
         return response()->json($product);
     }
 

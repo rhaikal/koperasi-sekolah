@@ -16,9 +16,14 @@ class ProductService
         $this->productRepository = $productRepository;
     }
 
-    public function getProducts()
+    public function getProducts($paginate = null)
     {
-        $products = $this->productRepository->getAll();
+        $products = null;
+        if($paginate){
+            $products = $this->productRepository->paginate($paginate);
+        } else {
+            $products = $this->productRepository->getAll();
+        }
 
         return $products;
     }
@@ -56,7 +61,7 @@ class ProductService
 
     public function storeImage(UploadedFile $file)
     {
-        $url = $file->store('/products');
+        $url = $file->store('/img/products');
 
         return $url;
     }

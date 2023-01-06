@@ -17,7 +17,7 @@ export default function Sidebar() {
                 <ul className="mt-6">
                     <SideLink href={route('dashboard')} active={route().current('dashboard')}><FaHome className="w-5 h-5 mr-4 text-current"/> Dashboard</SideLink>
                     <SideLink href={route('categories.index')} active={route().current('categories.index')}><BiCategoryAlt className="w-5 h-5 mr-4 text-current"/> Category</SideLink>
-                    <SideLink href={route('products.index')} active={route().current('products.index')}><BsArchiveFill className="w-5 h-5 mr-4 text-current"/> Product</SideLink>
+                    <SideLink href={route('products.index')} active={route().current('products.*')}><BsArchiveFill className="w-5 h-5 mr-4 text-current"/> Product</SideLink>
                 </ul>
             </div>
         </aside>

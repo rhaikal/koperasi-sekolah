@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = $this->categoryService->getCategories();
+        $categories = $this->categoryService->getCategories(10);
 
         return inertia('Dashboard/Category/Category', [
             'categories' => $categories

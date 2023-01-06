@@ -8,7 +8,14 @@ class CategoryRepository
 {
     public function getAll()
     {
-        $categories = Category::paginate(10);
+        $categories = Category::all();
+
+        return $categories;
+    }
+
+    public function paginate($paginate)
+    {
+        $categories = Category::paginate($paginate);
 
         return $categories;
     }
