@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProductRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class UpdateProductRequest extends FormRequest
         return [
             'image' => 'file|image',
             'name' => 'required|string|max:50',
-            'slug' => 'required|string|max:70|unique:products,slug',
+            'slug' => ['required', 'string', 'max:70', Rule::unique('products')->ignore($this->product->slug, 'slug')],
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|integer',
             'stock' => 'required|integer|max_digits:5',

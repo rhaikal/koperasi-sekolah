@@ -8,16 +8,14 @@ import { Link, useForm } from "@inertiajs/inertia-react";
 import { useEffect } from "react";
 import { BsBack } from "react-icons/bs";
 
-export default function ProductForm({categories, handleSubmit, header}) {
-    inputCurrencyFormat('price')
-
+export default function ProductForm({categories, handleSubmit, header, product}) {
     const form = useForm({
         image: null,
         name: '',
         slug: '',
         category_id: '',
-        price: null,
-        stock: null,
+        price: '',
+        stock: 0,
     });
 
     let options = []
@@ -46,17 +44,26 @@ export default function ProductForm({categories, handleSubmit, header}) {
     }
 
     useEffect(() => {
-        if(form.data.price) form.setData('price', inputCurrencyDerange(form.data.price))
-    }, [form.data.price])
-
-
-    useEffect(() => {
         if(form.data.image) {
             const previewImg = document.getElementById('preview-img')
             previewImg.src = URL.createObjectURL(form.data.image)
             previewImg.onload = () => URL.revokeObjectURL(previewImg.src)
         }
     }, [form.data.image])
+
+    useEffect(() => {
+        if(product) {
+            const previewImg = document.getElementById('preview-img')
+            form.setData({
+                name: product.name,
+                slug: product.slug,
+                category_id: product.category_id,
+                price: product.price,
+                stock: product.stock
+            })
+            previewImg.src = "/storage/" + product.image
+        }
+    }, [product])
 
     return (
         <div className="p-6">
@@ -69,7 +76,7 @@ export default function ProductForm({categories, handleSubmit, header}) {
                             <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
                                 <div className="flex items-center justify-center w-full">
                                     <label htmlFor="dropzone-file" className={`flex flex-col items-center justify-center w-full h-full border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 ${form.errors.image ? 'border-red-500 focus:ring-red-500' : 'border-gray-600 dark:border-gray-600 dark:hover:border-gray-500'}`}>
-                                        {form.data.image ?
+                                        {form.data.image || (!(_.isEmpty(product)) && product.image) ?
                                             <img id="preview-img" className="min-h-100 min-w-100 hover:opacity-75"></img>
                                         :
                                             <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -96,6 +103,7 @@ export default function ProductForm({categories, handleSubmit, header}) {
                                                 placeholder="Name"
                                                 isFocused={true}
                                                 handleChange={handleChange}
+                                                value={form.data.name}
                                                 hasErrors={form.errors.name}
                                             />
                                             {form.hasErrors && <InputError message={form.errors.name} className="mt-2" />}
@@ -107,6 +115,7 @@ export default function ProductForm({categories, handleSubmit, header}) {
                                                 type="text"
                                                 name="slug"
                                                 placeholder="Slug"
+                                                value={form.data.slug}
                                                 handleChange={handleChange}
                                                 hasErrors={form.errors.slug}
                                             />
@@ -120,6 +129,7 @@ export default function ProductForm({categories, handleSubmit, header}) {
                                                 options={options}
                                                 onChange={handleSelect}
                                                 hasErrors={form.errors.category_id}
+                                                defaultValue={form.data.category_id}
                                             />
                                             {form.hasErrors && <InputError message={form.errors.category_id} className="mt-2" />}
                                         </div>
@@ -130,6 +140,7 @@ export default function ProductForm({categories, handleSubmit, header}) {
                                                 type="text"
                                                 name="price"
                                                 placeholder="Price"
+                                                value={form.data.price}
                                                 handleChange={handleChange}
                                                 hasErrors={form.errors.price}
                                             />
@@ -142,6 +153,7 @@ export default function ProductForm({categories, handleSubmit, header}) {
                                                 type="number"
                                                 name="stock"
                                                 placeholder="Stock"
+                                                value={form.data.stock}
                                                 handleChange={handleChange}
                                                 hasErrors={form.errors.stock}
                                             />

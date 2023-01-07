@@ -87,7 +87,12 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = $this->categoryService->getCategories();
+
+        return inertia('Dashboard/Product/Partials/UpdateProduct', [
+            'categories' => $categories,
+            'product' => $product
+        ]);
     }
 
     /**
@@ -103,7 +108,10 @@ class ProductController extends Controller
 
         $this->productService->update($product, $validatedData);
 
-        return response()->json($product);
+        return Redirect::route('products.index')->with('alert', [
+            'icon' => 'success',
+            'message' => 'Berhasil mengubah produk',
+        ]);
     }
 
     /**

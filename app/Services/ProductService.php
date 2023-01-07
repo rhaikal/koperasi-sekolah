@@ -39,7 +39,7 @@ class ProductService
 
     public function update(Product $product, $data)
     {
-        if($data['image']){
+        if(!empty($data['image'])){
             if($product->image){
                 $this->deleteImage($product->image);
             }
