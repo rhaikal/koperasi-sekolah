@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('category_id');
             $table->integer('price');
             $table->smallInteger('stock', false, true);
+            $table->string('description');
             $table->timestamps();
         });
     }

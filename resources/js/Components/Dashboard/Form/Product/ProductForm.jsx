@@ -3,7 +3,7 @@ import PrimaryButton from "@/Components/Button/PrimaryButton";
 import FloatingLabel from "@/Components/Input/FloatingLabel";
 import InputError from "@/Components/Input/InputError";
 import Select from "@/Components/Input/Select";
-import { inputCurrencyFormat, inputCurrencyDerange } from "@/helper";
+// import { inputCurrencyFormat, inputCurrencyDerange } from "@/helper";
 import { Link, useForm } from "@inertiajs/inertia-react";
 import { useEffect } from "react";
 import { BsBack } from "react-icons/bs";
@@ -16,6 +16,7 @@ export default function ProductForm({categories, handleSubmit, header, product})
         category_id: '',
         price: '',
         stock: 0,
+        description: '',
     });
 
     let options = []
@@ -59,7 +60,8 @@ export default function ProductForm({categories, handleSubmit, header, product})
                 slug: product.slug,
                 category_id: product.category_id,
                 price: product.price,
-                stock: product.stock
+                stock: product.stock,
+                description: product.description
             })
             previewImg.src = "/storage/" + product.image
         }
@@ -160,6 +162,9 @@ export default function ProductForm({categories, handleSubmit, header, product})
                                             {form.hasErrors && <InputError message={form.errors.stock} className="mt-2" />}
                                         </div>
 
+                                        <div className="md:col-span-6 my-1">
+                                            <textarea id="description" name="description" value={form.data.description} onChange={handleChange} rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -23,6 +23,7 @@ class ProductFactory extends Factory
             'category_id' => rand(1,10),
             'price' => rand(10000, 250000),
             'stock' => rand(10 , 100),
+            'description' => fake()->paragraph(3)
         ];
     }
 }

@@ -31,6 +31,7 @@ class UpdateProductRequest extends FormRequest
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|integer',
             'stock' => 'required|integer|max_digits:5',
+            'description' => 'required|string|max:255',
         ];
     }
 }
