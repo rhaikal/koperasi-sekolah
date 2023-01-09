@@ -9,6 +9,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $with = ['category'];
+
     /**
      * The attributes that are mass assignable.
      *

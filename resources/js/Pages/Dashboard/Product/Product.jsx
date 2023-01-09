@@ -38,6 +38,7 @@ const Product = ({products}) => {
                                         <SlOptionsVertical className="float-right hover:cursor-pointer" />
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
+                                        <Dropdown.Link href={route('products.show', product)}>Detail</Dropdown.Link>
                                         <Dropdown.Link href={route('products.edit', product)}>Update</Dropdown.Link>
                                         <DeleteDrodownLink href={route('products.destroy', product)} />
                                     </Dropdown.Content>

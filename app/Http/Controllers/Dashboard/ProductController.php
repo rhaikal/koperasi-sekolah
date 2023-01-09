@@ -59,7 +59,7 @@ class ProductController extends Controller
     {
         $validatedData = $request->validated();
 
-        $product = $this->productService->create($validatedData);
+        $this->productService->create($validatedData);
 
         return Redirect::route('products.index')->with('alert', [
             'icon' => 'success',
@@ -75,8 +75,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-
-        return response()->json($product);
+        return inertia('Dashboard/Product/Partials/ShowProduct', [
+            'product' => $product
+        ]);
+        // return response()->json($product);
     }
 
     /**
