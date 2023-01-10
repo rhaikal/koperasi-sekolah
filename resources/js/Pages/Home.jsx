@@ -1,10 +1,10 @@
 import React from 'react';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import HomeLayout from '@/Layouts/HomeLayout';
 import { Head } from '@inertiajs/inertia-react';
 
 export default function Home(props) {
     return (
-        <AuthenticatedLayout
+        <HomeLayout
             auth={props.auth}
             errors={props.errors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Home</h2>}
@@ -18,6 +18,6 @@ export default function Home(props) {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </HomeLayout>
     );
 }
