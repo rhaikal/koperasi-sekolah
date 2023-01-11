@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\CategoryService;
-use App\Services\ProductService;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Services\ProductService;
+use App\Services\CategoryService;
 
 class OrderController extends Controller
 {
@@ -27,9 +28,22 @@ class OrderController extends Controller
         $products = $this->productService->getProducts(6);
         $categories = $this->categoryService->getCategories();
 
-        return inertia('Shop/Shop', [
+        return inertia('Product/Shop/Shop', [
             'products' => $products,
             'categories' => $categories
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Product  $Product
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Product $product)
+    {
+        return inertia('Product/Detail/Detail', [
+            'product' => $product
         ]);
     }
 }

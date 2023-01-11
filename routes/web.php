@@ -37,6 +37,7 @@ Route::get('/about', function () {
 })->name('about');
 
 Route::get('/shop', [OrderController::class , 'index'])->name('shop.index');
+Route::get('/shop/{product}', [OrderController::class , 'show'])->name('shop.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
