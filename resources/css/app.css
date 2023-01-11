@@ -25,3 +25,23 @@
 .react-select__control--is-focused {
     box-shadow: none !important;
 }
+
+.product-item:hover .product-item-pic .product-hover {
+    right: 1.25rem !important;
+    opacity: 1 !important;
+}
+
+.product-item:hover .product-item-text h6 {
+    opacity: 0 !important;
+}
+
+.add-cart {
+    visibility: hidden;
+}
+
+.product-item:hover .product-item-text a {
+    cursor: pointer !important;
+    opacity: 1 !important;
+    top: 1.5rem;
+    visibility: visible !important;
+}
