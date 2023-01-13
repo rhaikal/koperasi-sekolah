@@ -2,12 +2,20 @@
 
 namespace App\Http\Middleware;
 
+use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
 
 class HandleInertiaRequests extends Middleware
 {
+    private OrderRepository $orderRepository;
+
+    public function __construct(OrderRepository $orderRepository)
+    {
+        $this->orderRepository = $orderRepository;
+    }
+
     /**
      * The root template that is loaded on the first page visit.
      *
@@ -40,7 +48,8 @@ class HandleInertiaRequests extends Middleware
             ],
             'flash' => [
                 'alert' => fn () => $request->session()->get('alert'),
-            ]
+            ],
+            'order' => $this->orderRepository->getOrderInProgress()
         ]);
     }
 }

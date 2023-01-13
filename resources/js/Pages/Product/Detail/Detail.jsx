@@ -1,12 +1,26 @@
 import Image from '@/Components/Auth/Image'
 import PrimaryButton from '@/Components/Button/PrimaryButton'
 import FloatingLabel from '@/Components/Input/FloatingLabel'
+import InputError from '@/Components/Input/InputError'
 import { currencyFormat } from '@/helper'
 import HomeLayout from '@/Layouts/HomeLayout'
-import { Link } from '@inertiajs/inertia-react'
+import { Link, useForm } from '@inertiajs/inertia-react'
 import { BsBack } from 'react-icons/bs'
 
 export default function Detail({errors, auth, product}) {
+    const form = useForm({
+        quantity: 0
+    })
+
+    const handleChange = (event) => {
+        form.setData(event.target.name, event.target.value)
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        form.post(route('order.store', product), form.data)
+    }
+
     return (
         <HomeLayout
             auth={auth}
@@ -34,7 +48,7 @@ export default function Detail({errors, auth, product}) {
                                         <hr className="w-11/12 h-px my-8 bg-gray-500/50 border-0 dark:bg-gray-700" />
                                         <span className="absolute px-3 font-bold text-gray-500 bg-white dark:text-white dark:bg-gray-900">Stock : {product.stock}</span>
                                     </div>
-                                    <form className='grid gap-2 grid-cols-11 justify-between items-center'>
+                                    <form onSubmit={handleSubmit} className='grid gap-2 grid-cols-11 justify-between items-center'>
                                         <div className='col-span-10 lg:col-span-8'>
                                             <FloatingLabel
                                                 id="quantity"
@@ -42,10 +56,13 @@ export default function Detail({errors, auth, product}) {
                                                 name="quantity"
                                                 placeholder="Quantity"
                                                 max={product.stock}
+                                                handleChange={handleChange}
+                                                hasErrors={form.errors.quantity}
                                             />
+                                            {form.hasErrors && <InputError message={form.errors.quantity} className="mt-2" />}
                                         </div>
                                         <div className='col-span-10 text-center mt-3 lg:mt-0 lg:col-span-3'>
-                                            <PrimaryButton type='submit' className='uppercase'>Add To Cart</PrimaryButton>
+                                            <PrimaryButton className='uppercase' processing={form.processing}>Add To Cart</PrimaryButton>
                                         </div>
                                     </form>
                                 </div>

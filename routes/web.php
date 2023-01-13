@@ -45,8 +45,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::inertia('/dashboard', 'Dashboard/Dashboard')->name('dashboard');
-    Route::apiResource('dashboard/categories', CategoryController::class)->except('show');
-    Route::resource('dashboard/products', ProductController::class);
+    Route::apiResource('/dashboard/categories', CategoryController::class)->except('show');
+    Route::resource('/dashboard/products', ProductController::class);
+
+    Route::post('/order/{product}', [OrderController::class, 'store'])->name('order.store');
 });
 
 require __DIR__.'/auth.php';

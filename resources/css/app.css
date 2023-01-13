@@ -39,9 +39,13 @@
     visibility: hidden;
 }
 
-.product-item:hover .product-item-text a {
+.product-item:hover .product-item-text button {
     cursor: pointer !important;
     opacity: 1 !important;
     top: 1.5rem;
     visibility: visible !important;
+}
+
+.cart:hover span {
+    background-color: rgb(224, 36, 36);
 }
