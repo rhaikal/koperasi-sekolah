@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id');
-            $table->foreignId('item_id');
+            $table->foreignId('product_id');
             $table->tinyInteger('quantity');
-            $table->integer('total_price');
+            $table->integer('subtotal_price');
             $table->timestamps();
         });
     }

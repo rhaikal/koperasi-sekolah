@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('coupon_id');
-            $table->float('discount', 3, 2);
             $table->integer('total_price');
             $table->char('status', 1);
             $table->timestamps();

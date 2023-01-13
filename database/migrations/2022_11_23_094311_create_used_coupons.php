@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('used_coupons', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('order_id');
             $table->foreignId('coupon_id');
             $table->timestamp('used_at');
         });
