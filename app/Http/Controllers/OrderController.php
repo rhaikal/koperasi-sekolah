@@ -60,4 +60,11 @@ class OrderController extends Controller
 
         return Redirect::back();
     }
+
+    public function destroy(Product $product)
+    {
+        $this->orderService->remove($product);
+
+        return Redirect::back();
+    }
 }

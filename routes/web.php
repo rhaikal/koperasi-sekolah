@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/dashboard/products', ProductController::class);
 
     Route::post('/order/{product}', [OrderController::class, 'store'])->name('order.store');
+    Route::delete('/order/{product}', [OrderController::class, 'destroy'])->name('order.destroy');
 });
 
 require __DIR__.'/auth.php';

@@ -30,4 +30,9 @@ class OrderRepository
 
         return $order;
     }
+
+    public function delete($order)
+    {
+        $order->delete();
+    }
 }

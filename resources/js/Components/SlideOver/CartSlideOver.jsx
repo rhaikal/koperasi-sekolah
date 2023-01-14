@@ -75,12 +75,14 @@ export default function CartSlideOver({open, setOpen, order}) {
                                                             <p className="text-gray-500">Qty {product.pivot.quantity}</p>
 
                                                             <div className="flex">
-                                                            <button
-                                                                type="button"
+                                                            <Link
+                                                                as="button"
+                                                                method="DELETE"
+                                                                href={route('order.destroy', product)}
                                                                 className="font-medium text-indigo-600 hover:text-indigo-500"
                                                             >
                                                                 Remove
-                                                            </button>
+                                                            </Link>
                                                             </div>
                                                         </div>
                                                         </div>

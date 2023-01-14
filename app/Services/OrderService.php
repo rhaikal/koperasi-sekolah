@@ -47,10 +47,26 @@ class OrderService
             }
 
             $this->cartRepository->sync($processedData, $order);
-            $order->refresh();
 
-            $total = $this->cartRepository->getTotalPrice($order);
-            $this->orderRepository->update(['total_price' => $total], $order);
+            $this->updateTotalPrice($order);
         }
+    }
+
+    public function remove($product)
+    {
+        $order = $this->orderRepository->getOrderInProgress();
+
+        if($this->cartRepository->hasCart($order)) {
+            $this->cartRepository->detach($product->id, $order);
+            $this->updateTotalPrice($order);
+        } else {
+            $this->orderRepository->delete($order);
+        }
+    }
+
+    public function updateTotalPrice($order)
+    {
+        $total = $this->cartRepository->getTotalPrice($order);
+        $this->orderRepository->update(['total_price' => $total], $order);
     }
 }

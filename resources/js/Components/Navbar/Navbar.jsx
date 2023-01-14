@@ -36,7 +36,7 @@ export default function Navbar() {
 
                     <div className="hidden sm:flex sm:items-center">
                         <div className="flex items-center relative">
-                            <CartButton count={order && order.products.length + 1} className="mr-2" onClick={() => {setOpenCart(true)}} />
+                            <CartButton count={order && order.products.length} className="mr-2" onClick={() => {setOpenCart(true)}} />
                             {auth.user ?
                                 <Dropdown>
                                     <Dropdown.Trigger>
@@ -89,7 +89,7 @@ export default function Navbar() {
                     </div>
 
                     <div className="-mr-2 flex items-center sm:hidden">
-                        <CartButton count={order && order.products.length + 1} className="mr-3" onClick={() => {setOpenCart(true)}}/>
+                        <CartButton count={order && order.products.length} className="mr-3" onClick={() => {setOpenCart(true)}}/>
                         <button
                             onClick={() => setShowingNavigationDropdown((previousState) => !previousState)}
                             className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
