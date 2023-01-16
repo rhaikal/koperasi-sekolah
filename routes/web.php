@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/order/{product}', [OrderController::class, 'store'])->name('order.store');
     Route::delete('/order/{product}', [OrderController::class, 'destroy'])->name('order.destroy');
+    Route::put('/order/{product}', [OrderController::class, 'update'])->name('order.update');
 });
 
 require __DIR__.'/auth.php';

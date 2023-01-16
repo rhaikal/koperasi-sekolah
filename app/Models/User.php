@@ -48,6 +48,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function orders()
+    {
+        $this->hasMany(Order::class);
+    }
+
     public function coupons()
     {
         $this->belongsToMany(Coupon::class, 'used_coupons')->withPivot('used_at');

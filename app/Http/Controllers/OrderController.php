@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Order\StoreOrderRequest;
+use App\Http\Requests\Order\OrderRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Services\ProductService;
@@ -52,11 +52,20 @@ class OrderController extends Controller
         ]);
     }
 
-    public function store(StoreOrderRequest $request, Product $product)
+    public function store(OrderRequest $request, Product $product)
     {
         $validatedData = $request->validated();
 
-        $order = $this->orderService->order($validatedData, $product);
+        $this->orderService->order($validatedData, $product);
+
+        return Redirect::back();
+    }
+
+    public function update(OrderRequest $request, Product $product)
+    {
+        $validatedData = $request->validated();
+
+        $this->orderService->update($validatedData, $product);
 
         return Redirect::back();
     }

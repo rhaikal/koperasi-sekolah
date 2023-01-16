@@ -1,10 +1,49 @@
-import { Fragment, useContext } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { IoMdClose } from "react-icons/io"
 import { currencyFormat } from '@/helper'
 import { Link } from '@inertiajs/inertia-react'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+import { Inertia } from '@inertiajs/inertia'
 
 export default function CartSlideOver({open, setOpen, order}) {
+    const handleChange = _.debounce((e, product) => {
+        if(e.target.value) {
+            if(e.target.value > product.stock) e.target.value = product.stock
+            updateCart(e.target.value, product)
+        }
+    }, 400);
+
+    const addQuantity = (e, product) => {
+        const counter = e.target.previousSibling
+
+        if (!counter) return;
+
+        if(!!counter.value && parseInt(counter.value) < parseInt(counter.attributes.max.value)) counter.value++
+        else if(!counter.value) counter.value = "1"
+
+        updateCart(counter.value, product)
+    }
+
+    const subtractQuantity = (e, product) => {
+        const counter = e.target.nextSibling
+
+        if (!counter) return;
+
+        if(!!counter.value && counter.value > 1) counter.value--
+        else counter.value = "1"
+
+        updateCart(counter.value, product)
+    }
+
+    const updateCart = _.debounce((value, product) => {
+        const data = {
+            quantity: value
+        }
+
+        Inertia.put(route("order.update", product), {quantity: value})
+    }, 600)
+
     return (
         <Transition.Root show={open} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -72,17 +111,22 @@ export default function CartSlideOver({open, setOpen, order}) {
                                                             <p className="mt-1 text-sm text-gray-500">{product.category.name}</p>
                                                         </div>
                                                         <div className="flex flex-1 items-end justify-between text-sm">
-                                                            <p className="text-gray-500">Qty {product.pivot.quantity}</p>
+                                                            <div className="flex items-center">
+                                                                <p className="text-gray-500 mr-2">Qty</p>
+                                                                <FaAngleLeft onClick={(e) => subtractQuantity(e, product)} className='text-sm cursor-pointer w-5 text-gray-500 focus:text-gray-600' />
+                                                                <input type="number" min="1" max={product.stock} onBlur={(e) => e.target.value = product.pivot.quantity} onChangeCapture={(e) => handleChange(e, product)} defaultValue={product.pivot.quantity} name={`quantity`} className='w-5 border-0 focus:0 focus:shadow-none focus:ring-0 p-0 text-center text-sm text-gray-700' />
+                                                                <FaAngleRight onClick={(e) => addQuantity(e, product)} className='text-sm cursor-pointer w-5 text-gray-500 focus:text-gray-600' />
+                                                            </div>
 
                                                             <div className="flex">
-                                                            <Link
-                                                                as="button"
-                                                                method="DELETE"
-                                                                href={route('order.destroy', product)}
-                                                                className="font-medium text-indigo-600 hover:text-indigo-500"
-                                                            >
-                                                                Remove
-                                                            </Link>
+                                                                <Link
+                                                                    as="button"
+                                                                    method="DELETE"
+                                                                    href={route('order.destroy', product)}
+                                                                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                                                                >
+                                                                    Remove
+                                                                </Link>
                                                             </div>
                                                         </div>
                                                         </div>

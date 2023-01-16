@@ -27,29 +27,26 @@ class OrderService
 
             $cart = $this->cartRepository->get($product, $order);
 
-            $processedData = null;
-            if(!$cart) {
-                $processedData = [
-                    $product->id => [
-                        'quantity' => $data['quantity'],
-                        'subtotal_price' => $product->price * $data['quantity'],
-                    ]
-                ];
-            } else {
-                $quantity = $cart->quantity + $data['quantity'];
-
-                $processedData = [
-                    $product->id => [
-                        'quantity' => $quantity,
-                        'subtotal_price' => $product->price * $quantity,
-                    ]
-                ];
-            }
+            $processedData = (!$cart ?
+                $this->processData($product, $data['quantity']) :
+                $this->processData($product, $cart->quantity + $data['quantity'])
+            );
 
             $this->cartRepository->sync($processedData, $order);
 
             $this->updateTotalPrice($order);
         }
+    }
+
+    public function update($data, $product)
+    {
+        $order = $this->orderRepository->getOrderInProgress();
+
+        $processedData = $this->processData($product, $data['quantity']);
+
+        $this->cartRepository->sync($processedData, $order);
+
+        $this->updateTotalPrice($order);
     }
 
     public function remove($product)
@@ -68,5 +65,17 @@ class OrderService
     {
         $total = $this->cartRepository->getTotalPrice($order);
         $this->orderRepository->update(['total_price' => $total], $order);
+    }
+
+    public function processData($product, $quantity)
+    {
+        $processedData = [
+            $product->id => [
+                'quantity' => $quantity,
+                'subtotal_price' => $product->price * $quantity,
+            ]
+        ];
+
+        return $processedData;
     }
 }

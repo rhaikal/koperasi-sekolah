@@ -27,7 +27,13 @@ class Order extends Model
         'total_price',
     ];
 
-    public function products(){
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function products()
+    {
         return $this->belongsToMany(Product::class, 'carts')->withPivot('quantity', 'subtotal_price')->withTimestamps();
     }
 
