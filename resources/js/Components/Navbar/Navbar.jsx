@@ -32,6 +32,9 @@ export default function Navbar() {
                         <NavLink href={route('about')} active={route().current('about')}>
                             About
                         </NavLink>
+                        <NavLink href={route('shop.index')} active={route().current('shop.index')}>
+                            Shop
+                        </NavLink>
                     </div>
 
                     <div className="hidden sm:flex sm:items-center">
