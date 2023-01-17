@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io"
 
-export default function ProductFilter({subCategories, mobileFiltersOpen, setMobileFiltersOpen}) {
+export default function ProductFilter({categories, mobileFiltersOpen, setMobileFiltersOpen}) {
     return (
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
             <Dialog as="div" className="relative z-40 lg:hidden" onClose={setMobileFiltersOpen}>
@@ -69,13 +69,14 @@ export default function ProductFilter({subCategories, mobileFiltersOpen, setMobi
                                 >
                                     <Disclosure.Panel className="pt-6">
                                     <div className="space-y-6">
-                                        {subCategories.map((subCategories) => (
-                                        <div key={subCategories.id} className="flex items-center">
+                                        {categories.map((category) => (
+                                        <div key={category.id} className="flex items-center">
                                             <Link
-                                                href="#"
+                                                href={route('shop.index')}
+                                                data={{ category: category.id }}
                                                 className="ml-3 min-w-0 flex-1 text-gray-500"
                                             >
-                                                {subCategories.name}
+                                                {category.name}
                                             </Link>
                                         </div>
                                         ))}

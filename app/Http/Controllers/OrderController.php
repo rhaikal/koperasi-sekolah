@@ -28,9 +28,9 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = $this->productService->getProducts(6);
+        $products = $this->productService->getProducts(6, $request);
         $categories = $this->categoryService->getCategories();
 
         return inertia('Product/Shop/Shop', [

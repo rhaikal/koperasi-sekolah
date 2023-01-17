@@ -13,6 +13,20 @@ class productRepository
         return $products;
     }
 
+    public function getByCategory($category, $paginate = null)
+    {
+        $products = Product::with('category')->where('category_id', '=', $category);
+
+        if($paginate){
+            $products = $products->paginate($paginate);
+            $products->appends(request()->query());
+        } else {
+            $products = $products->get();
+        }
+
+        return $products;
+    }
+
     public function paginate($paginate)
     {
         $products = Product::with('category')->paginate($paginate);

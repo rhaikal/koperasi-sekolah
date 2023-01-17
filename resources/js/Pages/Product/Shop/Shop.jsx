@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import HomeLayout from '@/Layouts/HomeLayout'
-import ProductFilter from '@/Components/SlideOver/ProductFilterSlideOver'
+import ResponsiveProductFilter from '@/Components/SlideOver/ProductFilterSlideOver'
 import { FaFilter, FaMinus, FaPlus } from 'react-icons/fa'
 import ProductList from './Partials/ProductList'
 import { Disclosure, Transition } from '@headlessui/react'
@@ -14,7 +14,7 @@ const Shop = ({categories, products}) => {
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div className="bg-white overflow-hidden shadow-md sm:rounded-lg">
                     <div>
-                        <ProductFilter subCategories={categories} mobileFiltersOpen={mobileFiltersOpen} setMobileFiltersOpen={setMobileFiltersOpen} />
+                        <ResponsiveProductFilter categories={categories} mobileFiltersOpen={mobileFiltersOpen} setMobileFiltersOpen={setMobileFiltersOpen} />
 
                         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                             <div className="flex items-baseline justify-between border-b border-gray-200 pt-10 pb-6">
@@ -67,7 +67,8 @@ const Shop = ({categories, products}) => {
                                                 {categories.map((category) => (
                                                     <div key={category.id} className="flex items-center">
                                                         <Link
-                                                            href="#"
+                                                            href={route('shop.index')}
+                                                            data={{ category: category.id }}
                                                             className="ml-3 text-sm text-gray-600"
                                                         >
                                                             {category.name}
