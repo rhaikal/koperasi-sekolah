@@ -20,7 +20,7 @@ class ProductService
     {
         $products = null;
         if($paginate){
-            if($data->has('category')) $products = $this->productRepository->getByCategory($data->category, $paginate);
+            if(!!$data && $data->has('category')) $products = $this->productRepository->getByCategory($data->category, $paginate);
             else $products = $this->productRepository->paginate($paginate);
         } else {
             $products = $this->productRepository->getAll();
