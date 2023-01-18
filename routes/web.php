@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\OrderController;
@@ -51,6 +52,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/order/{product}', [OrderController::class, 'store'])->name('order.store');
     Route::delete('/order/{product}', [OrderController::class, 'destroy'])->name('order.destroy');
     Route::put('/order/{product}', [OrderController::class, 'update'])->name('order.update');
+
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 });
 
 require __DIR__.'/auth.php';

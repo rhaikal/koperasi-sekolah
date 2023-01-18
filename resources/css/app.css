@@ -2,16 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .react-select__menu {
-    z-index: 100000;
-} */
-
 .react-select__input:focus {
     box-shadow: none !important;
-}
-
-.react-select__value-container {
-    cursor: text !important;
 }
 
 .react-select__option {

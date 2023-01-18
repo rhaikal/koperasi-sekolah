@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
 
-export default function FormSelect({options, name, placeholder, onChange, hasErrors, defaultValue}) {
+export default function FormSelect({options, name, placeholder, onChange, hasErrors, defaultValue, isSearchable = true}) {
     return (
         <Select
             name={name}
@@ -13,7 +13,12 @@ export default function FormSelect({options, name, placeholder, onChange, hasErr
                     borderColor: state.isFocused ? base.borderColor : hasErrors ? 'red' : base.borderColor,
                     '&:hover': {borderColor: state.isFocused ? base.borderColor : hasErrors ? 'red' : base.borderColor}
                 }),
+                valueContainer: (base, state) => ({
+                    ...base,
+                    cursor: isSearchable ? 'text' : 'pointer'
+                })
             }}
+            isSearchable={isSearchable}
             placeholder={placeholder}
             classNamePrefix="react-select"
             value={options.find(({value}) => value === defaultValue)}
