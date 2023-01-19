@@ -58,7 +58,7 @@ class OrderService
     {
         $order = $this->orderRepository->getOrderInProgress();
 
-        if($this->cartRepository->hasCart($order)) {
+        if($this->cartRepository->hasCart($order) > 1) {
             $this->cartRepository->detach($product->id, $order);
             $this->updateTotalPrice($order);
         } else {
