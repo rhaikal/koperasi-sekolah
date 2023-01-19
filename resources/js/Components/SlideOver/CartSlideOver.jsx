@@ -1,5 +1,5 @@
-import { Fragment } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { Fragment, useEffect } from 'react'
+import { Transition } from '@headlessui/react'
 import { IoMdClose } from "react-icons/io"
 import { currencyFormat } from '@/helper'
 import { Link } from '@inertiajs/inertia-react'
@@ -41,12 +41,23 @@ export default function CartSlideOver({open, setOpen, order}) {
             quantity: value
         }
 
-        Inertia.put(route("order.update", product), {quantity: value})
+        Inertia.put(route("order.update", product), {quantity: value}, {preserveScroll: true})
     }, 600)
 
+
+    const closeOnKeyEsc = (e) => {
+        if(e.key === 'Escape') {
+            setOpen(false)
+            window.removeEventListener('keydown', closeOnKeyEsc)
+            e.target.blur()
+        }
+    }
+
+    if(open) window.addEventListener('keydown', closeOnKeyEsc)
+
     return (
-        <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={setOpen}>
+        <Transition.Root show={open} as={Fragment} >
+            <div className="relative z-50">
                 <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-500"
@@ -56,12 +67,13 @@ export default function CartSlideOver({open, setOpen, order}) {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                    <div
+                    onClick={() => setOpen(false)} className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
                 </Transition.Child>
 
-                <div className="fixed inset-0 overflow-hidden">
+                <div className="fixed inset-0 overflow-hidden w-fit">
                     <div className="absolute inset-0 overflow-hidden">
-                        <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                        <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full md:pl-10">
                             <Transition.Child
                                 as={Fragment}
                                 enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -71,11 +83,11 @@ export default function CartSlideOver({open, setOpen, order}) {
                                 leaveFrom="translate-x-0"
                                 leaveTo="translate-x-full"
                             >
-                                <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                                    <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                                <div className="pointer-events-auto w-screen max-w-md" >
+                                    <div className="flex h-full flex-col bg-white shadow-xl">
                                         <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                                             <div className="flex items-start justify-between">
-                                                <Dialog.Title className="text-lg font-medium text-gray-900">Shopping cart</Dialog.Title>
+                                                <h1 className="text-lg font-medium text-gray-900">Shopping cart</h1>
                                                 <div className="ml-3 flex h-7 items-center">
                                                 <button
                                                     type="button"
@@ -124,6 +136,7 @@ export default function CartSlideOver({open, setOpen, order}) {
                                                                     method="DELETE"
                                                                     href={route('order.destroy', product)}
                                                                     className="font-medium text-indigo-600 hover:text-indigo-500"
+                                                                    preserveScroll
                                                                 >
                                                                     Remove
                                                                 </Link>
@@ -147,6 +160,7 @@ export default function CartSlideOver({open, setOpen, order}) {
                                                 <Link
                                                 href={route("checkout.index")}
                                                 className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                                                onClick={() => setOpen(false)}
                                                 >
                                                     Checkout
                                                 </Link>
@@ -167,6 +181,7 @@ export default function CartSlideOver({open, setOpen, order}) {
                                                         type="button"
                                                         className="font-medium text-indigo-600 hover:text-indigo-500"
                                                         href={route("shop.index")}
+                                                        onClick={() => setOpen(false)}
                                                     >
                                                         Continue Shopping
                                                         <span aria-hidden="true"> &rarr;</span>
@@ -179,12 +194,12 @@ export default function CartSlideOver({open, setOpen, order}) {
                                             <></>
                                         }
                                     </div>
-                                </Dialog.Panel>
+                                </div>
                             </Transition.Child>
                         </div>
                     </div>
                 </div>
-            </Dialog>
+            </div>
         </Transition.Root>
     )
 }

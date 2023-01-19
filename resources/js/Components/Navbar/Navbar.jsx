@@ -14,7 +14,7 @@ export default function Navbar() {
     const { order } = usePage().props;
 
     return (
-        <nav className="bg-white border-b border-gray-100">
+        <nav className="bg-white border-b border-gray-100 fixed top-0 left-0 right-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     <div className="flex">
@@ -32,7 +32,7 @@ export default function Navbar() {
                         <NavLink href={route('about')} active={route().current('about')}>
                             About
                         </NavLink>
-                        <NavLink href={route('shop.index')} active={route().current('shop.index')}>
+                        <NavLink href={route('shop.index')} active={route().current('shop.*')}>
                             Shop
                         </NavLink>
                     </div>

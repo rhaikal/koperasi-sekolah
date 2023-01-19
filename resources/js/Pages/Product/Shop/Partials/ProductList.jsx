@@ -28,7 +28,7 @@ export default function ProductList({products, links}) {
                                 </ul>
                             </div>
                             <div className="product-item-text relative pt-6">
-                                <Link method="POST" as="button" href={route("order.store", product)} data={{ quantity: 1 }} preserveScroll className="absolute z-50 top-0 left-0 add-cart no-underline opacity-0 text-lg lg:text-base font-semibold text-indigo-500 transition-all duration-500">+ Add To Cart</Link>
+                                <Link method="POST" as="button" href={route("order.store", product)} data={{ quantity: 1 }} preserveScroll className="absolute z-40 top-0 left-0 add-cart no-underline opacity-0 text-lg lg:text-base font-semibold text-indigo-500 transition-all duration-500">+ Add To Cart</Link>
                                 <h6 className="text-lg top-0 left-0 lg:text-base font-semibold text-gray-700 transition-all duration-500">{product.name}</h6>
                             </div>
                             </div>
