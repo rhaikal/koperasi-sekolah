@@ -6,9 +6,21 @@ use App\Models\Order;
 
 class OrderRepository
 {
-    public function getOrderInProgress()
+    public function getInProgress()
     {
         $order = Order::where('status', '=', 0)->where('user_id', '=', auth()->id())->first();
+
+        return $order;
+    }
+
+    public function getInCheckout($paginate = null)
+    {
+        $order = Order::where('status', '=', 1)->where('user_id', '=', auth()->id())->latest();
+
+        $order = (!!$paginate ?
+            $order->paginate($paginate) :
+            $order->all()
+        );
 
         return $order;
     }

@@ -18,13 +18,18 @@ class OrderService
 
     public function getOrderInProgress()
     {
-        return $this->orderRepository->getOrderInProgress();
+        return $this->orderRepository->getInProgress();
+    }
+
+    public function getOrderInCheckout($paginate = null)
+    {
+        return $this->orderRepository->getInCheckout($paginate);
     }
 
     public function order($data, $product)
     {
         if($product->stock > $data['quantity']) {
-            $order = $this->orderRepository->getOrderInProgress();
+            $order = $this->getOrderInProgress();
 
             if(!$order) {
                 $order = $this->orderRepository->create();
@@ -45,7 +50,7 @@ class OrderService
 
     public function update($data, $product)
     {
-        $order = $this->orderRepository->getOrderInProgress();
+        $order = $this->getOrderInProgress();
 
         $processedData = $this->processData($product, $data['quantity']);
 
@@ -56,7 +61,7 @@ class OrderService
 
     public function remove($product)
     {
-        $order = $this->orderRepository->getOrderInProgress();
+        $order = $this->getOrderInProgress();
 
         $this->cartRepository->detach($product->id, $order);
 

@@ -22,7 +22,7 @@ class CheckoutService
 
     public function store($data)
     {
-        $order = $this->orderRepository->getOrderInProgress();
+        $order = $this->orderRepository->getInProgress();
 
         if($order){
             $invoice = $this->invoiceRepository->create($data['method'], $order->id);
