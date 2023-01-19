@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/order/{product}', [OrderController::class, 'update'])->name('order.update');
 
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 });
 
 require __DIR__.'/auth.php';

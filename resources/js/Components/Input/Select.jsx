@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
 
-export default function FormSelect({options, name, placeholder, onChange, hasErrors, defaultValue, isSearchable = true}) {
+export default function FormSelect({options, name, placeholder, onChange, hasErrors, defaultValue, isSearchable = true, required = true}) {
     return (
         <Select
             name={name}
@@ -24,6 +24,7 @@ export default function FormSelect({options, name, placeholder, onChange, hasErr
             value={options.find(({value}) => value === defaultValue)}
             options={options}
             onChange={onChange}
+            // required={required}
         />
     )
 }

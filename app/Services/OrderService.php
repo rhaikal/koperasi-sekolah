@@ -16,6 +16,11 @@ class OrderService
         $this->cartRepository = $cartRepository;
     }
 
+    public function getOrderInProgress()
+    {
+        return $this->orderRepository->getOrderInProgress();
+    }
+
     public function order($data, $product)
     {
         if($product->stock > $data['quantity']) {

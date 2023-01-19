@@ -1,14 +1,26 @@
 import PrimaryButton from '@/Components/Button/PrimaryButton';
 import { currencyFormat } from '@/helper';
 import HomeLayout from '@/Layouts/HomeLayout';
-import { Link } from '@inertiajs/inertia-react';
+import { Link, useForm } from '@inertiajs/inertia-react';
 import { BsCheck, BsThreeDots } from 'react-icons/bs';
 import { FaAngleRight } from 'react-icons/fa';
 import Select from "@/Components/Input/Select";
-import TextInput from '@/Components/Input/TextInput';
 import InputLabel from '@/Components/Input/InputLabel';
+import Swal from "sweetalert2/dist/sweetalert2.all";
 
 const Checkout = ({order, auth}) => {
+    const form = useForm({
+        method: null
+    })
+
+    const handleSelect = (data, attributes) => {
+        form.setData(attributes.name, data.value);
+    }
+
+    const handleSubmit = () => {
+        form.post(route('checkout.store'))
+    }
+
     return (
         <div className="py-12">
             <div className="max-w-7xl sm:px-6 lg:px-8">
@@ -83,13 +95,15 @@ const Checkout = ({order, auth}) => {
                                     placeholder="Payment Method"
                                     options={[{ label: "Cash", value: "cash" }, { label: "E-Wallet", value: "e-wallet"}]}
                                     isSearchable={false}
+                                    onChange={handleSelect}
+                                    hasErrors={form.errors.method}
                                 />
                             </div>
                             <div className="mt-4 flex items-center justify-between">
                                 <p className="text-sm font-medium text-gray-900">Total</p>
                                 <p className="text-2xl font-semibold text-gray-900">{currencyFormat(order.total_price)}</p>
                             </div>
-                            <PrimaryButton className='w-full mt-4 justify-center'><span className='text-sm'>Checkout</span></PrimaryButton>
+                            <PrimaryButton className='w-full mt-4 justify-center' onClick={handleSubmit}><span className='text-sm'>Checkout</span></PrimaryButton>
                         </div>
                     </div>
                 </div>
