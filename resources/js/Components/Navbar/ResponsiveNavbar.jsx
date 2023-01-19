@@ -8,6 +8,7 @@ export default function ResponsiveNavbar() {
 
     return (
         <Transition
+            className={"min-h-screen"}
             show={showingNavigationDropdown}
             enter="transition ease-out duration-200"
             enterFrom="transform opacity-0"
@@ -42,6 +43,7 @@ export default function ResponsiveNavbar() {
 
                     <div className="mt-3 space-y-1">
                         <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('history.index')}>History</ResponsiveNavLink>
                         <ResponsiveNavLink method="post" href={route('logout')} as="button">
                             Log Out
                         </ResponsiveNavLink>
