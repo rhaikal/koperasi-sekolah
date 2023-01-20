@@ -3,7 +3,7 @@ import React from "react";
 const Table = ({children}) => {
     return (
         <div className="block w-full min-w-0 break-words mb-6 rounded bg-white">
-            <table className="items-center w-full bg-transparent border-collapse">
+            <table className="items-center w-full bg-transparent border-collapse relative">
                 {children}
             </table>
         </div>
