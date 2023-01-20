@@ -28,7 +28,7 @@ class CheckoutController extends Controller
         $order = $this->orderService->getOrderInProgress();
 
         if($order){
-            return inertia('Product/Checkout/Checkout');
+            return inertia('Order/Checkout/Checkout');
         } else {
             return Redirect::route('shop.index');
         }

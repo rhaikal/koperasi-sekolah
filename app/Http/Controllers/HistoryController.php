@@ -19,11 +19,11 @@ class HistoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $orders = $this->orderService->getOrderInCheckout(10);
 
-        return inertia('History/History', [
+        return inertia('Order/History/History', [
             'orders' => $orders
         ]);
     }

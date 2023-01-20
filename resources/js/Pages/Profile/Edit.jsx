@@ -1,5 +1,5 @@
 import React from 'react';
-import FrontLayout from '@/Layouts/F@/Layouts/AuthenticatedLayout
+import FrontLayout from '@/Layouts/HomeLayout';
 import DeleteUserForm from './Partials/DeleteUserForm';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';

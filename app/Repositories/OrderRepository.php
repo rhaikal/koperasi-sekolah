@@ -15,7 +15,7 @@ class OrderRepository
 
     public function getInCheckout($paginate = null)
     {
-        $order = Order::where('status', '=', 1)->where('user_id', '=', auth()->id())->latest();
+        $order = Order::with('invoice')->where('status', '=', 1)->where('user_id', '=', auth()->id())->latest();
 
         $order = (!!$paginate ?
             $order->paginate($paginate) :
