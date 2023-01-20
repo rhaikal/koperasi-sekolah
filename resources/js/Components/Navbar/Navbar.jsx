@@ -67,7 +67,7 @@ export default function Navbar() {
                                         </span>
                                     </Dropdown.Trigger>
 
-                                    <Dropdown.Content>
+                                    <Dropdown.Content containerClasses={"inset-y-4"}>
                                         <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
                                         <Dropdown.Link href={route('history.index')}>History</Dropdown.Link>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
