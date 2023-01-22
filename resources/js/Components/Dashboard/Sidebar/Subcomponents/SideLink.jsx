@@ -9,8 +9,8 @@ export default function SideLink({ href, active = false, children }) {
                 href={href}
                 className={
                     active
-                        ? 'transition duration-150 ease-in-out inline-flex align-middle items-center w-full text-base font-semibold text-white transition-colors duration-150 hover:text-white dark:hover:text-gray-500 dark:text-gray-600 font-bold'
-                        : 'transition duration-150 ease-in-out inline-flex align-middle items-center w-full text-base font-semibold text-indigo-200 transition-colors duration-150 hover:text-white dark:hover:text-gray-700'
+                        ? 'ease-in-out inline-flex align-middle items-center w-full text-base text-white transition-colors duration-150 hover:text-white dark:hover:text-gray-500 dark:text-gray-600 font-bold'
+                        : 'ease-in-out inline-flex align-middle items-center w-full text-base font-semibold text-indigo-200 transition-colors duration-150 hover:text-white dark:hover:text-gray-700'
                 }
             >
                 {children}

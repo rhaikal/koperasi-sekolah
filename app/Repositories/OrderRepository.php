@@ -8,21 +8,47 @@ class OrderRepository
 {
     public function getInProgress()
     {
-        $order = Order::where('status', '=', 0)->where('user_id', '=', auth()->id())->first();
+        $order = Order::where('status', '=', '0')->where('user_id', '=', auth()->id())->first();
 
         return $order;
     }
 
-    public function getInCheckout($paginate = null)
+    public function getOwnInCheckout($paginate = null)
     {
-        $order = Order::with('invoice')->where('status', '=', 1)->where('user_id', '=', auth()->id())->latest();
+        $orders = Order::with('invoice')->where('status', '=', '1')->where('user_id', '=', auth()->id())->latest();
 
-        $order = (!!$paginate ?
-            $order->paginate($paginate) :
-            $order->all()
+        $orders = (!!$paginate ?
+            $orders->paginate($paginate) :
+            $orders->all()
         );
 
-        return $order;
+        return $orders;
+    }
+
+    public function getInCheckoutExceptOwn($paginate = null)
+    {
+        $orders = Order::with('invoice')->where('status', '=', '1')->where('user_id', '<>', auth()->id())->latest();
+
+        $orders = (!!$paginate ?
+            $orders->paginate($paginate) :
+            $orders->all()
+        );
+
+        // dd($orders);
+
+        return $orders;
+    }
+
+    public function getInCheckout($paginate = null)
+    {
+        $orders = Order::with('invoice')->where('status', '=', '1')->latest();
+
+        $orders = (!!$paginate ?
+            $orders->paginate($paginate) :
+            $orders->all()
+        );
+
+        return $orders;
     }
 
     public function create()

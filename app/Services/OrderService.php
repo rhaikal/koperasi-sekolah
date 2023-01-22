@@ -21,9 +21,13 @@ class OrderService
         return $this->orderRepository->getInProgress();
     }
 
-    public function getOrderInCheckout($paginate = null)
+    public function getOrderInCheckout($paginate = null, $own = true)
     {
-        return $this->orderRepository->getInCheckout($paginate);
+        if($own) return $this->orderRepository->getOwnInCheckout($paginate);
+        else {
+            if(auth()->user()->role > 1) return $this->orderRepository->getInCheckout($paginate);
+            else return $this->orderRepository->getInCheckoutExceptOwn($paginate);
+        }
     }
 
     public function order($data, $product)
