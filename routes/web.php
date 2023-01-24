@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\InvoiceController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\UnpaidOrderController;
 use App\Http\Controllers\HistoryController;
@@ -52,6 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::apiResource('/dashboard/categories', CategoryController::class)->except('show');
     Route::resource('/dashboard/products', ProductController::class);
     Route::get('/dashboard/orders/unpaid', [UnpaidOrderController::class, 'index'])->name('order.unpaid.index');
+    Route::get('/dashboard/orders/{invoice}', [InvoiceController::class, 'show'])->name('invoice.show');
 
     Route::post('/order/{product}', [OrderController::class, 'store'])->name('order.store');
     Route::delete('/order/{product}', [OrderController::class, 'destroy'])->name('order.destroy');

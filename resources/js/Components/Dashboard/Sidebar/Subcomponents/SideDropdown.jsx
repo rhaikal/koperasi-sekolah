@@ -54,7 +54,7 @@ const Panel = ({children}) => {
     )
 }
 
-const DropdownLink = ({children, href}) => {
+const DropdownLink = ({children, href, current}) => {
     const { active } = useContext(DropdownContext)
 
     return (
@@ -62,7 +62,7 @@ const DropdownLink = ({children, href}) => {
             <Link
                 href={href}
                 className={
-                    active ?
+                    (active && current) ?
                     "ml-3 text-sm font-semibold text-indigo-800" :
                     "ml-3 text-sm text-gray-600 hover:text-indigo-800"
                 }

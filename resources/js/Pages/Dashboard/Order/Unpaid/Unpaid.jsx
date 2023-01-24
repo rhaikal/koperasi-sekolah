@@ -26,7 +26,7 @@ const Unpaid = ({ orders }) => {
                                         <SlOptionsVertical className="float-right hover:cursor-pointer" />
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={'#'}>Test</Dropdown.Link>
+                                        <Dropdown.Link href={route('invoice.show', order.invoice)}>Detail</Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
                             </Table.Content>
