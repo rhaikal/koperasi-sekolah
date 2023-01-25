@@ -40,6 +40,6 @@ class CheckoutController extends Controller
 
         $invoice = $this->checkoutService->store($validatedData);
 
-        if($invoice) return Redirect::route('home');
+        if($invoice) return Redirect::route('payment.show', $invoice);
     }
 }

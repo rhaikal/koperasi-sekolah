@@ -6,7 +6,6 @@ import { BsCheck, BsThreeDots } from 'react-icons/bs';
 import { FaAngleRight } from 'react-icons/fa';
 import Select from "@/Components/Input/Select";
 import InputLabel from '@/Components/Input/InputLabel';
-import Swal from "sweetalert2/dist/sweetalert2.all";
 import OrderSumarry from '../Partials/OrderSummary';
 
 const Checkout = ({order, auth}) => {
@@ -43,9 +42,9 @@ const Checkout = ({order, auth}) => {
                                         <span className="font-semibold text-gray-900">Checkout</span>
                                     </li>
                                     <FaAngleRight className='h-4 w-4 text-gray-400' />
-                                    <li class="flex items-center space-x-3 text-left sm:space-x-4">
-                                        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-500/90 font-semibold text-white">3</span>
-                                        <span class="font-semibold text-gray-500">Payment</span>
+                                    <li className="flex items-center space-x-3 text-left sm:space-x-4">
+                                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-500/90 font-semibold text-white">3</span>
+                                        <span className="font-semibold text-gray-500">Payment</span>
                                     </li>
                                 </ul>
                             </div>
