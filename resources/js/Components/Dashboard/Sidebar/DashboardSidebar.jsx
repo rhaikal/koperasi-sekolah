@@ -17,7 +17,7 @@ export default function Sidebar() {
                 </Link>
                 <ul className="mt-6">
                     <SideLink href={route('dashboard')} active={route().current('dashboard')}><FaHome className="w-5 h-5 mr-4 text-current"/> Dashboard</SideLink>
-                    <SideDropdown active={(route().current('order.unpaid.*') || route().current('invoice.show'))}>
+                    <SideDropdown active={(route().current('order.*'))}>
                         <SideDropdown.Button><BsReceipt className="w-5 h-5 mr-4 text-current" /> Order</SideDropdown.Button>
                         <SideDropdown.Panel>
                             <SideDropdown.Link href={route('order.unpaid.index')} current={route().current('order.unpaid.*')}>Unpaid</SideDropdown.Link>
