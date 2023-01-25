@@ -58,7 +58,10 @@ class OrderController extends Controller
 
         $this->orderService->order($validatedData, $product);
 
-        return Redirect::back();
+        return Redirect::back()->with('alert', [
+            'icon' => 'success',
+            'message' => 'Berhasil memasukan barang ke keranjang'
+        ]);
     }
 
     public function update(OrderRequest $request, Product $product)
@@ -67,13 +70,19 @@ class OrderController extends Controller
 
         $this->orderService->update($validatedData, $product);
 
-        return Redirect::back();
+        return Redirect::back()->with('alert', [
+            'icon' => 'success',
+            'message' => 'Berhasil mengubah kuantitas barang'
+        ]);
     }
 
     public function destroy(Product $product)
     {
         $this->orderService->remove($product);
 
-        return Redirect::back();
+        return Redirect::back()->with('alert', [
+            'icon' => 'success',
+            'message' => 'Berhasil mengeluarkan barang dari keranjang'
+        ]);
     }
 }
