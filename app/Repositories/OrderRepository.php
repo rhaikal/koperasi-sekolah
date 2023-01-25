@@ -58,14 +58,24 @@ class OrderRepository
             $orders->all()
         );
 
-        // dd($orders);
-
         return $orders;
     }
 
     public function getInCheckout($paginate = null)
     {
         $orders = Order::with('invoice')->where('status', '=', '1')->latest();
+
+        $orders = (!!$paginate ?
+            $orders->paginate($paginate) :
+            $orders->all()
+        );
+
+        return $orders;
+    }
+
+    public function getPaid($paginate = null)
+    {
+        $orders = Order::with('invoice')->where('status', '=', '2')->latest();
 
         $orders = (!!$paginate ?
             $orders->paginate($paginate) :

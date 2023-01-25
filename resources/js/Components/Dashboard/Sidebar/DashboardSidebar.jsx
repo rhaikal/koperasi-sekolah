@@ -21,6 +21,7 @@ export default function Sidebar() {
                         <SideDropdown.Button><BsReceipt className="w-5 h-5 mr-4 text-current" /> Order</SideDropdown.Button>
                         <SideDropdown.Panel>
                             <SideDropdown.Link href={route('order.unpaid.index')} current={route().current('order.unpaid.*')}>Unpaid</SideDropdown.Link>
+                            <SideDropdown.Link href={route('order.paid.index')} current={route().current('order.paid.*')}>Paid</SideDropdown.Link>
                         </SideDropdown.Panel>
                     </SideDropdown>
                     <SideLink href={route('categories.index')} active={route().current('categories.index')}><BiCategoryAlt className="w-5 h-5 mr-4 text-current"/> Category</SideLink>

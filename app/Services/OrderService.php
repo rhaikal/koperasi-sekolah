@@ -36,6 +36,11 @@ class OrderService
         }
     }
 
+    public function getPaidOrders($paginate = null)
+    {
+        return $this->orderRepository->getPaid($paginate);
+    }
+
     public function order($data, $product)
     {
         if($product->stock > $data['quantity']) {
