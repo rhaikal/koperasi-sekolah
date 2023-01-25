@@ -29,7 +29,7 @@ const Paid = ({ orders }) => {
                                         <SlOptionsVertical className="float-right hover:cursor-pointer" />
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={'#'}>Detail</Dropdown.Link>
+                                        <Dropdown.Link href={route('order.paid.show', order.invoice)}>Detail</Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
                             </Table.Content>
