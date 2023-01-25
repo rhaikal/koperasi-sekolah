@@ -80,7 +80,7 @@ class OrderService
 
         $this->cartRepository->detach($product->id, $order);
 
-        if($this->cartRepository->hasCart($order) > 1) {
+        if($this->cartRepository->hasCart($order)) {
             $this->updateTotalPrice($order);
         } else {
             $this->orderRepository->delete($order);
