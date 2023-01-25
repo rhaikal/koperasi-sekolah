@@ -56,17 +56,23 @@ class OrderController extends Controller
     {
         $validatedData = $request->validated();
 
-        $this->orderService->order($validatedData, $product);
+        if($validatedData['quantity'] > $product->stock) $this->exceedLimit();
 
-        return Redirect::back()->with('alert', [
-            'icon' => 'success',
-            'message' => 'Berhasil memasukan barang ke keranjang'
-        ]);
+        $order = $this->orderService->order($validatedData, $product);
+
+        if($order){
+            return Redirect::back()->with('alert', [
+                'icon' => 'success',
+                'message' => 'Berhasil memasukan barang ke keranjang'
+            ]);
+        } else $this->exceedLimit();
     }
 
     public function update(OrderRequest $request, Product $product)
     {
         $validatedData = $request->validated();
+
+        if((int)$validatedData['quantity'] > $product->stock) $this->exceedLimit();
 
         $this->orderService->update($validatedData, $product);
 
@@ -83,6 +89,13 @@ class OrderController extends Controller
         return Redirect::back()->with('alert', [
             'icon' => 'success',
             'message' => 'Berhasil mengeluarkan barang dari keranjang'
+        ]);
+    }
+
+    public function exceedLimit() {
+        return Redirect::back()->with('alert', [
+            'icon' => 'error',
+            'message' => 'Barang yang dipesan melebihi stok yang tersedia'
         ]);
     }
 }

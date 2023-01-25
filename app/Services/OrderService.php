@@ -43,23 +43,27 @@ class OrderService
 
     public function order($data, $product)
     {
-        if($product->stock > $data['quantity']) {
+        if($product->stock >= $data['quantity']) {
             $order = $this->getOrderInProgress();
 
-            if(!$order) {
-                $order = $this->orderRepository->create();
-            }
+            if(!$order) $order = $this->orderRepository->create();
 
             $cart = $this->cartRepository->get($product, $order);
+
+            if(!!$cart && $cart->quantity == $product->stock) return false;
 
             $processedData = (!$cart ?
                 $this->processData($product, $data['quantity']) :
                 $this->processData($product, $cart->quantity + $data['quantity'])
             );
 
+            if($processedData[$product->id]['quantity'] > $product->stock) $processedData[$product->id]['quantity'] = $product->stock;
+
             $this->cartRepository->sync($processedData, $order);
 
             $this->updateTotalPrice($order);
+
+            return true;
         }
     }
 

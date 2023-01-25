@@ -17,18 +17,18 @@ export default function CartSlideOver({open, setOpen, order}) {
     const addQuantity = (e, product) => {
         const counter = e.target.previousSibling
 
-        if (!counter) return;
+        if (!counter) addQuantity;
 
         if(!!counter.value && parseInt(counter.value) < parseInt(counter.attributes.max.value)) counter.value++
         else if(!counter.value) counter.value = "1"
 
-        updateCart(counter.value, product)
+        if(counter.value < product.stock) updateCart(counter.value, product)
     }
 
     const subtractQuantity = (e, product) => {
         const counter = e.target.nextSibling
 
-        if (!counter) return;
+        if (!counter || counter.value == '1') return;
 
         if(!!counter.value && counter.value > 1) counter.value--
         else counter.value = "1"
