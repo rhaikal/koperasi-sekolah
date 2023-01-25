@@ -6,25 +6,25 @@ import { Inertia } from "@inertiajs/inertia"
 import { SlOptionsVertical } from "react-icons/sl"
 import Swal from "sweetalert2/dist/sweetalert2.all"
 
+export const handlePayment = (e, order) => {
+    e.preventDefault();
+
+    Swal.fire({
+        title: 'Has this order been paid',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'No',
+        confirmButtonText: 'Yes'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Inertia.post(route('payment.store.cash', order))
+        }
+    })
+}
+
 const Unpaid = ({ orders }) => {
-    const handlePayment = (e, order) => {
-        e.preventDefault();
-
-        Swal.fire({
-            title: 'Has this order been paid',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'No',
-            confirmButtonText: 'Yes'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Inertia.post(route('payment.store.cash', order))
-            }
-        })
-    }
-
     return (
         <div className="min-w-0 p-4 pt-8 overflow-x-auto rounded-lg shadow-lg">
             <Table>
@@ -46,7 +46,7 @@ const Unpaid = ({ orders }) => {
                                         <SlOptionsVertical className="float-right hover:cursor-pointer" />
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={route('invoice.show', order.invoice)}>Detail</Dropdown.Link>
+                                        <Dropdown.Link href={route('order.unpaid.show', order.invoice)} data={{ 'handlePayment': handlePayment }}>Detail</Dropdown.Link>
                                         {order.invoice.method == 'cash' && <Dropdown.Link onClick={(e) => handlePayment(e, order)}>Pay</Dropdown.Link>}
                                     </Dropdown.Content>
                                 </Dropdown>

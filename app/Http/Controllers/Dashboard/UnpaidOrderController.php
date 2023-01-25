@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Order;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use App\Services\OrderService;
 use App\Services\PaymentService;
@@ -32,6 +33,22 @@ class UnpaidOrderController extends Controller
 
         return inertia('Dashboard/Order/Unpaid/Unpaid', [
             'orders' => $orders
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Invoice  $invoice
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Invoice $invoice)
+    {
+        $this->authorize('view', $invoice);
+
+        return inertia('Dashboard/Order/Unpaid/Detail/Detail', [
+            'invoice' => $invoice,
+            'user' => $invoice->order->user,
         ]);
     }
 
