@@ -6,15 +6,20 @@ use Illuminate\Http\Request;
 use App\Services\OrderService;
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
+use App\Models\Order;
+use App\Services\PickupService;
+use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class PaidOrderController extends Controller
 {
     private OrderService $orderService;
+    private PickupService $pickupService;
 
-    public function __construct(OrderService $orderService)
+    public function __construct(OrderService $orderService, PickupService $pickupService)
     {
         $this->orderService = $orderService;
+        $this->pickupService = $pickupService;
     }
 
     /**
@@ -47,6 +52,18 @@ class PaidOrderController extends Controller
             return inertia('Dashboard/Order/Paid/Detail/Detail', [
                 'invoice' => $invoice,
                 'user' => $invoice->order->user,
+            ]);
+        } else throw new NotFoundResourceException();
+    }
+
+    public function pickup(Order $order)
+    {
+        if($order->status == '2'){
+            $this->pickupService->pickup($order);
+
+            return Redirect::back()->with('alert', [
+                'icon' => 'success',
+                'message' => 'Berhasil mengkonfirmasi pengambilan',
             ]);
         } else throw new NotFoundResourceException();
     }
