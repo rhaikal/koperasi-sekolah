@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/dashboard/products', ProductController::class);
     Route::get('/dashboard/orders/unpaid', [UnpaidOrderController::class, 'index'])->name('order.unpaid.index');
     Route::get('/dashboard/orders/{invoice}', [InvoiceController::class, 'show'])->name('invoice.show');
+    Route::post('/dashboard/orders/{order}', [UnpaidOrderController::class, 'payment'])->name('payment.store.cash');
 
     Route::post('/order/{product}', [OrderController::class, 'store'])->name('order.store');
     Route::delete('/order/{product}', [OrderController::class, 'destroy'])->name('order.destroy');
