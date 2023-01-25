@@ -6,6 +6,30 @@ use App\Models\Order;
 
 class OrderRepository
 {
+    public function getAll($paginate)
+    {
+        $orders = Order::where('status', '!=', '0')->latest();
+
+        $orders = (!!$paginate ?
+            $orders->paginate($paginate) :
+            $orders->all()
+        );
+
+        return $orders;
+    }
+
+    public function getAllOwn($paginate)
+    {
+        $orders = Order::with('invoice')->where('status', '!=', '0')->where('user_id', '=', auth()->id())->latest();
+
+        $orders = (!!$paginate ?
+            $orders->paginate($paginate) :
+            $orders->all()
+        );
+
+        return $orders;
+    }
+
     public function getInProgress()
     {
         $order = Order::where('status', '=', '0')->where('user_id', '=', auth()->id())->first();

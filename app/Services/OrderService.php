@@ -16,6 +16,12 @@ class OrderService
         $this->cartRepository = $cartRepository;
     }
 
+    public function getOrders($paginate = null, $own = true)
+    {
+        if($own) return $this->orderRepository->getAllOwn($paginate);
+        else return $this->orderRepository->getAll($paginate);
+    }
+
     public function getOrderInProgress()
     {
         return $this->orderRepository->getInProgress();

@@ -21,7 +21,7 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $orders = $this->orderService->getOrderInCheckout(10);
+        $orders = $this->orderService->getOrders(10);
 
         return inertia('Order/History/History', [
             'orders' => $orders
