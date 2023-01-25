@@ -29,7 +29,7 @@ class UnpaidOrderController extends Controller
      */
     public function index()
     {
-        $orders = $this->orderService->getOrderInCheckout(5, false);
+        $orders = $this->orderService->getOrderInCheckout(10, false);
 
         return inertia('Dashboard/Order/Unpaid/Unpaid', [
             'orders' => $orders
