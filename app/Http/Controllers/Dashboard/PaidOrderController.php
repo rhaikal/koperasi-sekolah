@@ -31,6 +31,10 @@ class PaidOrderController extends Controller
     {
         $orders = $this->orderService->getPaidOrders(10);
 
+        $orders->load(['user' => function ($query) {
+            $query->select("id", "name");
+        }]);
+
         return inertia('Dashboard/Order/Paid/Paid', [
             'orders' => $orders
         ]);

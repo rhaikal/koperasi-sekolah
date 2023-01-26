@@ -31,6 +31,10 @@ class UnpaidOrderController extends Controller
     {
         $orders = $this->orderService->getOrderInCheckout(10, false);
 
+        $orders->load(['user' => function ($query) {
+            $query->select("id", "name");
+        }]);
+
         return inertia('Dashboard/Order/Unpaid/Unpaid', [
             'orders' => $orders
         ]);
