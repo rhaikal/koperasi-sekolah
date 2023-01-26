@@ -2,11 +2,11 @@ import { Fragment, useEffect } from 'react'
 import { Transition } from '@headlessui/react'
 import { IoMdClose } from "react-icons/io"
 import { currencyFormat } from '@/helper'
-import { Link } from '@inertiajs/inertia-react'
+import { Link, usePage } from '@inertiajs/inertia-react'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 import { Inertia } from '@inertiajs/inertia'
 
-export default function CartSlideOver({open, setOpen, order}) {
+export default function CartSlideOver({open, setOpen, cart}) {
     const handleChange = _.debounce((e, product) => {
         if(e.target.value) {
             if(e.target.value > product.stock) e.target.value = product.stock
@@ -103,7 +103,7 @@ export default function CartSlideOver({open, setOpen, order}) {
                                             <div className="mt-8">
                                                 <div className="flow-root">
                                                 <ul role="list" className="-my-6 divide-y divide-gray-200">
-                                                    {order && order.products.map((product) => {
+                                                    {cart && cart.products.map((product) => {
                                                         if(product.stock === 0) Inertia.delete(route('order.destroy.exceed', product))
                                                         else if(product.pivot.quantity > product.stock) Inertia.put(route('order.update.exceed', product), {quantity: product.stock})
                                                         return (
@@ -153,11 +153,11 @@ export default function CartSlideOver({open, setOpen, order}) {
                                                 </div>
                                             </div>
                                         </div>
-                                        {order ?
+                                        {cart ?
                                             <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                                                 <div className="flex justify-between text-base font-medium text-gray-900">
                                                     <p>Subtotal</p>
-                                                    <p>{currencyFormat(order.total_price)}</p>
+                                                    <p>{currencyFormat(cart.total_price)}</p>
                                                 </div>
                                                 <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                                             <div className="mt-6">

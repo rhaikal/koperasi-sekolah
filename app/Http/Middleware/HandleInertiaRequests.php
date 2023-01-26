@@ -49,7 +49,7 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'alert' => fn () => $request->session()->get('alert'),
             ],
-            'order' => $this->orderRepository->getInProgress()
+            'cart' => $this->orderRepository->getInProgress()
         ]);
     }
 }

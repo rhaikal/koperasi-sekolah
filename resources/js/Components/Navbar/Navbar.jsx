@@ -11,7 +11,7 @@ import CartSlideOver from "@/Components/SlideOver/CartSlideOver";
 export default function Navbar() {
     const { auth, showingNavigationDropdown, setShowingNavigationDropdown } = useContext(NavigationContext);
     const [ openCart , setOpenCart ] = useState(false);
-    const { order } = usePage().props;
+    const { cart } = usePage().props;
 
     return (
         <nav className="bg-white border-b border-gray-100 fixed top-0 left-0 right-0 z-50">
@@ -39,7 +39,7 @@ export default function Navbar() {
 
                     <div className="hidden sm:flex sm:items-center">
                         <div className="flex items-center relative">
-                            <CartButton count={order && order.products.length} className="mr-2" onClick={() => {setOpenCart(true)}} />
+                            <CartButton count={cart && cart.products.length} className="mr-2" onClick={() => {setOpenCart(true)}} />
                             {auth.user ?
                                 <Dropdown>
                                     <Dropdown.Trigger>
@@ -93,7 +93,7 @@ export default function Navbar() {
                     </div>
 
                     <div className="-mr-2 flex items-center sm:hidden">
-                        <CartButton count={order && order.products.length} className="mr-3" onClick={() => {setOpenCart(true)}}/>
+                        <CartButton count={cart && cart.products.length} className="mr-3" onClick={() => {setOpenCart(true)}}/>
                         <button
                             onClick={() => setShowingNavigationDropdown((previousState) => !previousState)}
                             className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
@@ -121,7 +121,7 @@ export default function Navbar() {
 
             <ResponsiveNavbar auth={auth} />
 
-            <CartSlideOver order={order} open={openCart} setOpen={setOpenCart}  />
+            <CartSlideOver cart={cart} open={openCart} setOpen={setOpenCart}  />
         </nav>
     )
 }
