@@ -92,6 +92,30 @@ class OrderController extends Controller
         ]);
     }
 
+    public function updateExceedLimit(OrderRequest $request, Product $product)
+    {
+        $validatedData = $request->validated();
+
+        if((int)$validatedData['quantity'] > $product->stock) $this->exceedLimit();
+
+        $this->orderService->update($validatedData, $product);
+
+        return Redirect::back()->with('alert', [
+            'icon' => 'success',
+            'message' => 'Terdapat produk yang kuantitasnya melebihi stok'
+        ]);
+    }
+
+    public function removeOutOfStock(Product $product)
+    {
+        $this->orderService->remove($product);
+
+        return Redirect::back()->with('alert', [
+            'icon' => 'error',
+            'message' => 'Terdapat produk yang stoknya habis'
+        ]);
+    }
+
     public function exceedLimit() {
         return Redirect::back()->with('alert', [
             'icon' => 'error',

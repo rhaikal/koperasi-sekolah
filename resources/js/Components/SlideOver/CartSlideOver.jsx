@@ -103,48 +103,52 @@ export default function CartSlideOver({open, setOpen, order}) {
                                             <div className="mt-8">
                                                 <div className="flow-root">
                                                 <ul role="list" className="-my-6 divide-y divide-gray-200">
-                                                    {order && order.products.map((product) => (
-                                                    <li key={product.id} className="flex py-6">
-                                                        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                                            <img
-                                                                src={"/storage" + product.image}
-                                                                className="h-full w-full object-cover object-center"
-                                                            />
-                                                        </div>
+                                                    {order && order.products.map((product) => {
+                                                        if(product.stock === 0) Inertia.delete(route('order.destroy.exceed', product))
+                                                        else if(product.pivot.quantity > product.stock) Inertia.put(route('order.update.exceed', product), {quantity: product.stock})
+                                                        return (
+                                                            <li key={product.id} className="flex py-6">
+                                                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                                                    <img
+                                                                        src={"/storage" + product.image}
+                                                                        className="h-full w-full object-cover object-center"
+                                                                    />
+                                                                </div>
 
-                                                        <div className="ml-4 flex flex-1 flex-col">
-                                                        <div>
-                                                            <div className="flex justify-between text-base font-medium text-gray-900">
-                                                                <h3>
-                                                                    <Link href={route("shop.show", product)}>{product.name}</Link>
-                                                                </h3>
-                                                                <p className="ml-4">{currencyFormat(product.pivot.subtotal_price)}</p>
-                                                            </div>
-                                                            <p className="mt-1 text-sm text-gray-500">{product.category.name}</p>
-                                                        </div>
-                                                        <div className="flex flex-1 items-end justify-between text-sm">
-                                                            <div className="flex items-center">
-                                                                <p className="text-gray-500 mr-2">Qty</p>
-                                                                <FaAngleLeft onClick={(e) => subtractQuantity(e, product)} className='text-sm cursor-pointer w-5 text-gray-500 focus:text-gray-600' />
-                                                                <input type="number" min="1" max={product.stock} onBlur={(e) => e.target.value = product.pivot.quantity} onChangeCapture={(e) => handleChange(e, product)} defaultValue={product.pivot.quantity} name={`quantity`} className='w-5 border-0 focus:0 focus:shadow-none focus:ring-0 p-0 text-center text-sm text-gray-700' />
-                                                                <FaAngleRight onClick={(e) => addQuantity(e, product)} className='text-sm cursor-pointer w-5 text-gray-500 focus:text-gray-600' />
-                                                            </div>
+                                                                <div className="ml-4 flex flex-1 flex-col">
+                                                                <div>
+                                                                    <div className="flex justify-between text-base font-medium text-gray-900">
+                                                                        <h3>
+                                                                            <Link href={route("shop.show", product)}>{product.name}</Link>
+                                                                        </h3>
+                                                                        <p className="ml-4">{currencyFormat(product.pivot.subtotal_price)}</p>
+                                                                    </div>
+                                                                    <p className="mt-1 text-sm text-gray-500">{product.category.name}</p>
+                                                                </div>
+                                                                <div className="flex flex-1 items-end justify-between text-sm">
+                                                                    <div className="flex items-center">
+                                                                        <p className="text-gray-500 mr-2">Qty</p>
+                                                                        <FaAngleLeft onClick={(e) => subtractQuantity(e, product)} className='text-sm cursor-pointer w-5 text-gray-500 focus:text-gray-600' />
+                                                                        <input type="number" min="1" max={product.stock} onBlur={(e) => e.target.value = product.pivot.quantity} onChangeCapture={(e) => handleChange(e, product)} defaultValue={product.pivot.quantity} name={`quantity`} className='w-5 border-0 focus:0 focus:shadow-none focus:ring-0 p-0 text-center text-sm text-gray-700' />
+                                                                        <FaAngleRight onClick={(e) => addQuantity(e, product)} className='text-sm cursor-pointer w-5 text-gray-500 focus:text-gray-600' />
+                                                                    </div>
 
-                                                            <div className="flex">
-                                                                <Link
-                                                                    as="button"
-                                                                    method="DELETE"
-                                                                    href={route('order.destroy', product)}
-                                                                    className="font-medium text-indigo-600 hover:text-indigo-500"
-                                                                    preserveScroll
-                                                                >
-                                                                    Remove
-                                                                </Link>
-                                                            </div>
-                                                        </div>
-                                                        </div>
-                                                    </li>
-                                                    ))}
+                                                                    <div className="flex">
+                                                                        <Link
+                                                                            as="button"
+                                                                            method="DELETE"
+                                                                            href={route('order.destroy', product)}
+                                                                            className="font-medium text-indigo-600 hover:text-indigo-500"
+                                                                            preserveScroll
+                                                                        >
+                                                                            Remove
+                                                                        </Link>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                            </li>
+                                                        )
+                                                    })}
                                                 </ul>
                                                 </div>
                                             </div>
