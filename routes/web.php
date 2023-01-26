@@ -4,6 +4,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\InvoiceController;
 use App\Http\Controllers\Dashboard\PaidOrderController;
+use App\Http\Controllers\Dashboard\OrderController as DashboardOrderController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\UnpaidOrderController;
 use App\Http\Controllers\HistoryController;
@@ -53,12 +54,13 @@ Route::middleware('auth')->group(function () {
     Route::inertia('/dashboard', 'Dashboard/Dashboard')->name('dashboard');
     Route::apiResource('/dashboard/categories', CategoryController::class)->except('show');
     Route::resource('/dashboard/products', ProductController::class);
-    Route::get('/dashboard/orders/unpaid', [UnpaidOrderController::class, 'index'])->name('order.unpaid.index');
-    Route::get('/dashboard/orders/unpaid/{invoice}', [UnpaidOrderController::class, 'show'])->name('order.unpaid.show');
-    Route::post('/dashboard/orders/{order}/payment', [UnpaidOrderController::class, 'payment'])->name('payment.store.cash');
-    Route::get('/dashboard/orders/paid', [PaidOrderController::class, 'index'])->name('order.paid.index');
-    Route::get('/dashboard/orders/paid/{invoice}', [PaidOrderController::class, 'show'])->name('order.paid.show');
-    Route::post('/dashboard/orders/{order}/pickup', [PaidOrderController::class, 'pickup'])->name('pickup.store');
+    Route::get('/dashboard/orders', [DashboardOrderController::class, 'index'])->name('order.index');
+    // Route::get('/dashboard/orders/unpaid', [UnpaidOrderController::class, 'index'])->name('order.unpaid.index');
+    // Route::get('/dashboard/orders/unpaid/{invoice}', [UnpaidOrderController::class, 'show'])->name('order.unpaid.show');
+    // Route::post('/dashboard/orders/{order}/payment', [UnpaidOrderController::class, 'payment'])->name('payment.store.cash');
+    // Route::get('/dashboard/orders/paid', [DashboardOrderController::class, 'index'])->name('order.paid.index');
+    // Route::get('/dashboard/orders/paid/{invoice}', [PaidOrderController::class, 'show'])->name('order.paid.show');
+    // Route::post('/dashboard/orders/{order}/pickup', [PaidOrderController::class, 'pickup'])->name('pickup.store');
 
     Route::post('/order/{product}', [OrderController::class, 'store'])->name('order.store');
     Route::delete('/order/{product}', [OrderController::class, 'destroy'])->name('order.destroy');

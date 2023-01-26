@@ -2,10 +2,9 @@ import React from "react";
 import SideLink from "./Subcomponents/SideLink";
 import SideDropdown from "./Subcomponents/SideDropdown";
 import { Link } from '@inertiajs/inertia-react';
-import { FaHome, FaSuitcaseRolling } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
 import { BiCategoryAlt } from "react-icons/bi";
 import { BsArchiveFill, BsReceipt } from "react-icons/bs";
-import { GiNotebook } from 'react-icons/gi';
 import ApplicationLogo from "@/Components/ApplicationLogo";
 
 export default function Sidebar() {
@@ -20,8 +19,9 @@ export default function Sidebar() {
                     <SideDropdown active={(route().current('order.*'))}>
                         <SideDropdown.Button><BsReceipt className="w-5 h-5 mr-4 text-current" /> Order</SideDropdown.Button>
                         <SideDropdown.Panel>
-                            <SideDropdown.Link href={route('order.unpaid.index')} current={route().current('order.unpaid.*')}>Unpaid</SideDropdown.Link>
-                            <SideDropdown.Link href={route('order.paid.index')} current={route().current('order.paid.*')}>Paid</SideDropdown.Link>
+                            <SideDropdown.Link href={route('order.index')} current={route().current('order.index', {filter: undefined})}>All</SideDropdown.Link>
+                            <SideDropdown.Link href={route('order.index', {filter: 'unpaid'})} current={route().current('order.index', {filter: 'unpaid'})}>Unpaid</SideDropdown.Link>
+                            <SideDropdown.Link href={route('order.index', {filter: 'paid'})} current={route().current('order.index', {filter: 'paid'})}>Paid</SideDropdown.Link>
                         </SideDropdown.Panel>
                     </SideDropdown>
                     <SideLink href={route('categories.index')} active={route().current('categories.index')}><BiCategoryAlt className="w-5 h-5 mr-4 text-current"/> Category</SideLink>

@@ -10,13 +10,6 @@ class Invoice extends Model
     use HasFactory;
 
     /**
-     * The relations to eager load on every query.
-     *
-     * @var array
-     */
-    protected $with = ['order'];
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>

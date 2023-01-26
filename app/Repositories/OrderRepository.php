@@ -8,7 +8,7 @@ class OrderRepository
 {
     public function getAll($paginate)
     {
-        $orders = Order::where('status', '!=', '0')->latest();
+        $orders = Order::with('invoice')->where('status', '!=', '0')->latest();
 
         $orders = (!!$paginate ?
             $orders->paginate($paginate) :
