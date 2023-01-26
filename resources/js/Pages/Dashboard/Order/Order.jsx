@@ -58,7 +58,7 @@ const Order = ({ orders }) => {
                                         <SlOptionsVertical className="float-right hover:cursor-pointer" />
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={''}>Detail</Dropdown.Link>
+                                        <Dropdown.Link href={route('order.show', order)}>Detail</Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
                             </Table.Content>

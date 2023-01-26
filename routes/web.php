@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::apiResource('/dashboard/categories', CategoryController::class)->except('show');
     Route::resource('/dashboard/products', ProductController::class);
     Route::get('/dashboard/orders', [DashboardOrderController::class, 'index'])->name('order.index');
+    Route::get('/dashboard/orders/{order}', [DashboardOrderController::class, 'show'])->name('order.show');
     // Route::get('/dashboard/orders/unpaid', [UnpaidOrderController::class, 'index'])->name('order.unpaid.index');
     // Route::get('/dashboard/orders/unpaid/{invoice}', [UnpaidOrderController::class, 'show'])->name('order.unpaid.show');
     // Route::post('/dashboard/orders/{order}/payment', [UnpaidOrderController::class, 'payment'])->name('payment.store.cash');

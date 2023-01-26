@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use Illuminate\Http\Request;
 use App\Services\OrderService;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
@@ -33,5 +34,26 @@ class OrderController extends Controller
         return inertia('Dashboard/Order/Order', [
             'orders' => $orders
         ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Invoice  $invoice
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Order $order)
+    {
+        if($order->status > 0){
+            $this->authorize('view', $order);
+
+            $order->load('invoice', 'user:id,name,email,no_phone');
+            if($order->status == '2') $order->invoice->load('payment');
+            if($order->status == '3') $order->load('pickup');
+
+            return inertia('Dashboard/Order/Detail/Detail', [
+                'order' => $order,
+            ]);
+        } else abort(404);
     }
 }

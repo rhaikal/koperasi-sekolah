@@ -3,11 +3,11 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Invoice;
+use App\Models\Order;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class InvoicePolicy
+class OrderPolicy
 {
     use HandlesAuthorization;
 
@@ -15,16 +15,16 @@ class InvoicePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Invoice  $invoice
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Invoice $invoice)
+    public function view(User $user, Order $order)
     {
         if($user->role > 1){
             return true;
         }
 
-        return $user->id != $invoice->order->user_id
+        return $user->id != $order->user_id
             ? Response::allow()
             : Response::denyAsNotFound();
     }
