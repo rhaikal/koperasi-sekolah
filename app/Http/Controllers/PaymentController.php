@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Invoice;
-use App\Services\OrderService;
+use App\Models\Order;
+use App\Services\PaymentService;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
-use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class PaymentController extends Controller
 {
-    // private OrderService $orderService;
+    private PaymentService $paymentService;
 
-    // public function __construct(OrderService $orderService)
-    // {
-    //     $this->orderService = $orderService;
-    // }
+    public function __construct(PaymentService $paymentService)
+    {
+        $this->paymentService = $paymentService;
+    }
 
     /**
      * Display the specified resource.
@@ -23,12 +21,16 @@ class PaymentController extends Controller
      * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show(Invoice $invoice)
+    public function show(Order $order)
     {
-        if($invoice->order->status == '1' && $invoice->order->user_id === auth()->id()) {
+        $this->authorize('view', $order);
+
+        $order->load('invoice');
+
+        if($order->status == '1') {
             return inertia('Order/Payment/Payment', [
-                'invoice' => $invoice
+                'order' => $order
             ]);
-        } else throw new NotFoundResourceException;
+        } else abort(404);
     }
 }

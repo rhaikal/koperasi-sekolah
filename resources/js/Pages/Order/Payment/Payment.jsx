@@ -1,12 +1,11 @@
 import PrimaryButton from '@/Components/Button/PrimaryButton';
 import { currencyFormat } from '@/helper';
 import HomeLayout from '@/Layouts/HomeLayout';
-import { Link } from '@inertiajs/inertia-react';
 import { BsCheck } from 'react-icons/bs';
 import { FaAngleRight } from 'react-icons/fa';
 import OrderSumarry from '../Partials/OrderSummary';
 
-const Payment = ({invoice}) => {
+const Payment = ({order}) => {
     return (
         <div className="py-12">
             <div className="max-w-7xl sm:px-6 lg:px-8">
@@ -37,18 +36,18 @@ const Payment = ({invoice}) => {
                         </div>
                     </div>
                     <div className="grid sm:px-10 lg:grid-cols-5 h-full">
-                        <OrderSumarry products={invoice.order.products} containerClassnames={"lg:col-span-3"} />
+                        <OrderSumarry products={order.products} containerClassnames={"lg:col-span-3"} />
                         <div className="mt-3 bg-gray-50 px-4 pb-4 pt-5 lg:mt-0 lg:col-span-2">
                             <div className="w-full h-fit flex flex-col dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 mb-6 py-5 px-4 text-center">
                                 <h1 className="text-gray-800 text-2xl dark:text-gray-100 font-bold mb-3">Successfully Checkout</h1>
-                                <p className="text-gray-800 dark:text-gray-100 text-sm">Order has been successfully checkout, then make payment with the nominal listed below {invoice.method == 'cash' && (<>in <b>school cooperative</b></>)}</p>
+                                <p className="text-gray-800 dark:text-gray-100 text-sm">Order has been successfully checkout, then make payment with the nominal listed below {order.invoice.method == 'cash' && (<>in <b>school cooperative</b></>)}</p>
                             </div>
                             <div>
                                 <div className="p-2 flex items-center justify-between border-y border-gray-500">
                                     <p className="text-base font-medium text-gray-900">Total</p>
-                                    <p className="text-lg font-semibold text-gray-900">{currencyFormat(invoice.order.total_price)}</p>
+                                    <p className="text-lg font-semibold text-gray-900">{currencyFormat(order.total_price)}</p>
                                 </div>
-                                {invoice.method == 'e-wallet' &&
+                                {order.invoice.method == 'e-wallet' &&
                                     <PrimaryButton className='w-full mt-4 justify-center'><span className='text-sm'>Pay Now</span></PrimaryButton>
                                 }
                             </div>

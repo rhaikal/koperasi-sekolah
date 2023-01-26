@@ -24,7 +24,14 @@ class OrderPolicy
             return true;
         }
 
-        return $user->id != $order->user_id
+        if(request()->routeIs('order.show')){
+            dd($order);
+            return $user->id != $order->user_id
+                ? Response::allow()
+                : Response::denyAsNotFound();
+        }
+
+        return $user->id == $order->user_id
             ? Response::allow()
             : Response::denyAsNotFound();
     }

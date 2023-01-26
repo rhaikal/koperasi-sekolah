@@ -20,6 +20,7 @@ const History = ({orders}) => {
                                 <Table.Head>
                                     <Table.Header>No</Table.Header>
                                     <Table.Header>Date</Table.Header>
+                                    <Table.Header>Method</Table.Header>
                                     <Table.Header>Status</Table.Header>
                                     <Table.Header>Total Price</Table.Header>
                                     <Table.Header></Table.Header>
@@ -29,6 +30,7 @@ const History = ({orders}) => {
                                         <Table.Row key={order.id}>
                                             <Table.Content type="header" className="w-auto">{index + 1}</Table.Content>
                                             <Table.Content>{(new Date(order.updated_at)).toLocaleDateString()}</Table.Content>
+                                            <Table.Content>{_.startCase(order.invoice.method)}</Table.Content>
                                             <Table.Content>{
                                                 {
                                                     '1': 'Not Paid',
@@ -44,7 +46,7 @@ const History = ({orders}) => {
                                                         <SlOptionsVertical className="float-right hover:cursor-pointer" />
                                                     </Dropdown.Trigger>
                                                     <Dropdown.Content>
-                                                        {order.status == '1' &&<Dropdown.Link href={route('payment.show', order.invoice.id)}>Pay</Dropdown.Link>}
+                                                        {order.status == '1' &&<Dropdown.Link href={route('payment.show', order)}>Pay</Dropdown.Link>}
                                                     </Dropdown.Content>
                                                 </Dropdown>
                                             </Table.Content>

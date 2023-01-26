@@ -56,12 +56,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('/dashboard/products', ProductController::class);
     Route::get('/dashboard/orders', [DashboardOrderController::class, 'index'])->name('order.index');
     Route::get('/dashboard/orders/{order}', [DashboardOrderController::class, 'show'])->name('order.show');
-    // Route::get('/dashboard/orders/unpaid', [UnpaidOrderController::class, 'index'])->name('order.unpaid.index');
-    // Route::get('/dashboard/orders/unpaid/{invoice}', [UnpaidOrderController::class, 'show'])->name('order.unpaid.show');
-    // Route::post('/dashboard/orders/{order}/payment', [UnpaidOrderController::class, 'payment'])->name('payment.store.cash');
-    // Route::get('/dashboard/orders/paid', [DashboardOrderController::class, 'index'])->name('order.paid.index');
-    // Route::get('/dashboard/orders/paid/{invoice}', [PaidOrderController::class, 'show'])->name('order.paid.show');
-    // Route::post('/dashboard/orders/{order}/pickup', [PaidOrderController::class, 'pickup'])->name('pickup.store');
 
     Route::post('/order/{product}', [OrderController::class, 'store'])->name('order.store');
     Route::delete('/order/{product}', [OrderController::class, 'destroy'])->name('order.destroy');
@@ -72,7 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
-    Route::get('/payment/{invoice}', [PaymentController::class, 'show'])->name('payment.show');
+    Route::get('/payment/{order}', [PaymentController::class, 'show'])->name('payment.show');
 
     Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
 });
