@@ -2,14 +2,12 @@
 
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Dashboard\CategoryController;
-use App\Http\Controllers\Dashboard\InvoiceController;
-use App\Http\Controllers\Dashboard\PaidOrderController;
 use App\Http\Controllers\Dashboard\OrderController as DashboardOrderController;
 use App\Http\Controllers\Dashboard\ProductController;
-use App\Http\Controllers\Dashboard\UnpaidOrderController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PickupController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -67,6 +65,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
     Route::get('/payment/{order}', [PaymentController::class, 'show'])->name('payment.show');
+    Route::post('/payment/{order}/cash', [PaymentController::class, 'storeCash'])->name('payment.store.cash');
+
+    Route::post('/pickup/{order}', [PickupController::class, 'store'])->name('pickup.store');
 
     Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
 });

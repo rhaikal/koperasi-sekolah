@@ -3,27 +3,9 @@ import Dropdown from "@/Components/Dropdown/Dropdown"
 import Pagination from "@/Components/Pagination/Pagination"
 import { currencyFormat } from "@/helper"
 import DashboardLayout from "@/Layouts/DashboardLayout"
-import { Inertia } from "@inertiajs/inertia"
 import { SlOptionsVertical } from "react-icons/sl"
-import Swal from "sweetalert2/dist/sweetalert2.all"
-
-export const handlePayment = (e, order) => {
-    e.preventDefault();
-
-    Swal.fire({
-        title: 'Has this order been paid',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'No',
-        confirmButtonText: 'Yes'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Inertia.post(route('payment.store.cash', order))
-        }
-    })
-}
+import { handlePickup } from "./Partials/Payments/Paid"
+import { handlePayment } from "./Partials/Payments/Unpaid"
 
 const Order = ({ orders }) => {
     return (
@@ -59,6 +41,8 @@ const Order = ({ orders }) => {
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
                                         <Dropdown.Link href={route('order.show', order)}>Detail</Dropdown.Link>
+                                        {order.status == 1 && order.invoice.method == 'cash' && <Dropdown.Link onClick={(e) => handlePayment(e, order)}>Pay</Dropdown.Link>}
+                                        {order.status == 2 && <Dropdown.Link onClick={(e) => handlePickup(e, order)}>Take</Dropdown.Link>}
                                     </Dropdown.Content>
                                 </Dropdown>
                             </Table.Content>

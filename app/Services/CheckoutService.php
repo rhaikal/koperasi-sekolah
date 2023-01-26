@@ -37,7 +37,7 @@ class CheckoutService
                 $this->orderRepository->update(['status' => '1'], $order);
             }
 
-            return $invoice;
+            return $order;
         } else throw new NotFoundResourceException;
     }
 }
