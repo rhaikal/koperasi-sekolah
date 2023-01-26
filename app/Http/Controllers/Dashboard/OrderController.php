@@ -25,7 +25,7 @@ class OrderController extends Controller
     {
         $orders = null;
         $paginate = 10;
-        if($request->filter == 'unpaid') $orders = $this->orderService->getOrderInCheckout($paginate);
+        if($request->filter == 'unpaid') $orders = $this->orderService->getOrderInCheckout($paginate, false);
         else if($request->filter == 'paid') $orders = $this->orderService->getPaidOrders($paginate);
         else $orders = $this->orderService->getOrders($paginate, !(auth()->user()->role > '1'));
 
