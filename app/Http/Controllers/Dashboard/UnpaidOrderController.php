@@ -50,9 +50,10 @@ class UnpaidOrderController extends Controller
     {
         $this->authorize('view', $invoice);
 
+        $invoice->order->load('user:id,name,email,no_phone');
+
         return inertia('Dashboard/Order/Unpaid/Detail/Detail', [
             'invoice' => $invoice,
-            'user' => $invoice->order->user,
         ]);
     }
 

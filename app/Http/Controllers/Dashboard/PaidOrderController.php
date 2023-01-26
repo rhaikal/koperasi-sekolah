@@ -53,6 +53,8 @@ class PaidOrderController extends Controller
         if($invoice->order->status == '2'){
             $invoice->load(['payment']);
 
+            $invoice->order->load('user:id,name,email,no_phone');
+
             return inertia('Dashboard/Order/Paid/Detail/Detail', [
                 'invoice' => $invoice,
                 'user' => $invoice->order->user,

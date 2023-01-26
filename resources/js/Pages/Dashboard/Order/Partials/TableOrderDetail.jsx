@@ -1,7 +1,7 @@
 import Table from "@/Components/Card/Table/Table"
 import { currencyFormat } from "@/helper"
 
-export default function TableOrderProduct({invoice}) {
+export default function TableOrderDetail({invoice}) {
     return (
         <Table>
             <Table.Head>
