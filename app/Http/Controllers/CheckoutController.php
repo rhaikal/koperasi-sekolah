@@ -38,8 +38,8 @@ class CheckoutController extends Controller
     {
         $validatedData = $request->validated();
 
-        $invoice = $this->checkoutService->store($validatedData);
+        $order = $this->checkoutService->store($validatedData);
 
-        if($invoice) return Redirect::route('payment.show', $invoice);
+        if($order) return Redirect::route('payment.show', $order);
     }
 }

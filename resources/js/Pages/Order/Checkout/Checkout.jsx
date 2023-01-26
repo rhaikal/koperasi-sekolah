@@ -8,7 +8,7 @@ import Select from "@/Components/Input/Select";
 import InputLabel from '@/Components/Input/InputLabel';
 import OrderSumarry from '../Partials/OrderSummary';
 
-const Checkout = ({order, auth}) => {
+const Checkout = ({cart, auth}) => {
     const form = useForm({
         method: null
     })
@@ -51,7 +51,7 @@ const Checkout = ({order, auth}) => {
                         </div>
                     </div>
                     <div className="grid sm:px-10 lg:grid-cols-2">
-                        <OrderSumarry products={order.products} />
+                        <OrderSumarry products={cart.products} />
                         <div className="mt-10 bg-gray-50 px-4 pt-6 pb-5 lg:mt-0">
                             <p className="text-xl font-medium">Payment Details</p>
                             <p className="text-gray-400">Complete your order by selecting payment methods.</p>
@@ -79,7 +79,7 @@ const Checkout = ({order, auth}) => {
                             </div>
                             <div className="mt-4 flex items-center justify-between">
                                 <p className="text-sm font-medium text-gray-900">Total</p>
-                                <p className="text-2xl font-semibold text-gray-900">{currencyFormat(order.total_price)}</p>
+                                <p className="text-2xl font-semibold text-gray-900">{currencyFormat(cart.total_price)}</p>
                             </div>
                             <PrimaryButton className='w-full mt-4 justify-center' onClick={handleSubmit}><span className='text-sm'>Checkout</span></PrimaryButton>
                         </div>
