@@ -41,6 +41,16 @@ class OrderService
         return $this->orderRepository->getPaid($paginate);
     }
 
+    public function getDoneOrders($paginate = null)
+    {
+        return $this->orderRepository->getDone($paginate);
+    }
+
+    public function getExpiredOrders($paginate = null)
+    {
+        return $this->orderRepository->getExpired($paginate);
+    }
+
     public function order($data, $product)
     {
         if($product->stock >= $data['quantity']) {

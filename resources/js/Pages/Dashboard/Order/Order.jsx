@@ -30,7 +30,7 @@ const Order = ({ orders }) => {
                                 {{
                                     '1': 'Not Paid',
                                     '2': 'Paid',
-                                    '3': 'Picked',
+                                    '3': 'Done',
                                     '-': 'Expired'
                                 }[order.status]}
                             </Table.Content>
@@ -49,7 +49,7 @@ const Order = ({ orders }) => {
                         </Table.Row>
                     )):
                         <Table.Row>
-                            <Table.Content type="header" colSpan={"6"} className="text-center text-base text-gray-500 font-semibold italic">{alt}</Table.Content>
+                            <Table.Content type="header" colSpan={"6"} className="text-center text-base text-gray-500 font-semibold italic">Order Not Found</Table.Content>
                         </Table.Row>
                     }
                 </Table.Body>

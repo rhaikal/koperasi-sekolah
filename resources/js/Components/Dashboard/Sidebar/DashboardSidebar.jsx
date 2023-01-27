@@ -22,6 +22,8 @@ export default function Sidebar() {
                             <SideDropdown.Link href={route('order.index')} current={route().current('order.index', {filter: undefined})}>All</SideDropdown.Link>
                             <SideDropdown.Link href={route('order.index', {filter: 'unpaid'})} current={route().current('order.index', {filter: 'unpaid'})}>Unpaid</SideDropdown.Link>
                             <SideDropdown.Link href={route('order.index', {filter: 'paid'})} current={route().current('order.index', {filter: 'paid'})}>Paid</SideDropdown.Link>
+                            <SideDropdown.Link href={route('order.index', {filter: 'done'})} current={route().current('order.index', {filter: 'done'})}>Done</SideDropdown.Link>
+                            <SideDropdown.Link href={route('order.index', {filter: 'expired'})} current={route().current('order.index', {filter: 'expired'})}>Expired</SideDropdown.Link>
                         </SideDropdown.Panel>
                     </SideDropdown>
                     <SideLink href={route('categories.index')} active={route().current('categories.index')}><BiCategoryAlt className="w-5 h-5 mr-4 text-current"/> Category</SideLink>

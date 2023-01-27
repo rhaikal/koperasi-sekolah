@@ -85,6 +85,30 @@ class OrderRepository
         return $orders;
     }
 
+    public function getDone($paginate = null)
+    {
+        $orders = Order::with('invoice')->where('status', '=', '3')->latest();
+
+        $orders = (!!$paginate ?
+            $orders->paginate($paginate) :
+            $orders->all()
+        );
+
+        return $orders;
+    }
+
+    public function getExpired($paginate = null)
+    {
+        $orders = Order::with('invoice')->where('status', '=', '-')->latest();
+
+        $orders = (!!$paginate ?
+            $orders->paginate($paginate) :
+            $orders->all()
+        );
+
+        return $orders;
+    }
+
     public function create()
     {
         $order = Order::create([
