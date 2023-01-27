@@ -8,7 +8,7 @@ class OrderRepository
 {
     public function getAll($paginate)
     {
-        $orders = Order::with('invoice')->where('status', '!=', '0')->latest();
+        $orders = Order::with('invoice')->where('status', '!=', '0')->orderBy('status', 'asc')->latest();
 
         $orders = (!!$paginate ?
             $orders->paginate($paginate) :
@@ -20,7 +20,7 @@ class OrderRepository
 
     public function getAllOwn($paginate)
     {
-        $orders = Order::with('invoice')->where('status', '!=', '0')->where('user_id', '=', auth()->id())->latest();
+        $orders = Order::with('invoice')->where('status', '!=', '0')->where('user_id', '=', auth()->id())->orderBy('status', 'asc')->latest();
 
         $orders = (!!$paginate ?
             $orders->paginate($paginate) :
