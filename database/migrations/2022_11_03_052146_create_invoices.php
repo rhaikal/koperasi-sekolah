@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id');
             $table->string('method');
+            $table->string('token')->nullable();
             $table->timestamp('due_date');
             $table->timestamps();
         });

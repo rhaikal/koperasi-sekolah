@@ -40,6 +40,9 @@ class CheckoutController extends Controller
 
         $order = $this->checkoutService->store($validatedData);
 
-        if($order) return Redirect::route('payment.show', $order);
+        return Redirect::route('payment.show', $order)->with('alert', [
+            'icon' => 'success',
+            'message' => 'Berhasil melakukan checkout',
+        ]);
     }
 }

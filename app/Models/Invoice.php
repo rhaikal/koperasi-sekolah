@@ -10,6 +10,15 @@ class Invoice extends Model
     use HasFactory;
 
     /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'token',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -17,6 +26,7 @@ class Invoice extends Model
     protected $fillable = [
         'order_id',
         'method',
+        'token',
         'due_date',
     ];
 

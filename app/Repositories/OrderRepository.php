@@ -30,6 +30,11 @@ class OrderRepository
         return $orders;
     }
 
+    public function getById($id)
+    {
+        return Order::with('invoice')->find($id);
+    }
+
     public function getInProgress()
     {
         $order = Order::where('status', '=', '0')->where('user_id', '=', auth()->id())->first();

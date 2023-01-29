@@ -66,6 +66,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/payment/{order}', [PaymentController::class, 'show'])->name('payment.show');
     Route::post('/payment/{order}/cash', [PaymentController::class, 'storeCash'])->name('payment.store.cash');
+    Route::post('/payment/e-wallet', [PaymentController::class, 'storeEWallet'])->name('payment.store.e-wallet');
 
     Route::post('/pickup/{order}', [PickupController::class, 'store'])->name('pickup.store');
 

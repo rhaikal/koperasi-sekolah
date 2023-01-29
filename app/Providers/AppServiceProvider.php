@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Midtrans\Config;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Config::$serverKey = env('Midtrans_Server_Key');
+        Config::$isProduction = false;
+        Config::$isSanitized = true;
     }
 }

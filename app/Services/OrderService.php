@@ -16,6 +16,11 @@ class OrderService
         $this->cartRepository = $cartRepository;
     }
 
+    public function getOrderById($id)
+    {
+        return $this->orderRepository->getById($id);
+    }
+
     public function getOrders($paginate = null, $own = true)
     {
         if($own) return $this->orderRepository->getAllOwn($paginate);

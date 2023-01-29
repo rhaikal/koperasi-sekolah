@@ -1,11 +1,33 @@
 import PrimaryButton from '@/Components/Button/PrimaryButton';
 import { currencyFormat } from '@/helper';
 import HomeLayout from '@/Layouts/HomeLayout';
+import { handlePayment } from '@/Pages/Dashboard/Order/Partials/Payments/Unpaid';
+import { Inertia } from '@inertiajs/inertia';
 import { BsCheck } from 'react-icons/bs';
 import { FaAngleRight } from 'react-icons/fa';
 import OrderSumarry from '../Partials/OrderSummary';
 
 const Payment = ({order}) => {
+    console.log(order);
+
+    const handlePayment = () => {
+        window.snap.pay(order.invoice.token, {
+            uiMode: 'qr',
+            gopayMode: 'qr',
+            onSuccess: function(result){
+                Inertia.post(route('payment.store.e-wallet'), { notification: result });
+            },
+            onError: function(result){
+                if(result.status_code == 407 && result.transaction_status == 'expired'){
+                    Inertia.post(route('payment.store.e-wallet'), { notification: result });
+                }
+            },
+            onClose: function(){
+                return;
+            }
+          })
+    }
+
     return (
         <div className="py-12">
             <div className="max-w-7xl sm:px-6 lg:px-8">
@@ -48,7 +70,7 @@ const Payment = ({order}) => {
                                     <p className="text-lg font-semibold text-gray-900">{currencyFormat(order.total_price)}</p>
                                 </div>
                                 {order.invoice.method == 'e-wallet' &&
-                                    <PrimaryButton className='w-full mt-4 justify-center'><span className='text-sm'>Pay Now</span></PrimaryButton>
+                                    <PrimaryButton onClick={handlePayment} className='w-full mt-4 justify-center'><span className='text-sm'>Pay Now</span></PrimaryButton>
                                 }
                             </div>
                         </div>
