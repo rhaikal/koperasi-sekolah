@@ -53,10 +53,10 @@ const Shop = ({categories, products}) => {
                                             </Disclosure.Button>
                                             </h3>
                                             <Transition
-                                                enter="transition duration-500 ease-out"
+                                                enter="transition duration-500 ease-in-out"
                                                 enterFrom="transform scale-95 opacity-0"
                                                 enterTo="transform scale-100 opacity-100"
-                                                leave="transition duration-500 ease-out"
+                                                leave="transition duration-500 ease-in-out"
                                                 leaveFrom="transform scale-100 opacity-100"
                                                 leaveTo="transform scale-95 opacity-0"
                                             >
@@ -65,6 +65,7 @@ const Shop = ({categories, products}) => {
                                                     {categories.map((category) => (
                                                         <div key={category.id} className="flex items-center">
                                                             <Link
+                                                                preserveState={true}
                                                                 href={route('shop.index')}
                                                                 data={{ category: category.id }}
                                                                 className="ml-3 text-sm text-gray-600"
@@ -82,7 +83,12 @@ const Shop = ({categories, products}) => {
                                 </form>
 
                                 <div className="lg:col-span-3">
-                                    <ProductList products={products.data} links={products} />
+                                    {!_.isEmpty(products.data) ?
+                                        <ProductList products={products.data} links={products} /> :
+                                        <div className='h-full'>
+                                            <p className='text-2xl font-bold italic text-center mt-10 text-gray-400'>Product not found!</p>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </section>

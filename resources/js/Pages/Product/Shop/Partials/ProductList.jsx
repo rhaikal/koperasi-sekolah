@@ -40,7 +40,7 @@ export default function ProductList({products, links}) {
                     </div>
                 </div>
             </div>
-            <ProductPagination links={links} />
+            {links.links.length > 3 && <ProductPagination links={links} />}
         </>
     )
 }
