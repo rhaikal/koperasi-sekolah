@@ -48,7 +48,7 @@ export default function Navbar() {
                                                 type="button"
                                                 className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                <img className="w-7 h-7 mr-3 rounded-full" src="/img/user/profile/default.png" alt="Default avatar" />
+                                                <img className="w-7 h-7 mr-3 rounded-full" src={auth.user.profile ? '/storage/' + auth.user.profile : '/img/user/profile/default.png'} alt="Default avatar" />
                                                 {auth.user.name}
 
                                                 <svg

@@ -1,6 +1,7 @@
 import Header from "@/Components/Auth/Header";
 import PrimaryButton from "@/Components/Button/PrimaryButton";
 import FloatingLabel from "@/Components/Input/FloatingLabel";
+import ImageUpload from "@/Components/Input/ImageUpload";
 import InputError from "@/Components/Input/InputError";
 import Select from "@/Components/Input/Select";
 // import { inputCurrencyFormat, inputCurrencyDerange } from "@/helper";
@@ -45,16 +46,7 @@ export default function ProductForm({categories, handleSubmit, header, product})
     }
 
     useEffect(() => {
-        if(form.data.image) {
-            const previewImg = document.getElementById('preview-img')
-            previewImg.src = URL.createObjectURL(form.data.image)
-            previewImg.onload = () => URL.revokeObjectURL(previewImg.src)
-        }
-    }, [form.data.image])
-
-    useEffect(() => {
         if(product) {
-            const previewImg = document.getElementById('preview-img')
             form.setData({
                 name: product.name,
                 slug: product.slug,
@@ -63,7 +55,6 @@ export default function ProductForm({categories, handleSubmit, header, product})
                 stock: product.stock,
                 description: product.description
             })
-            previewImg.src = "/storage/" + product.image
         }
     }, [product])
 
@@ -77,22 +68,13 @@ export default function ProductForm({categories, handleSubmit, header, product})
                             <Header className="text-center">{header}</Header>
                             <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
                                 <div className="flex items-center justify-center w-full">
-                                    <label htmlFor="dropzone-file" className={`flex flex-col items-center justify-center w-full h-full border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 ${form.errors.image ? 'border-red-500 focus:ring-red-500' : 'border-gray-600 dark:border-gray-600 dark:hover:border-gray-500'}`}>
-                                        {form.data.image || (!(_.isEmpty(product)) && product.image) ?
-                                            <img id="preview-img" className="min-h-100 min-w-100 hover:opacity-75"></img>
-                                        :
-                                            <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                                <svg aria-hidden="true" className="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                                                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span></p>
-                                                <p className="text-xs text-center text-gray-500 dark:text-gray-400 tese">
-                                                    SVG, PNG, JPG, JPEG, GIF, BMP, or WebP
-                                                    <br />(MAX. 2000x2000px)
-                                                </p>
-                                            </div>
-                                        }
-                                        <input id="dropzone-file" type="file" name="image" onChange={handleFile} className="hidden" />
-                                        {form.hasErrors && <InputError message={form.errors.image} className="mt-2" />}
-                                    </label>
+                                    <ImageUpload
+                                        defaultValue={product?.image ?? null}
+                                        value={form.data.image ?? null}
+                                        handleFile={handleFile}
+                                        errors={form.errors?.image ?? null}
+                                        name="image"
+                                    />
                                 </div>
 
                                 <div className="lg:col-span-2 self-center">

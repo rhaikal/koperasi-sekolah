@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
-use Inertia\Inertia;
+use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class ProfileController extends Controller
 {
@@ -33,7 +34,17 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request)
     {
-        $request->user()->fill($request->validated());
+        $validatedData = $request->validated();
+
+        if (!empty($validatedData['profile'])) {
+            if(!empty($request->user()->profile)){
+                Storage::delete($request->user()->profile);
+            }
+
+            $validatedData['profile'] = $validatedData['profile']->store('/img/users');
+        }
+
+        $request->user()->fill($validatedData);
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;

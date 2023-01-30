@@ -32,7 +32,7 @@ export default function ResponsiveNavbar() {
             { auth.user ?
                 <div className="pt-4 pb-1 border-t border-gray-200">
                     <div className="flex px-4">
-                        <img className="w-7 h-7 mr-3 self-center rounded-full" src="/img/user/profile/default.png" alt="Default avatar" />
+                        <img className="w-7 h-7 mr-3 self-center rounded-full" src={auth.user.profile ? '/storage/' + auth.user.profile : '/img/user/profile/default.png'} alt="Default avatar" />
                         <div>
                             <div className="font-medium text-base text-gray-800 flex">
                                 {auth.user.name}
