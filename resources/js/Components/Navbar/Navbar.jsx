@@ -68,6 +68,7 @@ export default function Navbar() {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content containerClasses={"inset-y-4"}>
+                                        {auth.user.role != '1' && <Dropdown.Link href={route('dashboard')}>Dashboard</Dropdown.Link>}
                                         <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
                                         <Dropdown.Link href={route('history.index')}>History</Dropdown.Link>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">

@@ -32,7 +32,7 @@ export default function Dashboard({children, header}) {
 
     return (
         <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
-            <DashboardSidebar />
+            <DashboardSidebar auth={auth} />
             <div className="flex flex-col flex-1 w-full">
                 <DashboardNavbar name={auth.user.name} />
                 <main className="h-full overflow-y-auto">

@@ -42,6 +42,7 @@ export default function ResponsiveNavbar() {
                     </div>
 
                     <div className="mt-3 space-y-1">
+                        {auth.user.role != '1' && <ResponsiveNavLink href={route('dashboard')}>dashboard</ResponsiveNavLink>}
                         <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
                         <ResponsiveNavLink href={route('history.index')}>History</ResponsiveNavLink>
                         <ResponsiveNavLink method="post" href={route('logout')} as="button">

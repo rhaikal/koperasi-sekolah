@@ -7,7 +7,7 @@ import { BiCategoryAlt } from "react-icons/bi";
 import { BsArchiveFill, BsReceipt } from "react-icons/bs";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 
-export default function Sidebar() {
+export default function Sidebar({ auth }) {
     return (
         <aside className="z-20 hidden w-64 overflow-y-auto bg-white bg-indigo-800/90 shadow-xl shadow-indigo-500 dark:bg-gray-200 md:block flex-shrink-0">
             <div className="py-4">
@@ -26,8 +26,8 @@ export default function Sidebar() {
                             <SideDropdown.Link href={route('order.index', {filter: 'expired'})} current={route().current('order.index', {filter: 'expired'})}>Expired</SideDropdown.Link>
                         </SideDropdown.Panel>
                     </SideDropdown>
-                    <SideLink href={route('categories.index')} active={route().current('categories.index')}><BiCategoryAlt className="w-5 h-5 mr-4 text-current"/> Category</SideLink>
-                    <SideLink href={route('products.index')} active={route().current('products.*')}><BsArchiveFill className="w-5 h-5 mr-4 text-current"/> Product</SideLink>
+                    {auth.user.role != '2' && <SideLink href={route('categories.index')} active={route().current('categories.index')}><BiCategoryAlt className="w-5 h-5 mr-4 text-current"/> Category</SideLink>}
+                    {auth.user.role != '2' && <SideLink href={route('products.index')} active={route().current('products.*')}><BsArchiveFill className="w-5 h-5 mr-4 text-current"/> Product</SideLink>}
                 </ul>
             </div>
         </aside>
