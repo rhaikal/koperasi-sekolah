@@ -55,4 +55,21 @@ class User extends Authenticatable
     {
         $this->belongsToMany(Coupon::class, 'used_coupons')->withPivot('used_at');
     }
+
+    public function hasRole($role)
+    {
+        $currentRole = $this->role;
+        switch($currentRole){
+            case '2':
+                $currentRole = 'anggota';
+                break;
+            case '3':
+                $currentRole = 'pengurus';
+                break;
+        }
+
+        if($currentRole == $role) return true;
+
+        return false;
+    }
 }
