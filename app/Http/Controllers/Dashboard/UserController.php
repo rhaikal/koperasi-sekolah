@@ -39,7 +39,11 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return $user;
+        $this->authorize('view', $user);
+
+        return inertia('Dashboard/User/Detail/Detail', [
+            'user' => $user,
+        ]);
     }
 
     /**

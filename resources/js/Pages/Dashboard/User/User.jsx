@@ -5,7 +5,6 @@ import DashboardLayout from "@/Layouts/DashboardLayout";
 import { SlOptionsVertical } from "react-icons/sl";
 
 const User = ({users}) => {
-    console.log(users);
     return (
         <div className="min-w-0 p-4 overflow-x-auto rounded-lg shadow-lg">
             <Table>
@@ -34,7 +33,7 @@ const User = ({users}) => {
                                         <SlOptionsVertical className="float-right hover:cursor-pointer" />
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={"#"}>Detail</Dropdown.Link>
+                                        <Dropdown.Link href={route('users.show', user)}>Detail</Dropdown.Link>
                                         <Dropdown.Link href={"#"}>Update</Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
@@ -48,6 +47,6 @@ const User = ({users}) => {
     )
 }
 
-User.layout = page => <DashboardLayout children={page} header="Dashboard"/>
+User.layout = page => <DashboardLayout children={page} header="User"/>
 
 export default User;
