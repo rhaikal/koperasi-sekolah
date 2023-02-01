@@ -6,10 +6,25 @@ use App\Models\User;
 
 class UserRepository
 {
-    public function getAll()
+    public function getAll($paginate, $except = null, $columns = ["*"])
     {
-        $user = User::all();
+        $users = User::query();
 
-        return $user;
+        if(!!$except) $users = $users->where('id', '!=', $except);
+
+        if(!!$paginate) $users = $users->paginate($paginate, $columns);
+        else $users = $users->all($columns);
+
+        return $users;
+    }
+
+    public function getByRole($role, $except = null, $paginate = null, $columns = ["*"])
+    {
+
+        $users = User::where('role', '=', $role);
+        if(!!$except) $users = $users->where('id', '!=', $except);
+
+        if(!!$paginate) return $users->paginate($paginate, $columns);
+        return $users->get($columns);
     }
 }
