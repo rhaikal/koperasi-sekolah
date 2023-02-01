@@ -20,7 +20,7 @@ const User = ({users}) => {
                     {users.data.map((user) =>
                         <Table.Row key={user.id}>
                             <Table.Content type="header" className="w-auto">{user.id}</Table.Content>
-                            <Table.Content type="image"><img src={(user.image !== undefined && user.image !== null) ? "/storage/"+user.image : "/img/user/profile/default.png" } alt="test" /></Table.Content>
+                            <Table.Content type="image"><img src={user.profile ? "/storage/"+user.profile : "/storage/img/users/placeholder.png" } alt="test" /></Table.Content>
                             <Table.Content>{user.name}</Table.Content>
                             <Table.Content>
                                 {{

@@ -2,7 +2,7 @@ import React from "react";
 import Dropdown from "../Dropdown/Dropdown";
 import { BiExit } from "react-icons/bi";
 
-export default function Navbar({name}) {
+export default function Navbar({user}) {
     return (
         <header className="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
             <div className="container flex items-center justify-end h-full px-6 mx-auto">
@@ -11,10 +11,10 @@ export default function Navbar({name}) {
                         <Dropdown>
                             <Dropdown.Trigger>
                                 <button type="button" className="flex items-center align-middle rounded-full focus:shadow-outline-purple focus:outline-none">
-                                    <p className="font-bold text-blue-800/75 dark:text-indigo-200 mr-4">{ name }</p>
+                                    <p className="font-bold text-blue-800/75 dark:text-indigo-200 mr-4">{ user.name }</p>
                                     <img
-                                        className="object-cover w-8 h-8 rounded-full"
-                                        src="\img\user\profile\default.png"
+                                        className="object-cover w-8 h-8 rounded"
+                                        src={user.profile ? "/storage/"+user.profile : "/storage/img/users/placeholder.png" }
                                         alt=""
                                         aria-hidden="true"
                                     />

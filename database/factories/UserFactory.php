@@ -18,7 +18,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'profile' => 'http://127.0.0.1:8000/img/user/profile/default.png',
+            'profile' => '/img/users/placeholder.png',
             'role' => rand(1, 6),
             'name' => fake()->name(),
             'username' => fake()->userName(),
