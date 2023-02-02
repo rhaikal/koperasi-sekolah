@@ -4,7 +4,7 @@ const Overview = ({header, children}) => {
             <div className="px-4 py-5 sm:px-6 bg-gray-200 w-full rounded-t">
                 <h3 className="text-xl font-semibold leading-6">{header}</h3>
             </div>
-            <div className="border-t border-gray-200">
+            <div className="border-t border-gray-200 py-5">
                 {children}
             </div>
         </div>
