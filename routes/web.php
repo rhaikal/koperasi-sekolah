@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\OrderController as DashboardOrderController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\UserController;
@@ -47,7 +48,7 @@ Route::get('/shop/{product}', [OrderController::class , 'show'])->name('shop.sho
 
 Route::middleware('role')->group(function () {
     // main page
-    Route::inertia('/dashboard', 'Dashboard/Dashboard')->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // order page
     Route::get('/dashboard/orders', [DashboardOrderController::class, 'index'])->name('order.index');

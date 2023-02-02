@@ -28,6 +28,11 @@ class UserRepository
         return $users->get($columns);
     }
 
+    public function countByRole($logic, $role)
+    {
+        return User::where('role', $logic, $role)->count();
+    }
+
     public function update($data, $user)
     {
         return $user->update($data);

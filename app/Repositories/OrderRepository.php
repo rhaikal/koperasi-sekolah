@@ -114,6 +114,16 @@ class OrderRepository
         return $orders;
     }
 
+    public function countByStatus($status)
+    {
+        return Order::where('status', '=', $status)->count();
+    }
+
+    public function sumTotalPrice()
+    {
+        return Order::where('status', '>', '1')->sum('total_price');
+    }
+
     public function create()
     {
         $order = Order::create([

@@ -46,6 +46,16 @@ class OrderService
         return $this->orderRepository->getPaid($paginate);
     }
 
+    public function countOrdersByStatus($status)
+    {
+        return $this->orderRepository->countByStatus($status);
+    }
+
+    public function sumOrdersTotalPrice()
+    {
+        return $this->orderRepository->sumTotalPrice();
+    }
+
     public function getDoneOrders($paginate = null)
     {
         return $this->orderRepository->getDone($paginate);

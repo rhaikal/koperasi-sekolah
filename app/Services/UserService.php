@@ -27,6 +27,11 @@ class UserService
         return $users;
     }
 
+    public function countMembers()
+    {
+        return $this->userRepository->countByRole('>', '1');
+    }
+
     public function update($data, $user)
     {
         if(!empty($data['profile'])){
