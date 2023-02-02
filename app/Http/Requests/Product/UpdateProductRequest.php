@@ -25,9 +25,9 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'file|image',
+            'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:1000',
             'name' => 'required|string|max:50',
-            'slug' => ['required', 'string', 'max:70', Rule::unique('products')->ignore($this->product->slug, 'slug')],
+            'slug' => ['required', 'string', 'max:70', Rule::unique('products', 'slug')->ignore($this->product->id)],
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|integer',
             'stock' => 'required|integer|max_digits:5',

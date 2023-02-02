@@ -46,16 +46,18 @@ export default function ProductForm({categories, handleSubmit, header, product})
     }
 
     useEffect(() => {
-        if(product) {
+        if(product && !form.hasErrors) {
             form.setData({
                 name: product.name,
                 slug: product.slug,
                 category_id: product.category_id,
                 price: product.price,
                 stock: product.stock,
-                description: product.description
+                description: product.description,
+                '_method': 'PUT'
             })
         }
+
     }, [product])
 
     return (

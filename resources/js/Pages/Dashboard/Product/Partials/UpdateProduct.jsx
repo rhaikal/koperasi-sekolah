@@ -3,7 +3,7 @@ import ProductForm from "@/Components/Dashboard/Form/Product/ProductForm"
 
 const UpdateProduct = ({categories, product}) => {
     const handleSubmit = (form) => {
-        form.put(route('products.update', product), {
+        form.post(route('products.update', product), {
             preserveState: true
         })
     }
