@@ -27,4 +27,9 @@ class UserRepository
         if(!!$paginate) return $users->paginate($paginate, $columns);
         return $users->get($columns);
     }
+
+    public function update($data, $user)
+    {
+        return $user->update($data);
+    }
 }

@@ -10,7 +10,7 @@ const DetailUser = ({user}) => {
         <div className="m-6">
             <PrimaryButton><Link className="w-full flex" href={route('users.index')}><BsBack className="mr-2" /> Back</Link></PrimaryButton>
             <Overview header={"User Detail"}>
-                <Overview.Content image={(user.profile !== undefined && user.profile !== null) ? user.profile : "/storage/img/users/placeholder.png" }>
+                <Overview.Content image={(user.profile !== undefined && user.profile !== null) ? user.profile : "/img/users/placeholder.png" }>
                     <Overview.List header="Role">
                         {{
                             '1': 'Siswa',

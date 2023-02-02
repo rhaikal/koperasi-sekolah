@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -54,7 +56,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $this->authorize('update', $user);
+
+        return inertia('Dashboard/User/Update/Update', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -64,8 +70,15 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $validatedData = $request->validated();
+
+        if($this->userService->update($validatedData, $user)){
+            return Redirect::route('users.index')->with('alert', [
+                'icon' => 'success',
+                'message' => 'Berhasil mengubah data user',
+            ]);
+        }
     }
 }

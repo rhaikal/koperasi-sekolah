@@ -21,7 +21,7 @@ export default function FormSelect({options, name, placeholder, onChange, hasErr
             isSearchable={isSearchable}
             placeholder={placeholder}
             classNamePrefix="react-select"
-            value={options.find(({value}) => value === defaultValue)}
+            value={options.find(({value}) => value == defaultValue)}
             options={options}
             onChange={onChange}
             // required={required}

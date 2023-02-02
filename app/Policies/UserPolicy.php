@@ -19,7 +19,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        if($model->role == '2') return $user->role == '2' ? Response::allow() : Response::denyAsNotFound();
+        if($user->role == '2') return $model->role == '2' ? Response::allow() : Response::denyAsNotFound();
 
         return $user->id != $model->id ? Response::allow() : Response::denyAsNotFound();
     }
@@ -33,6 +33,8 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        //
+        if($user->role == '2') return Response::denyAsNotFound();
+
+        return $user->id != $model->id ? Response::allow() : Response::denyAsNotFound();
     }
 }

@@ -16,7 +16,7 @@ export default function Sidebar({ auth }) {
                 </Link>
                 <ul className="mt-6">
                     <SideLink href={route('dashboard')} active={route().current('dashboard')}><FaHome className="w-5 h-5 mr-4 text-current"/> Dashboard</SideLink>
-                    <SideLink href={route('users.index')} active={route().current('users.index')}><FaUserFriends className="w-5 h-5 mr-4 text-current"/> User</SideLink>
+                    <SideLink href={route('users.index')} active={route().current('users.*')}><FaUserFriends className="w-5 h-5 mr-4 text-current"/> User</SideLink>
                     <SideDropdown active={(route().current('order.*'))}>
                         <SideDropdown.Button><BsReceipt className="w-5 h-5 mr-4 text-current" /> Order</SideDropdown.Button>
                         <SideDropdown.Panel>

@@ -8,8 +8,6 @@ import { FaAngleRight } from 'react-icons/fa';
 import OrderSumarry from '../Partials/OrderSummary';
 
 const Payment = ({order}) => {
-    console.log(order);
-
     const handlePayment = () => {
         window.snap.pay(order.invoice.token, {
             uiMode: 'qr',

@@ -34,7 +34,7 @@ const User = ({users}) => {
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
                                         <Dropdown.Link href={route('users.show', user)}>Detail</Dropdown.Link>
-                                        <Dropdown.Link href={"#"}>Update</Dropdown.Link>
+                                        <Dropdown.Link href={route('users.edit', user)}>Update</Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
                             </Table.Content>
