@@ -86,6 +86,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/payment/e-wallet', [PaymentController::class, 'storeEWallet'])->name('payment.store.e-wallet');
 
     Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
+    Route::get('/history/{order}', [HistoryController::class, 'show'])->name('history.show');
 });
 
 require __DIR__.'/auth.php';

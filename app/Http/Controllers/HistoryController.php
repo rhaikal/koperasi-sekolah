@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\OrderService;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Services\OrderService;
 
 class HistoryController extends Controller
 {
@@ -28,5 +29,26 @@ class HistoryController extends Controller
         return inertia('Order/History/History', [
             'orders' => $orders
         ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Order $order)
+    {
+        if($order->status > 0){
+            $this->authorize('view', $order);
+
+            $order->load('invoice', 'user:id,name,email,no_phone');
+            if($order->status == '2') $order->invoice->load('payment');
+            if($order->status == '3') $order->load('pickup');
+
+            return inertia('Order/History/Detail/Detail', [
+                'order' => $order,
+            ]);
+        } else abort(404);
     }
 }

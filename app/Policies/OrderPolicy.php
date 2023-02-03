@@ -20,16 +20,16 @@ class OrderPolicy
      */
     public function view(User $user, Order $order)
     {
-        if($user->role > 1){
-            return true;
-        }
-
-        if(request()->routeIs('order.show')){
-            dd($order);
+        if(request()->routeIs('order.show'))
+        {
+            if($user->role == '2')
             return $user->id != $order->user_id
                 ? Response::allow()
                 : Response::denyAsNotFound();
         }
+
+        if($user->role > 2)
+            return true;
 
         return $user->id == $order->user_id
             ? Response::allow()
