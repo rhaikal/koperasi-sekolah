@@ -27,6 +27,15 @@ class productRepository
         return $products;
     }
 
+    public function orderByStock($orderBy = 'asc', $limit = null)
+    {
+        $products = Product::orderBy('stock', $orderBy);
+
+        if(!!$limit) $products->limit($limit);
+
+        return $products->get();
+    }
+
     public function paginate($paginate)
     {
         $products = Product::with('category')->paginate($paginate);

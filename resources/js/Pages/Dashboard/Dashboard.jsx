@@ -3,11 +3,12 @@ import Table from "@/Components/Card/Table/Table";
 import Dropdown from "@/Components/Dropdown/Dropdown";
 import { currencyFormat } from "@/helper";
 import DashboardLayout from "@/Layouts/DashboardLayout";
+import { Link } from "@inertiajs/inertia-react";
 import React from "react";
 import { FaBoxes, FaMoneyCheck, FaReceipt, FaUsers } from "react-icons/fa";
 import { SlOptionsVertical } from "react-icons/sl";
 
-const Dashboard = ({orders, auth, revenue, member, pendingPayments, pendingPickups}) => {
+const Dashboard = ({orders, products, auth, revenue, member, pendingPayments, pendingPickups}) => {
     return (
         <>
             <div className={`grid gap-6 mb-8 md:grid-cols-2 ${auth.user.role == '2' ? 'xl:grid-cols-3' : 'xl:grid-cols-4'}`}>
@@ -44,10 +45,10 @@ const Dashboard = ({orders, auth, revenue, member, pendingPayments, pendingPicku
                     count={pendingPickups}
                 />
             </div>
-            <div className={`grid gap-6 mb-8  ${auth.user.role == '2' ? 'lg:grid-cols-1' : 'lg:grid-cols-2'}`}>
-                <div>
+            <div className={`grid gap-6 mb-8  ${auth.user.role == '2' ? 'lg:grid-cols-2' : 'lg:grid-cols-3'}`}>
+                <div className="col-span-2">
                     <h1 className="font-medium text-lg text-stone-600">Recent Orders</h1>
-                    <div className="min-w-0 p-4 overflow-x-auto rounded-lg shadow-lg">
+                    <div className="min-w-0 mt-4 overflow-x-auto rounded-lg shadow-lg">
                         <Table>
                             <Table.Head>
                                 <Table.Header>Id</Table.Header>
@@ -91,6 +92,34 @@ const Dashboard = ({orders, auth, revenue, member, pendingPayments, pendingPicku
                         </Table>
                     </div>
                 </div>
+                { auth.user.role != '2' &&
+                    <div>
+                        <div className="flex justify-between items-center">
+                            <h1 className="font-medium text-lg text-stone-600">Stock Condition</h1>
+                            <Link href={route('products.index')} className="text-[10px] text-white bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 px-2 p-1 font-semibold rounded">SEE ALL</Link>
+                        </div>
+                        <div className="min-w-0 mt-4 overflow-x-auto rounded-lg shadow-lg">
+                            <Table>
+                                <Table.Head>
+                                    <Table.Header>Name</Table.Header>
+                                    <Table.Header>Stock</Table.Header>
+                                </Table.Head>
+                                <Table.Body>
+                                    {!_.isEmpty(products) ? products.map((product) => (
+                                        <Table.Row key={product.id}>
+                                            <Table.Content>{product.name}</Table.Content>
+                                            <Table.Content className={(product.stock < 10 ? 'text-rose-600' : (product.stock < 20 ? 'text-amber-500' : "text-green-600"))}>{product.stock}</Table.Content>
+                                        </Table.Row>
+                                    )):
+                                        <Table.Row>
+                                            <Table.Content type="header" colSpan={"6"} className="text-center text-base text-gray-500 font-semibold italic">Products Not Found</Table.Content>
+                                        </Table.Row>
+                                    }
+                                </Table.Body>
+                            </Table>
+                        </div>
+                    </div>
+                }
             </div>
         </>
     )

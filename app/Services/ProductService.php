@@ -29,6 +29,11 @@ class ProductService
         return $products;
     }
 
+    public function getProductsStock($limit = null, $orderBy = "asc")
+    {
+        return $this->productRepository->orderByStock($orderBy, $limit);
+    }
+
     public function create($data)
     {
         $data['image'] = $this->storeImage($data['image']);
