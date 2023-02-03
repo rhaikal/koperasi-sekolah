@@ -77,7 +77,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/order/{product}', [OrderController::class, 'destroy'])->name('order.destroy');
     Route::delete('/order/{product}/exceed', [OrderController::class, 'removeOutOfStock'])->name('order.destroy.exceed');
     Route::put('/order/{product}', [OrderController::class, 'update'])->name('order.update');
-    Route::put('/order/{product}', [OrderController::class, 'updateExceedLimit'])->name('order.update.exceed');
+    Route::put('/order/{product}/exceed', [OrderController::class, 'updateExceedLimit'])->name('order.update.exceed');
 
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
