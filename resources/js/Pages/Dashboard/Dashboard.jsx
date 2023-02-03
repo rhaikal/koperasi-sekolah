@@ -46,7 +46,7 @@ const Dashboard = ({orders, products, auth, revenue, member, pendingPayments, pe
                 />
             </div>
             <div className={`grid gap-6 mb-8  ${auth.user.role == '2' ? 'lg:grid-cols-2' : 'lg:grid-cols-3'}`}>
-                <div className="col-span-2">
+                <div className="col-span-2 scale-100">
                     <h1 className="font-medium text-lg text-stone-600">Recent Orders</h1>
                     <div className="min-w-0 mt-4 overflow-x-auto rounded-lg shadow-lg">
                         <Table>
@@ -62,7 +62,6 @@ const Dashboard = ({orders, products, auth, revenue, member, pendingPayments, pe
                                     <Table.Row key={order.id}>
                                         <Table.Content type="header">{order.id}</Table.Content>
                                         <Table.Content>{order.user.name}</Table.Content>
-                                        <Table.Content>{currencyFormat(order.total_price)}</Table.Content>
                                         <Table.Content>{_.startCase(order.invoice.method)}</Table.Content>
                                         <Table.Content>
                                             {{
@@ -93,7 +92,7 @@ const Dashboard = ({orders, products, auth, revenue, member, pendingPayments, pe
                     </div>
                 </div>
                 { auth.user.role != '2' &&
-                    <div>
+                    <div className="col-span-2 lg:col-span-1">
                         <div className="flex justify-between items-center">
                             <h1 className="font-medium text-lg text-stone-600">Stock Condition</h1>
                             <Link href={route('products.index')} className="text-[10px] text-white bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 px-2 p-1 font-semibold rounded">SEE ALL</Link>
