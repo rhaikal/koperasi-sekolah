@@ -124,6 +124,18 @@ class OrderRepository
         return Order::where('status', '>', '1')->sum('total_price');
     }
 
+    public function limitOrders($limit = null, $offset = null)
+    {
+        $orders = Order::where('status', '>', '1');
+
+        $user = auth()->user();
+        if($user->role == '2') $orders->where('user_id', '!=', $user->id);
+        if(!!$offset) $orders->offset($offset);
+        if(!!$limit) $orders->limit($limit);
+
+        return $orders->get();
+    }
+
     public function create()
     {
         $order = Order::create([

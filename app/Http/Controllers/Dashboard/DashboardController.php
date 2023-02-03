@@ -25,7 +25,11 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
+        $orders = $this->orderService->getRecentOrders(5);
+        $orders->load('user:id,name', 'invoice');
+
         return inertia('Dashboard/Dashboard', [
+            'orders' => $orders,
             'revenue' => $this->orderService->sumOrdersTotalPrice(),
             'member' => $this->userService->countMembers(),
             'pendingPayments' => $this->orderService->countOrdersByStatus('1'),

@@ -66,6 +66,11 @@ class OrderService
         return $this->orderRepository->getExpired($paginate);
     }
 
+    public function getRecentOrders($limit = null)
+    {
+        return $this->orderRepository->limitOrders($limit);
+    }
+
     public function order($data, $product)
     {
         if($product->stock >= $data['quantity']) {
