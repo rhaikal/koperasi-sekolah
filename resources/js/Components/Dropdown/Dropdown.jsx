@@ -36,9 +36,9 @@ const Content = ({ align = 'right', width = '48', containerClasses, contentClass
     let alignmentClasses = 'origin-top ';
 
     if (align === 'left') {
-        alignmentClasses += 'origin-top-left left-0';
+        alignmentClasses += 'origin-top-left left-6';
     } else if (align === 'right') {
-        alignmentClasses += 'origin-top-right right-0';
+        alignmentClasses += 'origin-top-right right-6';
     }
 
     let widthClasses = '';
@@ -49,8 +49,7 @@ const Content = ({ align = 'right', width = '48', containerClasses, contentClass
 
     return (
         <Transition
-            as={"div"}
-            className="relative z-50"
+            as={Fragment}
             show={open}
             enter="transition ease-out duration-200"
             enterFrom="transform opacity-0 scale-95"
@@ -60,7 +59,7 @@ const Content = ({ align = 'right', width = '48', containerClasses, contentClass
             leaveTo="transform opacity-0 scale-95"
         >
             <div
-                className={`absolute z-50 mt-2 rounded-md shadow-lg ${alignmentClasses} ${widthClasses} ${containerClasses}`}
+                className={`fixed z-50 mt-2 rounded-md shadow-lg h-fit ${alignmentClasses} ${widthClasses} ${containerClasses}`}
                 onClick={() => setOpen(false)}
             >
                 <div className={`rounded-md ring-1 ring-black ring-opacity-5 ` + contentClasses}>{children}</div>

@@ -34,7 +34,7 @@ export default function Authenticated({ auth, children }) {
                 <Navbar />
             </NavigationContext.Provider>
 
-            <main className='mt-12'>{children}</main>
+            <main className='mt-12 scale-100'>{children}</main>
         </div>
     );
 }

@@ -4,7 +4,7 @@ import { BiExit } from "react-icons/bi";
 
 export default function Navbar({user}) {
     return (
-        <header className="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
+        <header className="z-10 py-4 bg-white shadow-md dark:bg-gray-800 scale-100">
             <div className="container flex items-center justify-end h-full px-6 mx-auto">
                 <ul className="flex items-center flex-shrink-0 space-x-6">
                     <li className="relative">
