@@ -3,9 +3,23 @@
 namespace App\Repositories;
 
 use App\Models\Order;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Date;
 
 class OrderRepository
 {
+
+    public function getRevenuePerMonth()
+    {
+        return Order::select(
+            DB::raw('month(updated_at) as month'),
+            DB::raw('sum(total_price) as revenue'),
+        )->where('created_at', '>=', now()->startOfYear())
+        ->where('status', '>', '1')
+        ->groupBy('month')
+        ->get();
+    }
+
     public function getAll($paginate)
     {
         $orders = Order::with('invoice')->where('status', '!=', '0')->orderBy('status', 'asc')->latest();

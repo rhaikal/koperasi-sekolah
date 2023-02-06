@@ -38,6 +38,7 @@ class DashboardController extends Controller
             'member' => $this->userService->countMembers(),
             'pendingPayments' => $this->orderService->countOrdersByStatus('1'),
             'pendingPickups' => $this->orderService->countOrdersByStatus('2'),
+            'revenueChart' => $this->orderService->getRevenueOrdersPerMonth(),
         ]);
     }
 }

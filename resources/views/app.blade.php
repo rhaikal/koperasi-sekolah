@@ -10,9 +10,9 @@
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Scripts -->
-        <script type="text/javascript"
+        {{-- <script type="text/javascript"
             src="https://app.sandbox.midtrans.com/snap/snap.js"
-            data-client-key={{ env('MIDTRANS_CLIENT_KEY') }}></script>
+            data-client-key={{ env('MIDTRANS_CLIENT_KEY') }}></script> --}}
         @routes
         @viteReactRefresh
         @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])

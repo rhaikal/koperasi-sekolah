@@ -71,6 +71,11 @@ class OrderService
         return $this->orderRepository->limitOrders($limit);
     }
 
+    public function getRevenueOrdersPerMonth()
+    {
+        return $this->orderRepository->getRevenuePerMonth();
+    }
+
     public function order($data, $product)
     {
         if($product->stock >= $data['quantity']) {

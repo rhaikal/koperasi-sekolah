@@ -1,14 +1,28 @@
 import Label from "@/Components/Card/Label/Label";
 import Table from "@/Components/Card/Table/Table";
+import LineChart from "@/Components/Charts/LineChart";
 import Dropdown from "@/Components/Dropdown/Dropdown";
 import { currencyFormat } from "@/helper";
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import { Link } from "@inertiajs/inertia-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { FaBoxes, FaMoneyCheck, FaReceipt, FaUsers } from "react-icons/fa";
 import { SlOptionsVertical } from "react-icons/sl";
 
-const Dashboard = ({orders, products, auth, revenue, member, pendingPayments, pendingPickups}) => {
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+let revenueData = [];
+
+const Dashboard = ({orders, products, auth, revenue, revenueChart, member, pendingPayments, pendingPickups}) => {
+    useEffect(() => {
+        for(let i = 0; i <= (new Date()).getMonth(); i++){
+            revenueData[i] = 0;
+        }
+
+        revenueChart.map((data) => {
+            revenueData[data.month - 1] = data.revenue
+        })
+    })
+
     return (
         <>
             <div className={`grid gap-6 mb-8 md:grid-cols-2 ${auth.user.role == '2' ? 'xl:grid-cols-3' : 'xl:grid-cols-4'}`}>
@@ -120,6 +134,19 @@ const Dashboard = ({orders, products, auth, revenue, member, pendingPayments, pe
                     </div>
                 }
             </div>
+            { auth.user.role != '2' &&
+                <div className={`grid gap-6 mb-8 grid-cols-1`}>
+                    <div>
+                        <h1 className="font-medium text-lg text-stone-600">Revenue Graphic</h1>
+                        <div className="relative flex flex-col min-w-0 break-words bg-white w-full mt-6 shadow-lg rounded">
+                            <div className="p-4 flex-auto">
+                                {/* Chart */}
+                                <LineChart labels={labels} label={"revenue"} data={revenueData} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         </>
     )
 }
