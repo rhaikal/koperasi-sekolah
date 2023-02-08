@@ -6,23 +6,25 @@ use App\Models\Product;
 
 class productRepository
 {
-    public function getAll()
-    {
-        $products = Product::with('category')->all();
+    private $products;
 
-        return $products;
+    public function __construct()
+    {
+        $request = request();
+        $this->products = Product::with('category');
+
+        if($request->has('category')){
+            $this->products = $this->products->where('category_id', '=', $request->input('category'));
+        }
+
+        if($request->has('search')){
+            $this->products = $this->products->keyword($request->input('search'));
+        }
     }
 
-    public function getByCategory($category, $paginate = null)
+    public function getAll()
     {
-        $products = Product::with('category')->where('category_id', '=', $category);
-
-        if($paginate){
-            $products = $products->paginate($paginate);
-            $products->appends(request()->query());
-        } else {
-            $products = $products->get();
-        }
+        $products = $this->products->all();
 
         return $products;
     }
@@ -36,11 +38,11 @@ class productRepository
         return $products->get();
     }
 
-    public function paginate($paginate)
+    public function paginate($paginate, $search = null)
     {
-        $products = Product::with('category')->paginate($paginate);
+        $products = $this->products;
 
-        return $products;
+        return $products->paginate($paginate)->appends(request()->query());
     }
 
     public function create($data)

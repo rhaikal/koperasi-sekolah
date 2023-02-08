@@ -26,6 +26,18 @@ class Product extends Model
         'description'
     ];
 
+    /**
+     * Scope a query to only include users by keyword.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeKeyword($query, $keyword)
+    {
+        return $query->where('name', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('slug', 'LIKE', '%' . $keyword . '%');
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

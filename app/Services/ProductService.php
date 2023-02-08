@@ -16,12 +16,11 @@ class ProductService
         $this->productRepository = $productRepository;
     }
 
-    public function getProducts($paginate = null, $data = null)
+    public function getProducts($paginate = null)
     {
         $products = null;
         if($paginate){
-            if(!!$data && $data->has('category')) $products = $this->productRepository->getByCategory($data->category, $paginate);
-            else $products = $this->productRepository->paginate($paginate);
+            $products = $this->productRepository->paginate($paginate);
         } else {
             $products = $this->productRepository->getAll();
         }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -29,9 +30,11 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->productService->getProducts(5);
+        $categories = $this->categoryService->getCategories();
 
         return inertia('Dashboard/Product/Product', [
-            'products' => $products
+            'products' => $products,
+            'categories' => $categories
         ]);
     }
 
