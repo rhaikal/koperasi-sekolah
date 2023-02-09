@@ -39,7 +39,7 @@ class HistoryController extends Controller
      */
     public function show(Order $order)
     {
-        if($order->status > 0){
+        if($order->status > 0 || $order->status == '-'){
             $this->authorize('view', $order);
 
             $order->load('invoice', 'user:id,name,email,no_phone');

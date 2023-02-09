@@ -4,16 +4,19 @@ namespace App\Services;
 
 use App\Repositories\OrderRepository;
 use App\Repositories\PaymentRepository;
+use App\Repositories\productRepository;
 
 class PaymentService
 {
+    private productRepository $productRepository;
     private PaymentRepository $paymentRepository;
     private OrderRepository $orderRepository;
 
-    public function __construct(PaymentRepository $paymentRepository, OrderRepository $orderRepository)
+    public function __construct(PaymentRepository $paymentRepository, OrderRepository $orderRepository, productRepository $productRepository)
     {
         $this->paymentRepository = $paymentRepository;
         $this->orderRepository = $orderRepository;
+        $this->productRepository = $productRepository;
     }
 
     public function cashPayment($order)
@@ -36,7 +39,9 @@ class PaymentService
     {
         if($this->isSignatureKeyVerified($order, $notification)){
             if($notification->transaction_status == 'expire'){
-                $this->orderRepository->update(['status' => '-'], $order);
+                foreach($order->products as $product){
+                    $this->productRepository->update($product, ['stock' => $product->stock + $product->pivot->quantity]);
+                } $this->orderRepository->update(['status' => '-'], $order);
                 return 'expired';
             }
 
