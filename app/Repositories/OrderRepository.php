@@ -18,19 +18,20 @@ class OrderRepository
         if($request->has('search')){
             $this->orders = $this->orders->keyword($request->input('search'));
         }
-
-        // dd($this->orders);
     }
 
     public function getRevenuePerMonth()
     {
-        return Order::select(
-            DB::raw('month(updated_at) as month'),
-            DB::raw('sum(total_price) as revenue'),
-        )->where('created_at', '>=', now()->startOfYear())
-        ->where('status', '>', '1')
-        ->groupBy('month')
-        ->get();
+        return DB::table('orders')
+                ->join('invoices', 'orders.id', '=', 'invoices.order_id')
+                ->join('payments', 'invoices.id', '=', 'payments.invoice_id')
+                ->select(
+                    DB::raw('month(payments.payment_date) as month'),
+                    DB::raw('sum(orders.total_price) as revenue'),
+                )->where('orders.status', '>', '1')
+                ->where('payments.payment_date', '>=', now()->startOfYear())
+                ->groupBy('month')
+                ->get();
     }
 
     public function getAll($paginate)
