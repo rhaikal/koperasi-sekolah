@@ -8,6 +8,19 @@ use Illuminate\Support\Facades\Date;
 
 class OrderRepository
 {
+    private $orders;
+
+    public function __construct()
+    {
+        $request = request();
+        $this->orders = Order::with('invoice');
+
+        if($request->has('search')){
+            $this->orders = $this->orders->keyword($request->input('search'));
+        }
+
+        // dd($this->orders);
+    }
 
     public function getRevenuePerMonth()
     {
@@ -22,7 +35,7 @@ class OrderRepository
 
     public function getAll($paginate)
     {
-        $orders = Order::with('invoice')->where('status', '!=', '0')->orderBy('status', 'asc')->latest();
+        $orders = $this->orders->where('status', '!=', '0')->orderBy('status', 'asc')->latest();
 
         $orders = (!!$paginate ?
             $orders->paginate($paginate) :
@@ -70,7 +83,7 @@ class OrderRepository
 
     public function getInCheckoutExceptOwn($paginate = null)
     {
-        $orders = Order::with('invoice')->where('status', '=', '1')->where('user_id', '<>', auth()->id())->latest();
+        $orders = $this->orders->where('status', '=', '1')->where('user_id', '<>', auth()->id())->latest();
 
         $orders = (!!$paginate ?
             $orders->paginate($paginate) :
@@ -82,7 +95,7 @@ class OrderRepository
 
     public function getInCheckout($paginate = null)
     {
-        $orders = Order::with('invoice')->where('status', '=', '1')->latest();
+        $orders = $this->orders->where('status', '=', '1')->latest();
 
         $orders = (!!$paginate ?
             $orders->paginate($paginate) :
@@ -94,7 +107,7 @@ class OrderRepository
 
     public function getPaid($paginate = null)
     {
-        $orders = Order::with('invoice')->where('status', '=', '2')->latest();
+        $orders = $this->orders->where('status', '=', '2')->latest();
 
         $orders = (!!$paginate ?
             $orders->paginate($paginate) :
@@ -106,7 +119,7 @@ class OrderRepository
 
     public function getDone($paginate = null)
     {
-        $orders = Order::with('invoice')->where('status', '=', '3')->latest();
+        $orders = $this->orders->where('status', '=', '3')->latest();
 
         $orders = (!!$paginate ?
             $orders->paginate($paginate) :
@@ -118,7 +131,7 @@ class OrderRepository
 
     public function getExpired($paginate = null)
     {
-        $orders = Order::with('invoice')->where('status', '=', '-')->latest();
+        $orders = $this->orders->where('status', '=', '-')->latest();
 
         $orders = (!!$paginate ?
             $orders->paginate($paginate) :
