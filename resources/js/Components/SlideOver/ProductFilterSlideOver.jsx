@@ -73,7 +73,7 @@ export default function ProductFilter({categories, mobileFiltersOpen, setMobileF
                                         <div key={category.id} className="flex items-center">
                                             <Link
                                                 href={route('shop.index')}
-                                                data={{ category: category.id }}
+                                                data={{ category: category.slug }}
                                                 className="ml-3 min-w-0 flex-1 text-gray-500"
                                             >
                                                 {category.name}

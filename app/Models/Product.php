@@ -27,6 +27,16 @@ class Product extends Model
     ];
 
     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
      * Scope a query to only include users by keyword.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query

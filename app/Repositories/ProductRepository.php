@@ -14,7 +14,9 @@ class productRepository
         $this->products = Product::with('category');
 
         if($request->has('category')){
-            $this->products = $this->products->where('category_id', '=', $request->input('category'));
+            $this->products = $this->products->whereHas('category',function ($query) use ($request) {
+                $query->where('slug', '=', $request->input('category'));
+            });
         }
 
         if($request->has('search')){

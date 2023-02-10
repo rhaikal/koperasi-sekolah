@@ -67,7 +67,7 @@ const Shop = ({categories, products}) => {
                                                             <Link
                                                                 preserveState={true}
                                                                 href={route('shop.index')}
-                                                                data={{ category: category.id }}
+                                                                data={{ category: category.slug }}
                                                                 className="ml-3 text-sm text-gray-600"
                                                             >
                                                                 {category.name}
