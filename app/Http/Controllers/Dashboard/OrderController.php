@@ -50,8 +50,18 @@ class OrderController extends Controller
             $this->authorize('view', $order);
 
             $order->load('invoice', 'user:id,name,email,no_phone');
-            if($order->status == '2') $order->invoice->load('payment');
-            if($order->status == '3') $order->load('pickup');
+            if($order->status > '2') {
+                $order->invoice->load('payment');
+
+                if(auth()->user()->role > 2)
+                    $order->invoice->payment->load('user');
+
+                if($order->status == '3') {
+                    $order->load('pickup');
+                    if(auth()->user()->role > 2)
+                        $order->pickup->load('user');
+                }
+            }
 
             return inertia('Dashboard/Order/Detail/Detail', [
                 'order' => $order,

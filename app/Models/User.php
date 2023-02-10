@@ -51,9 +51,14 @@ class User extends Authenticatable
         $this->hasMany(Order::class);
     }
 
-    public function coupons()
+    public function payments()
     {
-        $this->belongsToMany(Coupon::class, 'used_coupons')->withPivot('used_at');
+        $this->hasMany(Payment::class);
+    }
+
+    public function pickups()
+    {
+        $this->hasMany(Pickup::class);
     }
 
     public function hasRole($role)

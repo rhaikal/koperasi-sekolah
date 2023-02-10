@@ -31,4 +31,9 @@ class Payment extends Model
     {
         return $this->belongsTo(Invoice::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'responsible_user_id');
+    }
 }
