@@ -154,7 +154,7 @@ class OrderRepository
 
     public function limitOrders($limit = null, $offset = null)
     {
-        $orders = Order::where('status', '>', '1');
+        $orders = Order::where('status', '>=', '1')->latest();
 
         $user = auth()->user();
         if($user->role == '2') $orders->where('user_id', '!=', $user->id);
