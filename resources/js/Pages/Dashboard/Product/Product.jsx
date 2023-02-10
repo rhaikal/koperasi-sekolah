@@ -36,12 +36,16 @@ const Product = ({products, categories, query }) => {
     }
 
     const handleSearch = _.debounce((e) => {
+        const options = {
+            preserveState: true
+        }
+
         const preserveQuery = {
             category: query?.category
         };
 
         if(e.target.value) Inertia.get(route('products.index'), {preserveQuery, search: e.target.value}, options)
-        else Inertia.get(route('products.index', {preserveQuery}), options)
+        else Inertia.get(route('products.index', {preserveQuery}))
     }, 1000)
 
     return (
