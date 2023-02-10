@@ -20,15 +20,18 @@ export default function ProductList({products, links}) {
                                 className="h-full w-full rounded-lg object-cover object-center group-hover:opacity-75"
                                 />
                                 <ul className="product-hover absolute top-6 right-[-200px] cursor-pointer transition-all duration-700">
-                                    <li className="bg-indigo-100 p-1 rounded border border-indigo-400">
+                                    <li className={`p-1 rounded border ${product.stock > 0 ? 'bg-indigo-100 border-indigo-400' : 'bg-rose-100 border-rose-400' }`}>
                                         <Link href={route("shop.show", product)}>
-                                            <BiSearch className="w-7 h-7 lg:h-5 lg:w-5 text-indigo-400" />
+                                            <BiSearch className={`w-7 h-7 lg:h-5 lg:w-5 ${product.stock > 0 ? 'text-indigo-400' : 'text-rose-400'}`} />
                                         </Link>
                                     </li>
                                 </ul>
                             </div>
                             <div className="product-item-text relative pt-6">
-                                <Link method="POST" as="button" href={route("order.store", product)} data={{ quantity: 1 }} preserveScroll className="absolute z-40 top-0 left-0 add-cart no-underline opacity-0 text-lg lg:text-base font-semibold text-indigo-500 transition-all duration-500">+ Add To Cart</Link>
+                                {product.stock > 0 ?
+                                    <Link method="POST" as="button" href={route("order.store", product)} data={{ quantity: 1 }} preserveScroll className="absolute z-40 top-0 left-0 add-cart no-underline opacity-0 text-lg lg:text-base font-semibold text-indigo-500 transition-all duration-500">+ Add To Cart</Link> :
+                                    <p className="absolute z-40 top-0 left-0 no-underline opacity-0 text-lg lg:text-base font-semibold text-red-500 transition-all duration-500">Out of stock</p>
+                                }
                                 <h6 className="text-lg top-0 left-0 lg:text-base font-semibold text-gray-700 transition-all duration-500">{product.name}</h6>
                             </div>
                             </div>
