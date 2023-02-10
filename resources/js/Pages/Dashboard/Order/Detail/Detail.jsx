@@ -17,7 +17,7 @@ const Detail = ({ order, auth }) => {
             {order.status == '1' && order.invoice.method == 'cash' && <PrimaryButton className="flex mr-3" onClick={(e) => handlePayment(e, order)}><BsWallet2 className="mr-2" /> Paid</PrimaryButton>}
             {order.status == '2' && <PrimaryButton className="flex mr-3" onClick={(e) => handlePickup(e, order)}><FaBoxOpen className="mr-2" /> Take</PrimaryButton>}
             {auth.user.role > 2 &&
-                <div className="grid gap-6 my-4 grid-cols-1 md:grid-cols-2">
+                <div className="grid gap-6 mt-4 grid-cols-1 md:grid-cols-2">
                     {order?.invoice.payment &&
                         <div className={`${order?.pickup ? 'col-span-1' : 'col-span-2'} w-full rounded-lg shadow-lg py-2 px-4 my-4 bg-white`}>
                             <p className="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -40,7 +40,7 @@ const Detail = ({ order, auth }) => {
                     }
                 </div>
             }
-            <div className="w-full rounded-lg shadow-lg my-6 px-6 py-2 bg-white">
+            <div className="w-full rounded-lg shadow-lg my-3 px-6 py-2 bg-white">
                 <Invoice order={order} />
             </div>
         </div>
