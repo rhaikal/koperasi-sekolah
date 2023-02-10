@@ -50,7 +50,7 @@ class OrderController extends Controller
             $this->authorize('view', $order);
 
             $order->load('invoice', 'user:id,name,email,no_phone');
-            if($order->status > '2') {
+            if($order->status >= '2') {
                 $order->invoice->load('payment');
 
                 if(auth()->user()->role > 2)
