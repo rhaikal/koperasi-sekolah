@@ -31,7 +31,7 @@ export default function ResetPassword({ token, email }) {
     };
 
     return (
-        <GuestLayout>
+        <GuestLayout header="Reset Password" imgSrc="/img/auth/forgot-password-office.jpeg" imgAlt='reset-password' imgDarkSrc='/img/auth/forgot-password-office-dark.jpeg'>
             <Head title="Reset Password" />
 
             <form onSubmit={submit}>
