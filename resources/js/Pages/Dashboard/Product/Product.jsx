@@ -16,7 +16,7 @@ const Product = ({products, categories, query }) => {
     const [categoriesList, setCategoriesList] = useState([]);
     const [categoryStart, setCategoryStart] = useState(0);
     const currentCategory = categories.find((value) => {
-        return value.id == query.category;
+        return value.slug == query.category;
     })
 
     useEffect(() => {
@@ -44,8 +44,8 @@ const Product = ({products, categories, query }) => {
             category: query?.category
         };
 
-        if(e.target.value) Inertia.get(route('products.index'), {preserveQuery, search: e.target.value}, options)
-        else Inertia.get(route('products.index', {preserveQuery}))
+        if(e.target.value) Inertia.get(route('products.index'), {...preserveQuery, search: e.target.value}, ...options)
+        else Inertia.get(route('products.index', {...preserveQuery}))
     }, 1000)
 
     return (
