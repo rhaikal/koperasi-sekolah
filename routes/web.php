@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\OrderController as DashboardOrderController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\LoanController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PickupController;
@@ -65,7 +66,10 @@ Route::middleware('role')->group(function () {
         Route::apiResource('/dashboard/categories', CategoryController::class)->except('show');
         // user page
         Route::resource('/dashboard/users', UserController::class)->except('delete', 'destroy', 'create', 'store');
+        // loan page
+        Route::resource('/dashboard/loans', LoanController::class);
     });
+
 });
 
 Route::middleware('auth')->group(function () {
