@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
-            $table->char('status', 1);
             $table->foreignId('user_id');
             $table->integer('ammount');
-            $table->integer('term_of_payment'); // in weekly units
+            $table->date('term_of_payment');
             $table->timestamps();
         });
     }

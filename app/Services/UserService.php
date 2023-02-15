@@ -15,6 +15,11 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
+    public function getMembers($paginate = null)
+    {
+        return $this->userRepository->getByRole('2', null, $paginate, ['id', 'name', 'email', 'no_phone', 'profile']);
+    }
+
     public function getUsers($paginate = null)
     {
         $user = auth()->user();
