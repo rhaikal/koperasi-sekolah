@@ -36,16 +36,12 @@ const Product = ({products, categories, query }) => {
     }
 
     const handleSearch = _.debounce((e) => {
-        const options = {
-            preserveState: true
-        }
-
         const preserveQuery = {
             category: query?.category
-        };
+        }
 
-        if(e.target.value) Inertia.get(route('products.index'), {...preserveQuery, search: e.target.value}, ...options)
-        else Inertia.get(route('products.index', {...preserveQuery}))
+        if(e.target.value) Inertia.reload({only: ['products', 'query'], data: {...preserveQuery, search: e.target.value}})
+        else Inertia.visit(route('products.index'), {only: ['products', 'query'], data: {...preserveQuery}})
     }, 1000)
 
     return (
@@ -56,11 +52,11 @@ const Product = ({products, categories, query }) => {
                         <Dropdown.Trigger className="flex"><button className="flex z-10 items-center px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">{currentCategory?.name ?? "Category"} <FaAngleDown className="ml-2 w-4 h-4"></FaAngleDown></button></Dropdown.Trigger>
                         <Dropdown.Content align="left">
                             {categoriesList.map((category) => (
-                                <Dropdown.Link key={category.id} href={route('products.index')} data={{ category: category.slug }}>{category.name}</Dropdown.Link>
+                                <Dropdown.Link key={category.id} only={['products', 'query']} href={route('products.index')} data={{ category: category.slug }}>{category.name}</Dropdown.Link>
                             ))}
                             <div className="flex justify-between m-1 items-center text-white">
-                                <Link as="button" preserveState onClick={prevCategories} className="flex-auto py-1 bg-indigo-600 rounded-l-lg hover:bg-indigo-500 hover:text-white">prev</Link>
-                                <Link as="button" preserveState onClick={nextCategories} className="flex-auto py-1 bg-indigo-600 rounded-r-lg hover:bg-indigo-500 hover:text-white">next</Link>
+                                <Link as="button" onClick={prevCategories} className="flex-auto py-1 bg-indigo-600 rounded-l-lg hover:bg-indigo-500 hover:text-white">prev</Link>
+                                <Link as="button" onClick={nextCategories} className="flex-auto py-1 bg-indigo-600 rounded-r-lg hover:bg-indigo-500 hover:text-white">next</Link>
                             </div>
                         </Dropdown.Content>
                     </Dropdown>

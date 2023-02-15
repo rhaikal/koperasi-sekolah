@@ -9,6 +9,8 @@ import { Link, useForm } from "@inertiajs/inertia-react";
 import { useEffect } from "react";
 import { BsBack } from "react-icons/bs";
 
+let options = []
+
 export default function ProductForm({categories, handleSubmit, header, product}) {
     const form = useForm({
         image: null,
@@ -20,13 +22,14 @@ export default function ProductForm({categories, handleSubmit, header, product})
         description: '',
     });
 
-    let options = []
-    categories.map((category) => {
-        options.push({
-            value: category.id,
-            label: category.name
+    useEffect(() => {
+        categories.map((category) => {
+            options.push({
+                value: category.id,
+                label: category.name
+            })
         })
-    })
+    }, [])
 
     const handleChange = (event) => {
         form.setData(event.target.name, event.target.value)
@@ -57,7 +60,6 @@ export default function ProductForm({categories, handleSubmit, header, product})
                 '_method': 'PUT'
             })
         }
-
     }, [product])
 
     return (
