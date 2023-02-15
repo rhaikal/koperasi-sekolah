@@ -3,7 +3,9 @@ import LoanForm from "../Partials/LoanForm";
 
 const CreateLoan = ({users}) => {
     const handleSubmit = (form) => {
-        console.log(form.data);
+        form.post(route('loans.store'), {
+            preseveState: true
+        })
     }
 
     return (

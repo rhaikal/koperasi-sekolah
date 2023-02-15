@@ -47,6 +47,11 @@ export default function LoanForm({ header, users, handleSubmit }){
         setSelectedUser(true);
     }
 
+    const onSubmit = (e) => {
+        e.preventDefault()
+        handleSubmit(form)
+    }
+
     return (
         <div className="py-8">
             <PrimaryButton className="w-fit"><BsBack className="mr-2" /><Link href={route('loans.index')}>Back</Link></PrimaryButton>
@@ -66,13 +71,13 @@ export default function LoanForm({ header, users, handleSubmit }){
                     </div>
                 </div>
                 <div className={`grid rounded shadow-lg p-4 px-4 md:p-8 mb-6 order-first lg:order-last ${!selectedUser ? 'col-span-10' : 'col-span-10 lg:col-span-4'}`}>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={onSubmit}>
                         <Header className="text-center">{header}</Header>
                         <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
                             <div className="col-span-6 my-1">
                                 <Select
                                     name={"user_id"}
-                                    placeholder="User"
+                                    placeholder="Member"
                                     options={options}
                                     onChange={handleSelect}
                                     hasErrors={form.errors.user_id}
@@ -99,7 +104,7 @@ export default function LoanForm({ header, users, handleSubmit }){
                                     id="term_of_payment"
                                     type="date"
                                     name="term_of_payment"
-                                    placeholder="Term Of Payment"
+                                    placeholder="Term of payment"
                                     value={form.data.term_of_payment}
                                     handleChange={handleChange}
                                     hasErrors={form.errors.term_of_payment}
