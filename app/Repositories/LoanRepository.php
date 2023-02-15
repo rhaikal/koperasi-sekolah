@@ -6,14 +6,25 @@ use App\Models\Loan;
 
 class LoanRepository
 {
+    private $loans;
+
+    public function __construct()
+    {
+        $request = request();
+        $this->loans = Loan::with('user:id,name');
+
+        if($request->search)
+            $this->loans = $this->loans->keyword($request->search);
+    }
+
     public function getAll()
     {
-        return Loan::with('user:id,name')->all();
+        return $this->loans->all();
     }
 
     public function paginate($paginate)
     {
-        return Loan::with('user:id,name')->paginate($paginate);
+        return $this->loans->paginate($paginate);
     }
 
     public function create($data)
