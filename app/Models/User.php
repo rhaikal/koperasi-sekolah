@@ -46,19 +46,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
+    }
+
     public function orders()
     {
-        $this->hasMany(Order::class);
+        return $this->hasMany(Order::class);
     }
 
     public function payments()
     {
-        $this->hasMany(Payment::class);
+        return $this->hasMany(Payment::class);
     }
 
     public function pickups()
     {
-        $this->hasMany(Pickup::class);
+        return $this->hasMany(Pickup::class);
     }
 
     public function hasRole($role)

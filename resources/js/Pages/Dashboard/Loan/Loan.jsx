@@ -2,6 +2,7 @@ import PrimaryButton from "@/Components/Button/PrimaryButton"
 import Table from "@/Components/Card/Table/Table"
 import Dropdown from "@/Components/Dropdown/Dropdown"
 import Pagination from "@/Components/Pagination/Pagination"
+import { currencyFormat } from "@/helper"
 import DashboardLayout from "@/Layouts/DashboardLayout"
 import { Link } from "@inertiajs/inertia-react"
 import { SlOptionsVertical } from "react-icons/sl"
@@ -25,6 +26,9 @@ const Loan = ({ loans }) => {
                 <Table.Body>
                     {!_.isEmpty(loans?.data) ? loans.data.map((loan) => (
                         <Table.Row key={loan.id}>
+                            <Table.Content type="header" className="w-auto">{loan.id}</Table.Content>
+                            <Table.Content>{loan.user.name}</Table.Content>
+                            <Table.Content>{currencyFormat(loan.ammount)}</Table.Content>
                             <Table.Content>
                                 <Dropdown>
                                     <Dropdown.Trigger>

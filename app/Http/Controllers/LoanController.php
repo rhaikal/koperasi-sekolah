@@ -21,7 +21,9 @@ class LoanController extends Controller
 
     public function index()
     {
-        return inertia('Dashboard/Loan/Loan');
+        return inertia('Dashboard/Loan/Loan', [
+            'loans' => $this->loanService->getLoans(10)
+        ]);
     }
 
     public function create()

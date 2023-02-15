@@ -19,4 +19,9 @@ class Loan extends Model
         'ammount',
         'term_of_payment',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
