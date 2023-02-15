@@ -9,8 +9,8 @@ import { useEffect, useState } from "react"
 import Overview from "@/Components/Overview/Overview"
 import { BsBack } from "react-icons/bs"
 
-let options = []
 export default function LoanForm({ header, users, handleSubmit }){
+    const [options] = useState([]);
     const [currentUser, setCurrentUser] = useState({});
     const [selectedUser, setSelectedUser] = useState(false);
 
@@ -20,7 +20,6 @@ export default function LoanForm({ header, users, handleSubmit }){
     }, [])
 
     useEffect(() => {
-        options = []
         users.forEach(user => {
             options.push({
                 value: user.id,

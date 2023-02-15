@@ -6,12 +6,12 @@ import InputError from "@/Components/Input/InputError";
 import Select from "@/Components/Input/Select";
 // import { inputCurrencyFormat, inputCurrencyDerange } from "@/helper";
 import { Link, useForm } from "@inertiajs/inertia-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BsBack } from "react-icons/bs";
 
-let options = []
-
 export default function ProductForm({categories, handleSubmit, header, product}) {
+    const [options] = useState([]);
+
     const form = useForm({
         image: null,
         name: '',
