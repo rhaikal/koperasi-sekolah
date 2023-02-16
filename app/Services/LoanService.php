@@ -26,4 +26,9 @@ class LoanService
     {
         return $this->loanRepository->create($data);
     }
+
+    public function updateLoan($data, $loan)
+    {
+        return $this->loanRepository->update($data, $loan);
+    }
 }

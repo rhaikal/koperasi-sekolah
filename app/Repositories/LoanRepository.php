@@ -31,4 +31,9 @@ class LoanRepository
     {
         return Loan::create($data);
     }
+
+    public function update($data, $loan)
+    {
+        return $loan->update($data);
+    }
 }

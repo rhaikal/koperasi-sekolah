@@ -53,4 +53,16 @@ class LoanController extends Controller
             'loan' => $loan
         ]);
     }
+
+    public function update(LoanRequest $request, Loan $loan)
+    {
+        $validatedData = $request->validated();
+
+        $this->loanService->updateLoan($validatedData, $loan);
+
+        return Redirect::route('loans.index')->with('alert', [
+            'icon' => 'success',
+            'message' => 'Berhasil mengubah data pinjaman'
+        ]);
+    }
 }
