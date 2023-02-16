@@ -7,10 +7,8 @@ import { BsBack } from "react-icons/bs"
 import { currencyFormat } from "@/helper"
 
 const Detail = ({ loan }) => {
-    console.log(loan.term_of_payment)
-
     return (
-        <div className="py-2">
+        <div className="py-8">
             <PrimaryButton className="w-fit"><BsBack className="mr-2" /><Link href={route('loans.index')}>Back</Link></PrimaryButton>
             <div className={`transition-all grid grid-cols-10 py-4 gap-4`}>
                 <div
@@ -47,6 +45,6 @@ const Detail = ({ loan }) => {
     )
 }
 
-Detail.layout = page => <DashboardLayout children={page} header="Loan Detail" />
+Detail.layout = page => <DashboardLayout children={page} />
 
 export default Detail;
