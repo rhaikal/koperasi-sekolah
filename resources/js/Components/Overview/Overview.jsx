@@ -1,8 +1,8 @@
 const Overview = ({header, children}) => {
     return (
         <div className="my-5 bg-white rounded shadow-lg">
-            <div className="px-4 py-5 sm:px-6 bg-gray-200 w-full rounded-t">
-                <h3 className="text-xl font-semibold leading-6">{header}</h3>
+            <div className="px-4 py-5 sm:px-6 bg-gray-200/60 w-full rounded-t">
+                <h3 className="text-xl font-semibold leading-6 text-stone-700">{header}</h3>
             </div>
             <div className="border-t border-gray-200 py-5">
                 {children}
