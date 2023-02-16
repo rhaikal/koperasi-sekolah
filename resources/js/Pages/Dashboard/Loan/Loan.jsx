@@ -1,5 +1,6 @@
 import PrimaryButton from "@/Components/Button/PrimaryButton"
 import Table from "@/Components/Card/Table/Table"
+import DeleteDrodownLink from "@/Components/Dashboard/Form/DeleteDropdownLink"
 import Dropdown from "@/Components/Dropdown/Dropdown"
 import Pagination from "@/Components/Pagination/Pagination"
 import { currencyFormat } from "@/helper"
@@ -43,6 +44,7 @@ const Loan = ({ loans, query }) => {
                                     <Dropdown.Content>
                                         <Dropdown.Link href={'#'}>Detail</Dropdown.Link>
                                         <Dropdown.Link href={route('loans.edit', loan)}>Update</Dropdown.Link>
+                                        <DeleteDrodownLink href={route('loans.destroy', loan)} />
                                     </Dropdown.Content>
                                 </Dropdown>
                             </Table.Content>

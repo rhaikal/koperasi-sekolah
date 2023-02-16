@@ -65,4 +65,14 @@ class LoanController extends Controller
             'message' => 'Berhasil mengubah data pinjaman'
         ]);
     }
+
+    public function destroy(Loan $loan)
+    {
+        $this->loanService->deleteLoan($loan);
+
+        Redirect::route('loans.index')->with('alert', [
+            'icon' => 'success',
+            'message' => 'Berhasil menghapus pinjaman'
+        ]);
+    }
 }

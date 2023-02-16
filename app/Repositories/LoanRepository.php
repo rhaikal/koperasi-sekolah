@@ -36,4 +36,9 @@ class LoanRepository
     {
         return $loan->update($data);
     }
+
+    public function delete($loan)
+    {
+        return $loan->delete();
+    }
 }

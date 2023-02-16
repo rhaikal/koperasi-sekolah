@@ -31,4 +31,9 @@ class LoanService
     {
         return $this->loanRepository->update($data, $loan);
     }
+
+    public function deleteLoan($loan)
+    {
+        return $this->loanRepository->delete($loan);
+    }
 }
