@@ -42,7 +42,7 @@ const Loan = ({ loans, query }) => {
                                         <SlOptionsVertical className="float-right hover:cursor-pointer" />
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={'#'}>Detail</Dropdown.Link>
+                                        <Dropdown.Link href={route('loans.show', loan)}>Detail</Dropdown.Link>
                                         <Dropdown.Link href={route('loans.edit', loan)}>Update</Dropdown.Link>
                                         <DeleteDrodownLink href={route('loans.destroy', loan)} />
                                     </Dropdown.Content>

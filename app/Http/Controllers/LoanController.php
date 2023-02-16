@@ -46,6 +46,13 @@ class LoanController extends Controller
         ]);
     }
 
+    public function show(Loan $loan)
+    {
+        return inertia('Dashboard/Loan/Detail/Detail', [
+            'loan' => $loan->load('user')
+        ]);
+    }
+
     public function edit(Loan $loan)
     {
         return inertia('Dashboard/Loan/Edit/Edit', [
