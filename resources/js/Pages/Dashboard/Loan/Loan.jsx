@@ -42,6 +42,7 @@ const Loan = ({ loans, query }) => {
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
                                         <Dropdown.Link href={'#'}>Detail</Dropdown.Link>
+                                        <Dropdown.Link href={route('loans.edit', loan)}>Update</Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
                             </Table.Content>

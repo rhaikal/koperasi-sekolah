@@ -9,20 +9,10 @@ import { useEffect, useState } from "react"
 import Overview from "@/Components/Overview/Overview"
 import { BsBack } from "react-icons/bs"
 
-export default function LoanForm({ header, users, handleSubmit }){
+export default function LoanForm({ header, users, handleSubmit, loan }){
     const [options] = useState([]);
     const [currentUser, setCurrentUser] = useState({});
     const [selectedUser, setSelectedUser] = useState(false);
-
-    useEffect(() => {
-        const grid = document.getElementById('wrap-grid');
-        wrapGrid(grid, {
-            duration: 500,
-            onEnd: (elements) => {
-                elements[0].style.opacity = 100
-            }
-        })
-    }, [])
 
     useEffect(() => {
         users.forEach(user => {
@@ -38,6 +28,30 @@ export default function LoanForm({ header, users, handleSubmit }){
         ammount: 0,
         term_of_payment: '',
     })
+
+    useEffect(() => {
+        const grid = document.getElementById('wrap-grid');
+        wrapGrid(grid, {
+            duration: 500,
+            onEnd: (elements) => {
+                elements[0].style.opacity = 100
+            }
+        })
+
+        if(!(_.isEmpty(loan)) && !form.hasErrors){
+            form.setData({
+                user_id: loan.user_id,
+                ammount: loan.ammount,
+                term_of_payment: loan.term_of_payment
+            });
+
+            const user = users.find((value) => {
+                return value.id === loan.user_id
+            });
+            setCurrentUser(user);
+            setSelectedUser(true);
+        }
+    }, [])
 
     const handleChange = (event) => {
         form.setData(event.target.name, event.target.value)

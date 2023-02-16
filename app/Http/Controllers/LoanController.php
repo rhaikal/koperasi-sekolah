@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Loan\LoanRequest;
+use App\Models\Loan;
 use App\Services\LoanService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -42,6 +43,14 @@ class LoanController extends Controller
         return Redirect::route('loans.index')->with('alert', [
             'icon' => 'success',
             'message' => 'Berhasil menambahkan peminjaman',
+        ]);
+    }
+
+    public function edit(Loan $loan)
+    {
+        return inertia('Dashboard/Loan/Edit/Edit', [
+            'users' => $this->userService->getMembers(),
+            'loan' => $loan
         ]);
     }
 }
