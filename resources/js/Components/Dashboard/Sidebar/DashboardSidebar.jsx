@@ -4,6 +4,7 @@ import SideDropdown from "./Subcomponents/SideDropdown";
 import { Link } from '@inertiajs/inertia-react';
 import { FaHome, FaUserFriends } from "react-icons/fa";
 import { BiCategoryAlt } from "react-icons/bi";
+import { GiTwoCoins } from "react-icons/gi";
 import { BsArchiveFill, BsReceipt } from "react-icons/bs";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 
@@ -17,6 +18,7 @@ export default function Sidebar({ auth }) {
                 <ul className="mt-6">
                     <SideLink href={route('dashboard')} active={route().current('dashboard')}><FaHome className="w-5 h-5 mr-4 text-current"/> Dashboard</SideLink>
                     <SideLink href={route('users.index')} active={route().current('users.*')}><FaUserFriends className="w-5 h-5 mr-4 text-current"/> User</SideLink>
+                    <SideLink href={route('loans.index')} active={route().current('loans.*')}><GiTwoCoins className="w-5 h-5 mr-4 text-current"/> Loan</SideLink>
                     <SideDropdown active={(route().current('order.*'))}>
                         <SideDropdown.Button><BsReceipt className="w-5 h-5 mr-4 text-current" /> Order</SideDropdown.Button>
                         <SideDropdown.Panel>
