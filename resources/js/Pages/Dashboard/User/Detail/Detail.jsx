@@ -1,4 +1,4 @@
-import PrimaryButton from "@/Components/Button/PrimaryButton";
+import { primaryButtonClass } from "@/Components/Button/PrimaryButton";
 import Overview from "@/Components/Overview/Overview"
 import { currencyFormat } from "@/helper";
 import DashboardLayout from "@/Layouts/DashboardLayout"
@@ -8,7 +8,7 @@ import { BsBack } from "react-icons/bs";
 const DetailUser = ({user}) => {
     return (
         <div className="m-6">
-            <PrimaryButton><Link className="w-full flex" href={route('users.index')}><BsBack className="mr-2" /> Back</Link></PrimaryButton>
+            <Link className={primaryButtonClass} href={route('users.index')}><BsBack className="mr-2" /> Back</Link>
             <Overview header={"User Detail"}>
                 <Overview.Content image={(user.profile !== undefined && user.profile !== null) ? user.profile : "/img/users/placeholder.png" }>
                     <Overview.List header="Role">

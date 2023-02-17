@@ -6,7 +6,7 @@ import InputLabel from '@/Components/Input/InputLabel';
 import PrimaryButton from '@/Components/Button/PrimaryButton';
 import TextInput from '@/Components/Input/TextInput';
 import Label from '@/Components/Input/Label';
-import SecondaryButton from '@/Components/Button/SecondaryButton';
+import { secondaryButtonClass } from '@/Components/Button/SecondaryButton';
 import { FaGithub } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
@@ -90,12 +90,10 @@ export default function Login({ status, canResetPassword }) {
             <hr className='my-8'/>
 
             <div className='block ms-0 mt-4'>
-                <SecondaryButton processing={processing} className='w-full justify-center hover:ring-1 hover:ring-gray-500'>
-                    <a className='flex' href={route('socialite.redirect', 'google')}>
-                        <FcGoogle className='self-center text-base mr-2'/>
-                        Google
-                    </a>
-                </SecondaryButton>
+                <a className={secondaryButtonClass + ' w-full justify-center hover:ring-1 hover:ring-gray-500'} href={route('socialite.redirect', 'google')}>
+                    <FcGoogle className='text-base mr-2'/>
+                    Google
+                </a>
             </div>
 
             <div className="flex items-center justify-between mt-4">

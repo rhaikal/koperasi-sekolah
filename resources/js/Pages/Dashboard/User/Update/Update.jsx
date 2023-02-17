@@ -1,5 +1,5 @@
 import Header from "@/Components/Auth/Header";
-import PrimaryButton from "@/Components/Button/PrimaryButton";
+import PrimaryButton, { primaryButtonClass } from "@/Components/Button/PrimaryButton";
 import FloatingLabel from "@/Components/Input/FloatingLabel";
 import ImageUpload from "@/Components/Input/ImageUpload";
 import InputError from "@/Components/Input/InputError";
@@ -54,7 +54,7 @@ const UpdateUser = ({user}) => {
 
     return (
         <div className="p-6">
-            <PrimaryButton className="flex"><BsBack className="mr-2" /><Link href={route('users.index')}>Back</Link></PrimaryButton>
+            <Link className={primaryButtonClass} href={route('users.index')}><BsBack className="mr-2" /> Back</Link>
             <div className="min-h-screen py-3 flex justify-center">
                 <div className="container max-w-screen-lg mx-auto">
                 <form onSubmit={(event) => onSubmit(event, user)}>

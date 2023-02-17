@@ -1,5 +1,5 @@
 import Header from "@/Components/Auth/Header"
-import PrimaryButton from "@/Components/Button/PrimaryButton"
+import PrimaryButton, { primaryButtonClass } from "@/Components/Button/PrimaryButton"
 import DashboardLayout from "@/Layouts/DashboardLayout"
 import { Link } from "@inertiajs/inertia-react"
 import Overview from "@/Components/Overview/Overview"
@@ -9,7 +9,7 @@ import { currencyFormat } from "@/helper"
 const Detail = ({ loan }) => {
     return (
         <div className="py-8">
-            <PrimaryButton className="w-fit"><BsBack className="mr-2" /><Link href={route('loans.index')}>Back</Link></PrimaryButton>
+            <Link className={primaryButtonClass} href={route('loans.index')}><BsBack className="mr-2" /> Back</Link>
             <div className={`transition-all grid grid-cols-10 py-4 gap-4`}>
                 <div
                     className={`grid rounded shadow-lg p-4 px-4 md:p-8 mb-6 order-last lg:order-first transition-opacity ease-out duration-700 col-span-10 lg:col-span-6`}

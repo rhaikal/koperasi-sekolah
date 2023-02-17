@@ -6,7 +6,7 @@ import { SlOptionsVertical } from 'react-icons/sl'
 import DeleteDrodownLink from "@/Components/Dashboard/Form/DeleteDropdownLink";
 import Pagination from "@/Components/Pagination/Pagination";
 import { currencyFormat } from "@/helper";
-import PrimaryButton from "@/Components/Button/PrimaryButton";
+import { primaryButtonClass } from "@/Components/Button/PrimaryButton";
 import { Link } from "@inertiajs/inertia-react";
 import { FaAngleDown } from "react-icons/fa";
 import { Inertia } from "@inertiajs/inertia";
@@ -64,7 +64,7 @@ const Product = ({products, categories, query }) => {
                         <input type="search" defaultValue={query?.search ?? null} onChange={handleSearch} id="search-dropdown" className="w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search products by name or slug" />
                     </div>
                 </div>
-                <PrimaryButton className="text-gray-500"><Link href={route("products.create")}>Create Product</Link></PrimaryButton>
+                <Link className={primaryButtonClass + ' text-gray-500 h-fit self-center'} href={route("products.create")}>Create Product</Link>
             </div>
             <Table>
                 <Table.Head>

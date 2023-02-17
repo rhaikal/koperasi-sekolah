@@ -20,9 +20,9 @@ export default function ProductList({products, links}) {
                                 className="h-full w-full rounded-lg object-cover object-center group-hover:opacity-75"
                                 />
                                 <ul className="product-hover absolute top-6 right-[-200px] cursor-pointer transition-all duration-700">
-                                    <li className={`p-1 rounded border ${product.stock > 0 ? 'bg-indigo-100 border-indigo-400' : 'bg-rose-100 border-rose-400' }`}>
+                                    <li className={`rounded border ${product.stock > 0 ? 'bg-indigo-100 border-indigo-400' : 'bg-rose-100 border-rose-400' }`}>
                                         <Link href={route("shop.show", product)}>
-                                            <BiSearch className={`w-7 h-7 lg:h-5 lg:w-5 ${product.stock > 0 ? 'text-indigo-400' : 'text-rose-400'}`} />
+                                            <BiSearch className={`m-1 w-7 h-7 lg:h-5 lg:w-5 ${product.stock > 0 ? 'text-indigo-400' : 'text-rose-400'}`} />
                                         </Link>
                                     </li>
                                 </ul>

@@ -1,4 +1,4 @@
-import PrimaryButton from "@/Components/Button/PrimaryButton"
+import PrimaryButton, { primaryButtonClass } from "@/Components/Button/PrimaryButton"
 import Table from "@/Components/Card/Table/Table"
 import DeleteDrodownLink from "@/Components/Dashboard/Form/DeleteDropdownLink"
 import Dropdown from "@/Components/Dropdown/Dropdown"
@@ -21,7 +21,7 @@ const Loan = ({ loans, query }) => {
                 <div className="w-80">
                     <input type="search" onChange={handleSearch} defaultValue={query.search} id="search-dropdown" className="w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search loans by id or borrower name" />
                 </div>
-                <PrimaryButton className="text-gray-500 h-fit self-center"><Link href={route('loans.create')}>Create Loan</Link></PrimaryButton>
+                <Link className={primaryButtonClass + ' text-gray-500 h-fit self-center'} href={route('loans.create')}>Create Loan</Link>
             </div>
             <Table>
                 <Table.Head>

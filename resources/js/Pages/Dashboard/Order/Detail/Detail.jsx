@@ -1,4 +1,4 @@
-import PrimaryButton from "@/Components/Button/PrimaryButton"
+import PrimaryButton, { primaryButtonClass } from "@/Components/Button/PrimaryButton"
 import Table from "@/Components/Card/Table/Table"
 import Invoice from "@/Components/Invoice/Invoice"
 import { currencyFormat } from "@/helper"
@@ -13,7 +13,7 @@ const Detail = ({ order, auth }) => {
     console.log(order);
     return (
         <div className="my-4">
-            <PrimaryButton className="align-top mr-3"><Link className="flex" href={route('order.index')}><BsBack className="mr-2" /> Back</Link></PrimaryButton>
+            <Link className={primaryButtonClass + ' mr-3'} href={route('order.index')}><BsBack className="mr-2" /> Back</Link>
             {order.status == '1' && order.invoice.method == 'cash' && <PrimaryButton className="flex mr-3" onClick={(e) => handlePayment(e, order)}><BsWallet2 className="mr-2" /> Paid</PrimaryButton>}
             {order.status == '2' && <PrimaryButton className="flex mr-3" onClick={(e) => handlePickup(e, order)}><FaBoxOpen className="mr-2" /> Take</PrimaryButton>}
             {auth.user.role > 2 &&

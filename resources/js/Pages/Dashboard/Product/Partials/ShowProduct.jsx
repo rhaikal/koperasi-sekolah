@@ -1,4 +1,4 @@
-import PrimaryButton from "@/Components/Button/PrimaryButton";
+import { primaryButtonClass } from "@/Components/Button/PrimaryButton";
 import Overview from "@/Components/Overview/Overview"
 import { currencyFormat } from "@/helper";
 import DashboardLayout from "@/Layouts/DashboardLayout"
@@ -8,7 +8,7 @@ import { BsBack } from "react-icons/bs";
 const ShowProduct = ({product}) => {
     return (
         <div className="m-6">
-            <PrimaryButton><Link className="w-full flex" href={route('products.index')}><BsBack className="mr-2" /> Back</Link></PrimaryButton>
+            <Link className={primaryButtonClass} href={route('products.index')}><BsBack className="mr-2" /> Back</Link>
             <Overview header={"Product Detail"}>
                 <Overview.Content image={product.image}>
                     <Overview.List header="Name">{product.name}</Overview.List>

@@ -1,5 +1,5 @@
 import Header from "@/Components/Auth/Header"
-import PrimaryButton from "@/Components/Button/PrimaryButton"
+import PrimaryButton, { primaryButtonClass } from "@/Components/Button/PrimaryButton"
 import FloatingLabel from "@/Components/Input/FloatingLabel"
 import InputError from "@/Components/Input/InputError"
 import Select from "@/Components/Input/Select"
@@ -73,7 +73,7 @@ export default function LoanForm({ header, users, handleSubmit, loan }){
 
     return (
         <div className="py-8">
-            <PrimaryButton className="w-fit"><BsBack className="mr-2" /><Link href={route('loans.index')}>Back</Link></PrimaryButton>
+            <Link className={primaryButtonClass + ' w-fit'} href={route('loans.index')}><BsBack className="mr-2" /> Back</Link>
             <div id="wrap-grid" className={`transition-all grid grid-cols-10 py-4 gap-4`}>
                 <div
                     className={`grid rounded shadow-lg p-4 px-4 md:p-8 mb-6 order-last lg:order-first transition-opacity  opacity-0 ease-out duration-700 ${!selectedUser ? 'hidden' : 'col-span-10 lg:col-span-6' }`}

@@ -1,5 +1,5 @@
 import Image from '@/Components/Auth/Image'
-import PrimaryButton from '@/Components/Button/PrimaryButton'
+import PrimaryButton, { primaryButtonClass } from '@/Components/Button/PrimaryButton'
 import FloatingLabel from '@/Components/Input/FloatingLabel'
 import InputError from '@/Components/Input/InputError'
 import { currencyFormat } from '@/helper'
@@ -28,11 +28,9 @@ export default function Detail({errors, auth, product}) {
         >
             <div className="py-12 px-5 sm:px-10">
                 <div className="max-w-7xl">
-                    <PrimaryButton className='mb-5'>
-                        <Link href={route('shop.index')} className="flex">
-                            <BsBack className='mr-2 w-4 h-4' /> Back
-                        </Link>
-                    </PrimaryButton>
+                    <Link href={route('shop.index')} className={primaryButtonClass + ' mb-5'}>
+                        <BsBack className='mr-2' /> Back
+                    </Link>
                     <div className="bg-white overflow-hidden shadow-md sm:rounded-lg p-3">
                         <div className="flex flex-col overflow-y-auto md:flex-row">
                             <div className="h-auto md:h-auto md:w-1/2">
