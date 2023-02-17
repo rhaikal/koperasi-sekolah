@@ -91,15 +91,10 @@ export default function Login({ status, canResetPassword }) {
 
             <div className='block ms-0 mt-4'>
                 <SecondaryButton processing={processing} className='w-full justify-center hover:ring-1 hover:ring-gray-500'>
-                    <FaGithub className='text-base mr-2' />
-                    Github
-                </SecondaryButton>
-            </div>
-
-            <div className='block ms-0 mt-4'>
-                <SecondaryButton processing={processing} className='w-full justify-center hover:ring-1 hover:ring-gray-500'>
-                    <FcGoogle className='text-base mr-2'/>
-                    Google
+                    <a className='flex' href={route('socialite.redirect', 'google')}>
+                        <FcGoogle className='self-center text-base mr-2'/>
+                        Google
+                    </a>
                 </SecondaryButton>
             </div>
 

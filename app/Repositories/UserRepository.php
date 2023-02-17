@@ -18,6 +18,11 @@ class UserRepository
         return $users;
     }
 
+    public function getByEmail($email)
+    {
+        return User::where('email', $email)->first();
+    }
+
     public function getByRole($role, $except = null, $paginate = null, $columns = ["*"])
     {
 
@@ -31,6 +36,11 @@ class UserRepository
     public function countByRole($logic, $role)
     {
         return User::where('role', $logic, $role)->count();
+    }
+
+    public function create($data)
+    {
+        return User::create($data);
     }
 
     public function update($data, $user)
