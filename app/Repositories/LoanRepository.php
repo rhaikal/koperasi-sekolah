@@ -27,6 +27,11 @@ class LoanRepository
         return $this->loans->paginate($paginate);
     }
 
+    public function paginateOwn($paginate, $userId)
+    {
+        return $this->loans->where('user_id', $userId)->paginate($paginate);
+    }
+
     public function create($data)
     {
         return Loan::create($data);

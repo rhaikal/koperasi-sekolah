@@ -9,7 +9,7 @@ import { Inertia } from "@inertiajs/inertia"
 import { Link } from "@inertiajs/inertia-react"
 import { SlOptionsVertical } from "react-icons/sl"
 
-const Loan = ({ loans, query }) => {
+const Loan = ({ loans, query, auth }) => {
     const handleSearch = _.debounce((e) => {
         if(e.target.value) Inertia.reload({only: ['loans', 'query'], data: {search: e.target.value}})
         else Inertia.visit(route('loans.index'), {only: ['loans', 'query']})
@@ -19,9 +19,9 @@ const Loan = ({ loans, query }) => {
         <div className="min-w-0 p-4 pt-8 overflow-x-auto rounded-lg shadow-lg">
             <div className="flex justify-between my-4">
                 <div className="w-80">
-                    <input type="search" onChange={handleSearch} defaultValue={query.search} id="search-dropdown" className="w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search loans by id or borrower name" />
+                    <input type="search" onChange={handleSearch} defaultValue={query.search} id="search-dropdown" className="w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder={`Search loans by id ${auth.user.role != 2 ? 'or borrower name' : ''}`} />
                 </div>
-                <Link className={primaryButtonClass + ' text-gray-500 h-fit self-center'} href={route('loans.create')}>Create Loan</Link>
+                {auth.user.role != 2 && <Link className={primaryButtonClass + ' text-gray-500 h-fit self-center'} href={route('loans.create')}>Create Loan</Link>}
             </div>
             <Table>
                 <Table.Head>
@@ -43,8 +43,12 @@ const Loan = ({ loans, query }) => {
                                     </Dropdown.Trigger>
                                     <Dropdown.Content>
                                         <Dropdown.Link href={route('loans.show', loan)}>Detail</Dropdown.Link>
-                                        <Dropdown.Link href={route('loans.edit', loan)}>Update</Dropdown.Link>
-                                        <DeleteDrodownLink href={route('loans.destroy', loan)} />
+                                        {auth.user.role != 2 &&
+                                            <>
+                                                <Dropdown.Link href={route('loans.edit', loan)}>Update</Dropdown.Link>
+                                                <DeleteDrodownLink href={route('loans.destroy', loan)} />
+                                            </>
+                                        }
                                     </Dropdown.Content>
                                 </Dropdown>
                             </Table.Content>

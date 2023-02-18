@@ -48,6 +48,17 @@ Route::get('/shop', [OrderController::class , 'index'])->name('shop.index');
 Route::get('/shop/{product}', [OrderController::class , 'show'])->name('shop.show');
 
 Route::middleware('role')->group(function () {
+    Route::middleware('role:pengurus')->group(function () {
+        // products page
+        Route::resource('/dashboard/products', ProductController::class);
+        // categories page
+        Route::apiResource('/dashboard/categories', CategoryController::class)->except('show');
+        // user page
+        Route::resource('/dashboard/users', UserController::class)->except('delete', 'destroy', 'create', 'store');
+        // loan page
+        Route::resource('/dashboard/loans', LoanController::class)->except(['index', 'show']);
+    });
+
     // main page
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -59,17 +70,8 @@ Route::middleware('role')->group(function () {
     // pickup
     Route::post('/pickup/{order}', [PickupController::class, 'store'])->name('pickup.store');
 
-    Route::middleware('role:pengurus')->group(function () {
-        // products page
-        Route::resource('/dashboard/products', ProductController::class);
-        // categories page
-        Route::apiResource('/dashboard/categories', CategoryController::class)->except('show');
-        // user page
-        Route::resource('/dashboard/users', UserController::class)->except('delete', 'destroy', 'create', 'store');
-        // loan page
-        Route::resource('/dashboard/loans', LoanController::class);
-    });
-
+    Route::get('/dashboard/loans', [LoanController::class, 'index'])->name('loans.index');
+    Route::get('/dashboard/loans/{loan}', [LoanController::class, 'show'])->name('loans.show');
 });
 
 Route::middleware('auth')->group(function () {

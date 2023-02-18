@@ -15,6 +15,11 @@ class LoanService
 
     public function getLoans($paginate = null)
     {
+        $user = auth()->user();
+        if($user->role == 2){
+            return $this->loanRepository->paginateOwn($paginate, $user->id);
+        }
+
         if($paginate){
             return $this->loanRepository->paginate($paginate);
         }

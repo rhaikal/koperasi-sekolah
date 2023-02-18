@@ -48,6 +48,8 @@ class LoanController extends Controller
 
     public function show(Loan $loan)
     {
+        $this->authorize('view', $loan);
+
         return inertia('Dashboard/Loan/Detail/Detail', [
             'loan' => $loan->load('user')
         ]);

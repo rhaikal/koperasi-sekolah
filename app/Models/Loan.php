@@ -28,10 +28,15 @@ class Loan extends Model
      */
     public function scopeKeyword($query, $keyword)
     {
-        return $query->where('id', 'LIKE', '%' . $keyword . '%')
-                    ->orWhereHas('user', function($query) use ($keyword) {
-                        $query->where('name', 'LIKE', '%' . $keyword . '%');
-                    });
+        $query = $query->where('id', 'LIKE', '%' . $keyword . '%');
+
+        if(auth()->hasUser() && auth()->user()->role != 2){
+            $query = $query->orWhereHas('user', function($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+            });
+        }
+
+        return $query;
     }
 
     public function user()
