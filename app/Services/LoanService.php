@@ -13,15 +13,15 @@ class LoanService
         $this->loanRepository = $loanRepository;
     }
 
+
     public function getLoans($paginate = null)
     {
         $user = auth()->user();
-        if($user->role == 2){
-            return $this->loanRepository->paginateOwn($paginate, $user->id);
-        }
 
         if($paginate){
-            return $this->loanRepository->paginate($paginate);
+            return $user->role == 2 ?
+                $this->loanRepository->paginateOwn($paginate, $user->id) :
+                $this->loanRepository->paginate($paginate);
         }
 
         return $this->loanRepository->getAll();

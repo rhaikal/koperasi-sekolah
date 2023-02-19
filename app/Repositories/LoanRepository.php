@@ -11,7 +11,7 @@ class LoanRepository
     public function __construct()
     {
         $request = request();
-        $this->loans = Loan::with('user:id,name');
+        $this->loans = Loan::with('user:id,name')->latest();
 
         if($request->search)
             $this->loans = $this->loans->keyword($request->search);

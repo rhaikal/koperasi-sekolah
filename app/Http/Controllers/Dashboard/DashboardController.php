@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
-use App\Services\UserService;
+use App\Services\LoanService;
 use App\Services\OrderService;
 use App\Services\ProductService;
 use App\Http\Controllers\Controller;
@@ -11,13 +11,13 @@ use App\Http\Controllers\Controller;
 class DashboardController extends Controller
 {
     private OrderService $orderService;
-    private UserService $userService;
+    private LoanService $loanService;
     private ProductService $productService;
 
-    public function __construct(OrderService $orderService, UserService $userService, ProductService $productService,)
+    public function __construct(OrderService $orderService, LoanService $loanService, ProductService $productService,)
     {
         $this->orderService = $orderService;
-        $this->userService = $userService;
+        $this->loanService = $loanService;
         $this->productService = $productService;
     }
 
@@ -35,7 +35,7 @@ class DashboardController extends Controller
             'orders' => $orders,
             'products' => $this->productService->getProductsStock(5, 'asc'),
             'revenue' => $this->orderService->sumOrdersTotalPrice(),
-            'member' => $this->userService->countMembers(),
+            'loans' => $this->loanService->getLoans(5),
             'pendingPayments' => $this->orderService->countOrdersByStatus('1'),
             'pendingPickups' => $this->orderService->countOrdersByStatus('2'),
             'revenueChart' => $this->orderService->getRevenueOrdersPerMonth(),

@@ -6,13 +6,13 @@ import { currencyFormat } from "@/helper";
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import { Link } from "@inertiajs/inertia-react";
 import React, { useEffect } from "react";
-import { FaBoxes, FaMoneyCheck, FaReceipt, FaUsers } from "react-icons/fa";
+import { FaBoxes, FaCoins, FaMoneyCheck, FaReceipt, FaUsers } from "react-icons/fa";
 import { SlOptionsVertical } from "react-icons/sl";
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 let revenueData = [];
 
-const Dashboard = ({orders, products, auth, revenue, revenueChart, member, pendingPayments, pendingPickups}) => {
+const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendingPayments, pendingPickups}) => {
     useEffect(() => {
         for(let i = 0; i <= (new Date()).getMonth(); i++){
             revenueData[i] = 0;
@@ -36,11 +36,11 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, member, pendi
                 />}
                 <Label
                     icon={
-                        <FaUsers className="w-5 h-5 text-current"/>
+                        <FaCoins className="w-5 h-5 text-current"/>
                     }
                     iconClass="text-orange-500 bg-orange-100"
-                    text="Total member"
-                    count={member}
+                    text="Total loans"
+                    count={loans.total}
                 />
                 <Label
                     icon={
@@ -60,7 +60,43 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, member, pendi
                 />
             </div>
             <div className={`grid gap-6 mb-8  ${auth.user.role == '2' ? 'lg:grid-cols-2' : 'lg:grid-cols-3'}`}>
-                <div className="col-span-2 scale-100">
+                <div className={`${auth.user.role == '2' ? 'col-span-1' : 'col-span-3'} scale-100`}>
+                    <h1 className="font-medium text-lg text-stone-600">Recent Loans</h1>
+                    <div className="min-w-0 mt-4 overflow-x-auto rounded-lg shadow-lg">
+                        <Table>
+                            <Table.Head>
+                                <Table.Header>Id</Table.Header>
+                                <Table.Header>Customer Name</Table.Header>
+                                <Table.Header>Ammount</Table.Header>
+                                <Table.Header></Table.Header>
+                            </Table.Head>
+                            <Table.Body>
+                                {!_.isEmpty(loans?.data) ? loans.data.map((loan) => (
+                                    <Table.Row key={loan.id}>
+                                        <Table.Content type="header">{loan.id}</Table.Content>
+                                        <Table.Content>{loan.user.name}</Table.Content>
+                                        <Table.Content>{_.startCase(loan.ammount)}</Table.Content>
+                                        <Table.Content>
+                                            <Dropdown>
+                                                <Dropdown.Trigger>
+                                                    <SlOptionsVertical className="float-right hover:cursor-pointer" />
+                                                </Dropdown.Trigger>
+                                                <Dropdown.Content>
+                                                    <Dropdown.Link href={route('loans.show', loan)}>Detail</Dropdown.Link>
+                                                </Dropdown.Content>
+                                            </Dropdown>
+                                        </Table.Content>
+                                    </Table.Row>
+                                )):
+                                    <Table.Row>
+                                        <Table.Content type="header" colSpan={"4"} className="text-center text-base text-gray-500 font-semibold italic">Order Not Found</Table.Content>
+                                    </Table.Row>
+                                }
+                            </Table.Body>
+                        </Table>
+                    </div>
+                </div>
+                <div className={`${auth.user.role == '2' ? 'col-span-1' : 'col-span-2'} scale-100`}>
                     <h1 className="font-medium text-lg text-stone-600">Recent Orders</h1>
                     <div className="min-w-0 mt-4 overflow-x-auto rounded-lg shadow-lg">
                         <Table>
