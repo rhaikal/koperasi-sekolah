@@ -110,7 +110,7 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendin
                             <Table.Body>
                                 {!_.isEmpty(orders) ? orders.map((order) => (
                                     <Table.Row key={order.id}>
-                                        <Table.Content type="header">{order.id}</Table.Content>
+                                        <Table.Content type="header">{order.shortId}</Table.Content>
                                         <Table.Content>{order.user.name}</Table.Content>
                                         <Table.Content>{_.startCase(order.invoice.method)}</Table.Content>
                                         <Table.Content>

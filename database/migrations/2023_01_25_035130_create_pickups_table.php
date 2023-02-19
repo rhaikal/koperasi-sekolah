@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pickups', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id');
+            $table->uuid('order_id');
             $table->foreignId('responsible_user_id');
             $table->date('picked_at');
         });

@@ -5,7 +5,7 @@ export default function Invoice({order}){
     return (
         <>
             <div className="border-b border-gray-200 p-6">
-                <h1 className="text-4xl font-bold tracking-tight text-gray-900">Invoice #{order.id}</h1>
+                <h1 className="text-4xl font-bold tracking-tight text-gray-900">Invoice #{order.shortId}</h1>
             </div>
             <div className="pt-2 sm:pt-4 lg:pt-6 px-4 sm:px-6 lg:px-8 flex flex-col">
                 <div className="grid grid-cols-6">

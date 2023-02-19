@@ -70,7 +70,7 @@ const Order = ({ orders, query }) => {
                 <Table.Body>
                     {!_.isEmpty(orders.data) ? orders.data.map((order) => (
                         <Table.Row key={order.id}>
-                            <Table.Content type="header">{order.id}</Table.Content>
+                            <Table.Content type="header">{order.shortId}</Table.Content>
                             <Table.Content>{order.user.name}</Table.Content>
                             <Table.Content>{currencyFormat(order.total_price)}</Table.Content>
                             <Table.Content>{_.startCase(order.invoice.method)}</Table.Content>

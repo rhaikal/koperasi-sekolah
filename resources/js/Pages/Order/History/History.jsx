@@ -29,7 +29,7 @@ const History = ({orders}) => {
                                     {(!_.isEmpty(orders.data)) ?
                                         orders.data.map((order) => (
                                             <Table.Row key={order.id}>
-                                                <Table.Content type="header" className="w-auto">{order.id}</Table.Content>
+                                                <Table.Content type="header" className="w-auto">{order.shortId}</Table.Content>
                                                 <Table.Content>{(new Date(order.updated_at)).toLocaleDateString()}</Table.Content>
                                                 <Table.Content>{_.startCase(order.invoice.method)}</Table.Content>
                                                 <Table.Content>{

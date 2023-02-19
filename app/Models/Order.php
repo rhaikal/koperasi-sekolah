@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     /**
      * The relations to eager load on every query.
@@ -28,6 +29,13 @@ class Order extends Model
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['shortId'];
+
+    /**
      * Scope a query to only include order by keyword.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
@@ -39,6 +47,11 @@ class Order extends Model
                     ->orWhereHas('user', function ($query) use ($keyword) {
                         $query->where('name', 'LIKE', '%' . $keyword . '%');
                     });
+    }
+
+    public function getShortIdAttribute()
+    {
+        return substr($this->id, 0, 8);
     }
 
     public function user()
