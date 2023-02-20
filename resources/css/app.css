@@ -19,6 +19,7 @@
 }
 
 .product-item:hover .product-item-pic .product-hover {
+    visibility: visible;
     right: 1.25rem !important;
     opacity: 1 !important;
 }
