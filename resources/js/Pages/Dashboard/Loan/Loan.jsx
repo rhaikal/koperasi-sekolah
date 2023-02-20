@@ -16,7 +16,7 @@ const Loan = ({ loans, query, auth }) => {
     }, 1000)
 
     return (
-        <div className="min-w-0 p-4 pt-8 overflow-x-auto rounded-lg shadow-lg">
+        <div className="min-w-0 p-4 overflow-x-auto rounded-lg shadow-lg">
             <div className="flex justify-between my-4">
                 <div className="w-80">
                     <input type="search" onChange={handleSearch} defaultValue={query.search} id="search-dropdown" className="w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder={`Search loans by id ${auth.user.role != 2 ? 'or borrower name' : ''}`} />
