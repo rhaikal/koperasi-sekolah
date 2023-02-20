@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->uuid('order_id');
+            $table->foreignUuid('order_id');
             $table->string('method');
             $table->string('token')->nullable();
             $table->timestamp('due_date');
