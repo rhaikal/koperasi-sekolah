@@ -1,3 +1,4 @@
+import Header from '@/Components/Auth/Header';
 import { primaryButtonClass } from '@/Components/Button/PrimaryButton';
 import Invoice from '@/Components/Invoice/Invoice';
 import HomeLayout from '@/Layouts/HomeLayout';
@@ -9,7 +10,16 @@ const DetailHistory = ({order}) => {
         <div className="py-12">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <Link className={primaryButtonClass} href={route('history.index')}><BsBack className="mr-2" /> Back</Link>
-                <div className="bg-white overflow-x-scroll shadow-sm sm:rounded-lg my-6">
+                {order.status > 0 && order.status < 3 &&
+                    <div className="bg-white overflow-x-auto shadow-sm sm:rounded-lg p-3 mt-6">
+                        <Header className={"text-center italic"}>*Note</Header>
+                        {{
+                            1: <p className="text-gray-800 text-center dark:text-gray-100">Order has been successfully checkout, then make sure to pay with the nominal listed below {order.invoice.method == 'cash' && (<>in <b>school cooperative</b></>)}</p>,
+                            2: <p className="text-gray-800 text-center dark:text-gray-100">Order has been successfully paid, then make sure to pickup the product you have purchase in <b>school cooperative</b></p>,
+                        }[order.status]}
+                    </div>
+                }
+                <div className="bg-white overflow-x-auto shadow-sm sm:rounded-lg my-6">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <Invoice order={order} />
                     </div>
