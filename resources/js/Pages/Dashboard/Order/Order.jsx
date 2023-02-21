@@ -49,7 +49,7 @@ const Order = ({ orders, query, auth }) => {
     return (
         <>
             <div className="min-w-0 p-4 pt-8 overflow-x-auto rounded-lg shadow-lg">
-                {auth.user.role != 1 && <a className={primaryButtonClass + ' w-fit'} href={route('exported.orders')}><MdPictureAsPdf className="mr-2 w-4 h-4" /> Export</a>}
+                {auth.user.role != 1 && <a className={primaryButtonClass + ` w-fit ${_.isEmpty(orders?.data) && 'pointer-events-none cursor-default bg-indigo-400'}`} href={route('exported.orders')}><MdPictureAsPdf className="mr-2 w-4 h-4" /> Export</a>}
                 <div className="scale-100 flex my-4">
                     <Dropdown>
                         <Dropdown.Trigger className="flex"><button className="flex z-10 items-center px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">{currentStatus?.label ?? "Status"} <FaAngleDown className="ml-2 w-4 h-4"></FaAngleDown></button></Dropdown.Trigger>
