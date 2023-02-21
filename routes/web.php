@@ -48,6 +48,8 @@ Route::get('/about', function () {
 Route::get('/shop', [OrderController::class , 'index'])->name('shop.index');
 Route::get('/shop/{product}', [OrderController::class , 'show'])->name('shop.show');
 
+Route::get('/exported/loans', [ReportController::class, 'loans'])->name('exported.loans');
+
 Route::middleware('role')->group(function () {
     Route::middleware('role:pengurus')->group(function () {
         // products page

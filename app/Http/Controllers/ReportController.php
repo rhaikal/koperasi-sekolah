@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\LoansExport;
 use App\Exports\OrdersExport;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -26,5 +27,10 @@ class ReportController extends Controller
     public function orders()
     {
         return Excel::download(new OrdersExport, 'orders.xlsx');
+    }
+
+    public function loans()
+    {
+        return Excel::download(new LoansExport, 'loan.xlsx');
     }
 }
