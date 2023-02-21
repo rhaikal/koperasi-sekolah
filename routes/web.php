@@ -58,6 +58,8 @@ Route::middleware('role')->group(function () {
         Route::resource('/dashboard/users', UserController::class)->except('delete', 'destroy', 'create', 'store');
         // loan page
         Route::resource('/dashboard/loans', LoanController::class)->except(['index', 'show']);
+
+        Route::get('/exported/orders', [ReportController::class, 'orders'])->name('exported.orders');
     });
 
     // main page
