@@ -6,6 +6,7 @@ import DashboardLayout from "@/Layouts/DashboardLayout"
 import { Link } from "@inertiajs/inertia-react"
 import { BsBack, BsWallet2 } from "react-icons/bs"
 import { FaBoxOpen } from "react-icons/fa"
+import { TbFileExport } from "react-icons/tb"
 import { handlePickup } from "../Partials/Payments/Paid"
 import { handlePayment } from "../Partials/Payments/Unpaid"
 
@@ -16,6 +17,7 @@ const Detail = ({ order, auth }) => {
             <Link className={primaryButtonClass + ' mr-3'} href={route('order.index')}><BsBack className="mr-2" /> Back</Link>
             {order.status == '1' && order.invoice.method == 'cash' && <PrimaryButton className="flex mr-3" onClick={(e) => handlePayment(e, order)}><BsWallet2 className="mr-2" /> Paid</PrimaryButton>}
             {order.status == '2' && <PrimaryButton className="flex mr-3" onClick={(e) => handlePickup(e, order)}><FaBoxOpen className="mr-2" /> Take</PrimaryButton>}
+            {order.status > 1 && <a className={primaryButtonClass} href={route('exported.order', order)}><TbFileExport className="mr-2" /> Export</a>}
             {auth.user.role > 2 &&
                 <div className="grid gap-6 mt-4 grid-cols-1 md:grid-cols-2">
                     {order?.invoice.payment &&

@@ -73,7 +73,7 @@ const DropdownLink = ({ onClick, href, method, as, children, data, only }) => {
 
     if(onClick){
         return (
-            <a onClick={onClick} className={className}>
+            <a href={href} onClick={onClick} className={className}>
                 {children}
             </a>
         )

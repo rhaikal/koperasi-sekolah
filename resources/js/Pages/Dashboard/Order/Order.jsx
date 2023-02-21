@@ -91,6 +91,7 @@ const Order = ({ orders, query }) => {
                                         <Dropdown.Link href={route('order.show', order)}>Detail</Dropdown.Link>
                                         {order.status == 1 && order.invoice.method == 'cash' && <Dropdown.Link onClick={(e) => handlePayment(e, order)}>Pay</Dropdown.Link>}
                                         {order.status == 2 && <Dropdown.Link onClick={(e) => handlePickup(e, order)}>Take</Dropdown.Link>}
+                                        {order.status > 1 && <Dropdown.Link href={route('exported.order', order)} onClick={() => {'export'}}>Export</Dropdown.Link>}
                                     </Dropdown.Content>
                                 </Dropdown>
                             </Table.Content>

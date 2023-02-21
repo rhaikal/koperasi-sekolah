@@ -12,6 +12,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PickupController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -93,6 +94,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
     Route::get('/history/{order}', [HistoryController::class, 'show'])->name('history.show');
+    Route::get('/exported/order/{order}', [ReportController::class, 'invoice'])->name('exported.order');
 });
 
 require __DIR__.'/auth.php';

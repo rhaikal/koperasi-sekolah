@@ -49,6 +49,7 @@ const History = ({orders}) => {
                                                         <Dropdown.Content>
                                                             <Dropdown.Link href={route('history.show', order)}>Detail</Dropdown.Link>
                                                             {order.status == '1' &&<Dropdown.Link href={route('payment.show', order)}>Pay</Dropdown.Link>}
+                                                            {order.status > 1 && <Dropdown.Link href={route('exported.order', order)} onClick={() => {'export'}}>Export</Dropdown.Link>}
                                                         </Dropdown.Content>
                                                     </Dropdown>
                                                 </Table.Content>
