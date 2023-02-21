@@ -66,7 +66,7 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendin
                         <Table>
                             <Table.Head>
                                 <Table.Header>Id</Table.Header>
-                                <Table.Header>Customer Name</Table.Header>
+                                <Table.Header>Borrower Name</Table.Header>
                                 <Table.Header>Ammount</Table.Header>
                                 <Table.Header></Table.Header>
                             </Table.Head>
@@ -89,7 +89,7 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendin
                                     </Table.Row>
                                 )):
                                     <Table.Row>
-                                        <Table.Content type="header" colSpan={"4"} className="text-center text-base text-gray-500 font-semibold italic">Order Not Found</Table.Content>
+                                        <Table.Content type="header" colSpan={"4"} className="text-center text-base text-gray-500 font-semibold italic">Loan Not Found</Table.Content>
                                     </Table.Row>
                                 }
                             </Table.Body>
