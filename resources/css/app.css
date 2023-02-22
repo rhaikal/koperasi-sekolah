@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.MuiInputBase-input {
+    box-shadow: none !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+    border: 1px solid #1C64F2 !important;
+}
+
 .react-select__input:focus {
     box-shadow: none !important;
 }

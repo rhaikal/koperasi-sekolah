@@ -8,6 +8,11 @@ import { Link, useForm } from "@inertiajs/inertia-react"
 import { useEffect, useState } from "react"
 import Overview from "@/Components/Overview/Overview"
 import { BsBack } from "react-icons/bs"
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers"
+import { TextField } from "@mui/material"
+import styled from "@emotion/styled"
+import moment from "moment"
 
 export default function LoanForm({ header, users, handleSubmit, loan }){
     const [options] = useState([]);
@@ -26,18 +31,10 @@ export default function LoanForm({ header, users, handleSubmit, loan }){
     const form = useForm({
         user_id: null,
         ammount: 0,
-        term_of_payment: '',
+        term_of_payment: null,
     })
 
     useEffect(() => {
-        const grid = document.getElementById('wrap-grid');
-        wrapGrid(grid, {
-            duration: 500,
-            onEnd: (elements) => {
-                elements[0].style.opacity = 100
-            }
-        })
-
         if(!(_.isEmpty(loan)) && !form.hasErrors){
             form.setData({
                 user_id: loan.user_id,
@@ -50,6 +47,14 @@ export default function LoanForm({ header, users, handleSubmit, loan }){
             });
             setCurrentUser(user);
             setSelectedUser(true);
+        }else{
+            const grid = document.getElementById('wrap-grid');
+            wrapGrid(grid, {
+                duration: 500,
+                onEnd: (elements) => {
+                    elements[0].style.opacity = 100
+                }
+            })
         }
     }, [])
 
@@ -76,9 +81,9 @@ export default function LoanForm({ header, users, handleSubmit, loan }){
             <Link className={primaryButtonClass + ' w-fit'} href={route('loans.index')}><BsBack className="mr-2" /> Back</Link>
             <div id="wrap-grid" className={`transition-all grid grid-cols-10 py-4 gap-4`}>
                 <div
-                    className={`grid rounded shadow-lg p-4 px-4 md:p-8 mb-6 order-last lg:order-first transition-opacity  opacity-0 ease-out duration-700 ${!selectedUser ? 'hidden' : 'col-span-10 lg:col-span-6' }`}
+                    className={`grid rounded shadow-lg p-4 px-4 md:p-8 mb-6 order-last lg:order-first transition-opacity ease-out duration-700 ${_.isEmpty(loan) ? 'opacity-0' : 'opacity-100'} ${!selectedUser ? 'hidden' : 'col-span-10 lg:col-span-6' }`}
                 >
-                    <div>
+                    <div id="identification">
                         <Header className="text-center">Identification</Header>
                         { selectedUser &&
                             <Overview.Content image={ window.innerWidth > 1024 ? currentUser.profile : null}>
@@ -119,15 +124,33 @@ export default function LoanForm({ header, users, handleSubmit, loan }){
                             </div>
 
                             <div className="col-span-6 my-1">
-                                <FloatingLabel
-                                    id="term_of_payment"
-                                    type="date"
-                                    name="term_of_payment"
-                                    placeholder="Term of payment"
-                                    value={form.data.term_of_payment}
-                                    handleChange={handleChange}
-                                    hasErrors={form.errors.term_of_payment}
-                                />
+                                <LocalizationProvider dateAdapter={AdapterMoment}>
+                                    <DatePicker
+                                        disablePast={true}
+                                        views={['year', 'month', 'day']}
+                                        className="w-full"
+                                        label="Term of payment"
+                                        value={form.data.term_of_payment}
+                                        onChange={(newValue) => {
+                                            form.setData('term_of_payment', moment(newValue).format('yyyy-MM-DD'));
+                                        }}
+                                        renderInput={(params) => <TextField sx={ (form?.errors.term_of_payment) ?
+                                        {"& .MuiOutlinedInput-root": {
+                                            "& fieldset": {
+                                                borderColor: "red"
+                                            },
+                                            "&:hover fieldset": {
+                                                borderColor: "red"
+                                            }
+                                        }} :
+                                        { "& .MuiOutlinedInput-root": {
+                                            "&:hover fieldset": {
+                                                border: "1px solid rgb(209 213 219)"
+                                            }
+                                        }}
+                                        } size="small" xs {...params} />}
+                                    />
+                                </LocalizationProvider>
                                 {form.hasErrors && <InputError message={form.errors.term_of_payment} className="mt-2" />}
                             </div>
                         </div>
