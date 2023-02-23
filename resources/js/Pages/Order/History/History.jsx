@@ -1,7 +1,7 @@
 import Table from '@/Components/Card/Table/Table';
 import Dropdown from '@/Components/Dropdown/Dropdown';
 import Pagination from '@/Components/Pagination/Pagination';
-import { currencyFormat } from '@/helper';
+import { currencyFormat, dateFormat } from '@/helper';
 import HomeLayout from '@/Layouts/HomeLayout';
 import { SlOptionsVertical } from 'react-icons/sl';
 
@@ -30,7 +30,7 @@ const History = ({orders}) => {
                                         orders.data.map((order) => (
                                             <Table.Row key={order.id}>
                                                 <Table.Content type="header" className="w-auto">{order.shortId}</Table.Content>
-                                                <Table.Content>{(new Date(order.updated_at)).toLocaleDateString()}</Table.Content>
+                                                <Table.Content>{(dateFormat(order.updated_at))}</Table.Content>
                                                 <Table.Content>{_.startCase(order.invoice.method)}</Table.Content>
                                                 <Table.Content>{
                                                     {

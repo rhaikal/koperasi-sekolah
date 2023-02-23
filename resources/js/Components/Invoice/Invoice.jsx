@@ -1,4 +1,4 @@
-import { currencyFormat } from "@/helper"
+import { currencyFormat, formatDate } from "@/helper"
 import Table from "../Card/Table/Table"
 
 export default function Invoice({order}){
@@ -15,12 +15,12 @@ export default function Invoice({order}){
                         <p className="text-gray-600 text-sm">Number Phone : {order.user.no_phone}</p>
                     </div>
                     <div className="col-span-3 lg:col-span-2">
-                        <p className="text-gray-600 text-sm">Date : {new Date(order.invoice.created_at).toLocaleDateString()}</p>
+                        <p className="text-gray-600 text-sm">Date : {formatDate(order.invoice.created_at)}</p>
                         <p className="text-gray-600 text-sm">
                             {
-                                order.status == 1 || order.status == '-' ? `Due Date ${new Date(order.invoice.due_date).toLocaleDateString()}`:
-                                order.status == 2 ? `Payment Date ${new Date(order.invoice.payment.payment_date).toLocaleDateString()}` :
-                                `Picked Date ${new Date(order.pickup.picked_at).toLocaleDateString()}`
+                                order.status == 1 || order.status == '-' ? `Due Date ${formatDate(order.invoice.due_date)}`:
+                                order.status == 2 ? `Payment Date ${formatDate(order.invoice.payment.payment_date)}` :
+                                `Picked Date ${formatDate(order.pickup.picked_at)}`
                             }
                         </p>
                         <p className="text-gray-600 text-sm">Payment Method : {order.invoice.method}</p>
