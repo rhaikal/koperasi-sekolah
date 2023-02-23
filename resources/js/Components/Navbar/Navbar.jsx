@@ -29,9 +29,6 @@ export default function Navbar() {
                         <NavLink href={route('home')} active={route().current('home')}>
                             Home
                         </NavLink>
-                        <NavLink href={route('about')} active={route().current('about')}>
-                            About
-                        </NavLink>
                         <NavLink href={route('shop.index')} active={route().current('shop.*')}>
                             Shop
                         </NavLink>

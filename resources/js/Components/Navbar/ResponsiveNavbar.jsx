@@ -21,9 +21,6 @@ export default function ResponsiveNavbar() {
                 <ResponsiveNavLink href={route('home')} active={route().current('home')}>
                     Home
                 </ResponsiveNavLink>
-                <ResponsiveNavLink href={route('about')} active={route().current('about')}>
-                    About
-                </ResponsiveNavLink>
                 <ResponsiveNavLink href={route('shop.index')} active={route().current('shop.index')}>
                     Shop
                 </ResponsiveNavLink>
