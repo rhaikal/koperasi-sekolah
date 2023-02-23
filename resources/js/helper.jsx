@@ -6,6 +6,10 @@ export function currencyFormat(currency) {
     }).format(currency)
 }
 
+export function dateFormat(date) {
+    return new Date(date).toLocaleDateString('id-ID', {month: '2-digit', year:"numeric", day:'2-digit'});
+}
+
 export function inputCurrencyFormat(id) {
     const price = document.getElementById(id);
     if(price && price.value) {

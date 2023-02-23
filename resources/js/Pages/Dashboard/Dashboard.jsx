@@ -2,7 +2,7 @@ import Label from "@/Components/Card/Label/Label";
 import Table from "@/Components/Card/Table/Table";
 import LineChart from "@/Components/Charts/LineChart";
 import Dropdown from "@/Components/Dropdown/Dropdown";
-import { currencyFormat } from "@/helper";
+import { currencyFormat, dateFormat } from "@/helper";
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import { Link } from "@inertiajs/inertia-react";
 import React, { useEffect } from "react";
@@ -66,8 +66,9 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendin
                         <Table>
                             <Table.Head>
                                 <Table.Header>Id</Table.Header>
-                                <Table.Header>Borrower Name</Table.Header>
+                                <Table.Header>Borrower name</Table.Header>
                                 <Table.Header>Ammount</Table.Header>
+                                <Table.Header>Borrow date</Table.Header>
                                 <Table.Header></Table.Header>
                             </Table.Head>
                             <Table.Body>
@@ -75,7 +76,8 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendin
                                     <Table.Row key={loan.id}>
                                         <Table.Content type="header">{loan.id}</Table.Content>
                                         <Table.Content>{loan.user.name}</Table.Content>
-                                        <Table.Content>{_.startCase(loan.ammount)}</Table.Content>
+                                        <Table.Content>{currencyFormat(loan.ammount)}</Table.Content>
+                                        <Table.Content>{dateFormat(loan.created_at)}</Table.Content>
                                         <Table.Content>
                                             <Dropdown>
                                                 <Dropdown.Trigger>

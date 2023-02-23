@@ -4,7 +4,7 @@ import DashboardLayout from "@/Layouts/DashboardLayout"
 import { Link } from "@inertiajs/inertia-react"
 import Overview from "@/Components/Overview/Overview"
 import { BsBack } from "react-icons/bs"
-import { currencyFormat } from "@/helper"
+import { currencyFormat, dateFormat } from "@/helper"
 
 const Detail = ({ loan }) => {
     return (
@@ -33,8 +33,12 @@ const Detail = ({ loan }) => {
                                     <div className="mt-1 text-sm text-gray-900 sm:col-span-1 sm:mt-0">{currencyFormat(loan.ammount)}</div>
                                 </div>
                                 <div className="px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                    <div className="text-sm font-medium sm:col-span-1 text-gray-500">Borrow date</div>
+                                    <div className="mt-1 text-sm text-gray-900 sm:col-span-1 sm:mt-0">{dateFormat(loan.created_at)}</div>
+                                </div>
+                                <div className="px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
                                     <div className="text-sm font-medium sm:col-span-1 text-gray-500">Term of payment</div>
-                                    <div className="mt-1 text-sm text-gray-900 sm:col-span-1 sm:mt-0">{new Date(loan.term_of_payment).toLocaleDateString()}</div>
+                                    <div className="mt-1 text-sm text-gray-900 sm:col-span-1 sm:mt-0">{dateFormat(loan.term_of_payment)}</div>
                                 </div>
                             </div>
                         </div>

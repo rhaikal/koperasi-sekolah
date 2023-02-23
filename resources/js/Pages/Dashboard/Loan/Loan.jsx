@@ -4,7 +4,7 @@ import DeleteDrodownLink from "@/Components/Dashboard/Form/DeleteDropdownLink"
 import Dropdown from "@/Components/Dropdown/Dropdown"
 import ExportForm from "@/Components/Form/ExportForm"
 import Pagination from "@/Components/Pagination/Pagination"
-import { currencyFormat } from "@/helper"
+import { currencyFormat, dateFormat } from "@/helper"
 import DashboardLayout from "@/Layouts/DashboardLayout"
 import { Inertia } from "@inertiajs/inertia"
 import { Link } from "@inertiajs/inertia-react"
@@ -59,6 +59,7 @@ const Loan = ({ loans, query, auth }) => {
                         <Table.Header>Id</Table.Header>
                         <Table.Header>Borrower Name</Table.Header>
                         <Table.Header>Ammount</Table.Header>
+                        <Table.Header>Borrow date</Table.Header>
                         <Table.Header></Table.Header>
                     </Table.Head>
                     <Table.Body>
@@ -67,6 +68,7 @@ const Loan = ({ loans, query, auth }) => {
                                 <Table.Content type="header" className="w-auto">{loan.id}</Table.Content>
                                 <Table.Content>{loan.user.name}</Table.Content>
                                 <Table.Content>{currencyFormat(loan.ammount)}</Table.Content>
+                                <Table.Content>{dateFormat(loan.created_at)}</Table.Content>
                                 <Table.Content>
                                     <Dropdown>
                                         <Dropdown.Trigger>
