@@ -2,7 +2,7 @@ import { TextField } from "@mui/material";
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 
-export default function Datepicker({disablePast, name, className, label, value, disabled, onChange, errors, minDate}){
+export default function Datepicker({disablePast, name, className, label, value, disabled, onChange, errors, minDate, inputFormat}){
     return (
         <LocalizationProvider dateAdapter={AdapterMoment}>
             <DatePicker
@@ -14,6 +14,7 @@ export default function Datepicker({disablePast, name, className, label, value, 
                 minDate={minDate}
                 onChange={onChange}
                 disabled={disabled}
+                inputFormat={inputFormat ?? 'DD/MM/YYYY'}
                 renderInput={(params) => <TextField name={name} sx={ (errors) ?
                 {"& .MuiOutlinedInput-root": {
                     "& fieldset": {
