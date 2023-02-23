@@ -30,7 +30,7 @@
             <tr>
                 <td>{{ $loan->id }}</td>
                 <td style="border-left: 1px solid #71717A" colspan="3">{{ $loan->user->name }}</td>
-                <td colspan="2" style="text-align: left; border-left: 1px solid #71717A">{{ number_format($loan->ammount, null, ',', '.') }}</td>
+                <td colspan="2" style="text-align: left; border-left: 1px solid #71717A">Rp. {{ number_format($loan->ammount, null, ',', '.') }}</td>
                 <td colspan="2" style="text-align: left; border-left: 1px solid #71717A">{{ $loan->term_of_payment }}</td>
             </tr>
         @endforeach

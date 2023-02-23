@@ -9,7 +9,7 @@
             <th colspan="4" style="text-align: center; background-color: #818CF8; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A;"><b><i>Order Summary</i></b></th></tr>
         <tr>
             <th colspan="2"><b>Revenue </b></th>
-            <td colspan="2" style="border-left: 1px solid #71717A; text-align: end;">Rp. {{ number_format($orders->sum('total_price'), null, '.', ','); }}</td>
+            <td colspan="2" style="border-left: 1px solid #71717A; text-align: right;">Rp. {{ number_format($orders->sum('total_price'), null, ',', '.'); }}</td>
         </tr>
         <tr>
             <th colspan="2"><b>Total Orders </b></th>
@@ -35,7 +35,7 @@
                 <td colspan="6">{{ $order->id }}</td>
                 <td style="border-left: 1px solid #71717A" colspan="3">{{ $order->user->name }}</td>
                 <td style="border-left: 1px solid #71717A">{{ $order->invoice->method }}</td>
-                <td colspan="2" style="text-align: left; border-left: 1px solid #71717A">{{ number_format($order->total_price, null, '.', ',') }}</td>
+                <td colspan="2" style="text-align: left; border-left: 1px solid #71717A">Rp. {{ number_format($order->total_price, null, ',', '.') }}</td>
                 <td colspan="2" style="text-align: left; border-left: 1px solid #71717A">
                     @switch($order->status)
                         @case('2')
