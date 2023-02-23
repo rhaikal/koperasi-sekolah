@@ -25,9 +25,9 @@ class ReportController extends Controller
         return $pdf->stream('invoice-' . $order->shortId . '.pdf');
     }
 
-    public function orders()
+    public function orders(ReportRequest $request)
     {
-        return Excel::download(new OrdersExport, 'orders.xlsx');
+        return Excel::download(new OrdersExport($request->validated()), 'orders.xlsx');
     }
 
     public function loans(ReportRequest $request)

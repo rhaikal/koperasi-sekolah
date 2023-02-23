@@ -1,21 +1,20 @@
-import PrimaryButton, { primaryButtonClass } from "@/Components/Button/PrimaryButton"
+import { primaryButtonClass } from "@/Components/Button/PrimaryButton"
 import Table from "@/Components/Card/Table/Table"
 import DeleteDrodownLink from "@/Components/Dashboard/Form/DeleteDropdownLink"
 import Dropdown from "@/Components/Dropdown/Dropdown"
-import Datepicker from "@/Components/Input/Datepicker"
+import ExportForm from "@/Components/Form/ExportForm"
 import Pagination from "@/Components/Pagination/Pagination"
 import { currencyFormat } from "@/helper"
 import DashboardLayout from "@/Layouts/DashboardLayout"
 import { Inertia } from "@inertiajs/inertia"
 import { Link } from "@inertiajs/inertia-react"
 import { useEffect, useState } from "react"
-import { MdPictureAsPdf } from "react-icons/md"
 import { SlOptionsVertical } from "react-icons/sl"
 
 const Loan = ({ loans, query, auth }) => {
     const [startDate, setStartDate] = useState(null)
     const [endDate, setEndDate] = useState(null)
-    const [emptyLoans, setEmptyLoans] = useState(false);
+    const [emptyLoans, setEmptyLoans] = useState(false)
 
     const handleSearch = _.debounce((e) => {
         if(e.target.value) Inertia.reload({only: ['loans', 'query'], data: {search: e.target.value}})
@@ -38,27 +37,15 @@ const Loan = ({ loans, query, auth }) => {
 
     return (
         <>
-            <form action={route('exported.loans')} className="flex items-center mb-2">
-                <Datepicker
-                    onChange={handleStartDate}
-                    value={startDate}
-                    label="Start date"
-                    name="startDate"
-                    disabled={emptyLoans}
-                    className="w-36"
-                />
-                <span className={`mx-4 ${emptyLoans ? 'text-gray-400' : 'text-gray-500'}`}>to</span>
-                <Datepicker
-                    onChange={handleEndDate}
-                    value={endDate}
-                    label="End date"
-                    name="endDate"
-                    minDate={startDate}
-                    disabled={emptyLoans}
-                    className="w-36"
-                />
-                <button type="submit" className={primaryButtonClass + ` ml-4 w-fit ${_.isEmpty(emptyLoans) && 'pointer-events-none cursor-default bg-indigo-400'}`} href={route('exported.loans')}><MdPictureAsPdf className="mr-2 w-4 h-4" /> Export</button>
-            </form>
+            <ExportForm
+                href={route('exported.loans')}
+                className="mb-2"
+                valueStartDate={startDate}
+                handleStartDate={handleStartDate}
+                valueEndDate={endDate}
+                handleEndDate={handleEndDate}
+                disabled={emptyLoans}
+            />
             <div className="min-w-0 p-4 pt-2 overflow-x-auto rounded-lg shadow-lg">
                 <div className="flex justify-between my-4">
                     <div className="w-80">

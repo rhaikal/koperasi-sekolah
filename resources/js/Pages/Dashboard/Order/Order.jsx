@@ -1,16 +1,15 @@
-import { primaryButtonClass } from "@/Components/Button/PrimaryButton"
 import Table from "@/Components/Card/Table/Table"
 import Dropdown from "@/Components/Dropdown/Dropdown"
 import Pagination from "@/Components/Pagination/Pagination"
 import { currencyFormat } from "@/helper"
 import DashboardLayout from "@/Layouts/DashboardLayout"
 import { Inertia } from "@inertiajs/inertia"
-import { Link } from "@inertiajs/inertia-react"
 import { FaAngleDown } from "react-icons/fa"
 import { SlOptionsVertical } from "react-icons/sl"
-import { MdPictureAsPdf } from "react-icons/md"
 import { handlePickup } from "./Partials/Payments/Paid"
 import { handlePayment } from "./Partials/Payments/Unpaid"
+import ExportForm from "@/Components/Form/ExportForm"
+import { useEffect, useState } from "react"
 
 const statusList = [
     {
@@ -32,10 +31,27 @@ const statusList = [
 ]
 
 const Order = ({ orders, query, auth }) => {
+    const [startDate, setStartDate] = useState(null)
+    const [endDate, setEndDate] = useState(null)
+    const [emptyOrders, setEmptyOrders] = useState(false)
 
     const currentStatus = statusList.find((status) => {
         return status.value == query?.filter
     })
+
+    const handleStartDate = (newValue) => {
+        setStartDate(newValue);
+        if(startDate == endDate || newValue > endDate) setEndDate(newValue);
+    }
+
+    const handleEndDate = (newValue) => {
+        setEndDate(newValue);
+    }
+
+    useEffect(() => {
+      if(_.isEmpty(orders?.data))
+        setEmptyOrders(true);
+    }, [])
 
     const handleSearch = _.debounce((e) => {
         const preserveQuery = {
@@ -48,8 +64,18 @@ const Order = ({ orders, query, auth }) => {
 
     return (
         <>
+            { auth.user.role != 2 &&
+                <ExportForm
+                    href={route('exported.orders')}
+                    className="mb-2"
+                    valueStartDate={startDate}
+                    handleStartDate={handleStartDate}
+                    valueEndDate={endDate}
+                    handleEndDate={handleEndDate}
+                    disabled={emptyOrders}
+                />
+            }
             <div className="min-w-0 p-4 pt-8 overflow-x-auto rounded-lg shadow-lg">
-                {auth.user.role != 1 && <a className={primaryButtonClass + ` w-fit ${_.isEmpty(orders?.data) && 'pointer-events-none cursor-default bg-indigo-400'}`} href={route('exported.orders')}><MdPictureAsPdf className="mr-2 w-4 h-4" /> Export</a>}
                 <div className="scale-100 flex my-4">
                     <Dropdown>
                         <Dropdown.Trigger className="flex"><button className="flex z-10 items-center px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">{currentStatus?.label ?? "Status"} <FaAngleDown className="ml-2 w-4 h-4"></FaAngleDown></button></Dropdown.Trigger>

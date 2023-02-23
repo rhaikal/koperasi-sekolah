@@ -19,7 +19,7 @@
     <table>
         <thead>
             <tr>
-                <th colspan="14" style="text-align: center; background-color: #818CF8; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A;"><b><i>Orders Data</i></b></th>
+                <th colspan="16" style="text-align: center; background-color: #818CF8; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A;"><b><i>Orders Data</i></b></th>
             </tr>
             <tr>
                 <th style="background-color: #D4D4D8; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A;" colspan="6"><b>Id</b></th>
@@ -27,6 +27,7 @@
                 <th style="background-color: #D4D4D8; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A; border-left: 1px solid #71717A"><b>Method</b></th>
                 <th style="background-color: #D4D4D8; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A; border-left: 1px solid #71717A" colspan="2"><b>Total Price</b></th>
                 <th style="background-color: #D4D4D8; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A; border-left: 1px solid #71717A" colspan="2"><b>Status</b></th>
+                <th style="background-color: #D4D4D8; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A; border-left: 1px solid #71717A" colspan="2"><b>Payment date</b></th>
             </tr>
         </thead>
         <tbody>
@@ -45,6 +46,7 @@
                             Complete
                     @endswitch
                 </td>
+                <td>{{ date('d-m-Y', strtotime($order->payment->payment_date)) }}</td>
             </tr>
         @endforeach
         </tbody>

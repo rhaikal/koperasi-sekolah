@@ -74,6 +74,11 @@ class Order extends Model
         return $this->hasOne(Invoice::class);
     }
 
+    public function payment()
+    {
+        return $this->hasOneThrough(Payment::class, Invoice::class);
+    }
+
     public function pickup()
     {
         return $this->hasOne(Pickup::class);

@@ -34,9 +34,10 @@ class ReportRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        $this->merge([
-            'startDate' => date('Y-m-d', strtotime($this->startDate)),
-            'endDate' => date('Y-m-d', strtotime($this->endDate))
-        ]);
+        if(!!$this->startDate || !!$this->endDate)
+            $this->merge([
+                'startDate' => date('Y-m-d', strtotime($this->startDate)),
+                'endDate' => date('Y-m-d', strtotime($this->endDate))
+            ]);
     }
 }
