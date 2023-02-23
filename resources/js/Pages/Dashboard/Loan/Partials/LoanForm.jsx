@@ -8,11 +8,8 @@ import { Link, useForm } from "@inertiajs/inertia-react"
 import { useEffect, useState } from "react"
 import Overview from "@/Components/Overview/Overview"
 import { BsBack } from "react-icons/bs"
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers"
-import { TextField } from "@mui/material"
-import styled from "@emotion/styled"
 import moment from "moment"
+import Datepicker from "@/Components/Input/Datepicker"
 
 export default function LoanForm({ header, users, handleSubmit, loan }){
     const [options] = useState([]);
@@ -71,6 +68,10 @@ export default function LoanForm({ header, users, handleSubmit, loan }){
         setSelectedUser(true);
     }
 
+    const handleDate = (newValue) => {
+        form.setData('term_of_payment', moment(newValue).format('yyyy-MM-DD'));
+    }
+
     const onSubmit = (e) => {
         e.preventDefault()
         handleSubmit(form)
@@ -124,16 +125,22 @@ export default function LoanForm({ header, users, handleSubmit, loan }){
                             </div>
 
                             <div className="col-span-6 my-1">
-                                <LocalizationProvider dateAdapter={AdapterMoment}>
+                                <Datepicker
+                                    disablePast={true}
+                                    className="w-full"
+                                    label="Term of payment"
+                                    value={form.data.term_of_payment}
+                                    onChange={handleDate}
+                                    errors={form?.errors.term_of_payment}
+                                />
+                                {/* <LocalizationProvider dateAdapter={AdapterMoment}>
                                     <DatePicker
                                         disablePast={true}
                                         views={['year', 'month', 'day']}
                                         className="w-full"
                                         label="Term of payment"
                                         value={form.data.term_of_payment}
-                                        onChange={(newValue) => {
-                                            form.setData('term_of_payment', moment(newValue).format('yyyy-MM-DD'));
-                                        }}
+                                        onChange={}
                                         renderInput={(params) => <TextField sx={ (form?.errors.term_of_payment) ?
                                         {"& .MuiOutlinedInput-root": {
                                             "& fieldset": {
@@ -150,7 +157,7 @@ export default function LoanForm({ header, users, handleSubmit, loan }){
                                         }}
                                         } size="small" xs {...params} />}
                                     />
-                                </LocalizationProvider>
+                                </LocalizationProvider> */}
                                 {form.hasErrors && <InputError message={form.errors.term_of_payment} className="mt-2" />}
                             </div>
                         </div>

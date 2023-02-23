@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\LoansExport;
 use App\Exports\OrdersExport;
+use App\Http\Requests\ReportRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -29,8 +30,8 @@ class ReportController extends Controller
         return Excel::download(new OrdersExport, 'orders.xlsx');
     }
 
-    public function loans()
+    public function loans(ReportRequest $request)
     {
-        return Excel::download(new LoansExport, 'loan.xlsx');
+        return Excel::download(new LoansExport($request->validated()), 'loan.xlsx');
     }
 }
