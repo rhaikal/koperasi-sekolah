@@ -28,6 +28,7 @@ const Loan = ({ loans, query, auth }) => {
 
     const handleEndDate = (newValue) => {
         setEndDate(newValue);
+        if(startDate == endDate && startDate == null || endDate == null) setStartDate(newValue);
     }
 
     useEffect(() => {
