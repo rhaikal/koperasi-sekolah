@@ -16,12 +16,13 @@
     <table>
         <thead>
             <tr>
-                <th colspan="8" style="text-align: center; background-color: #FED7AA; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A;"><b><i>Loans Data</i></b></th>
+                <th colspan="10" style="text-align: center; background-color: #FED7AA; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A;"><b><i>Loans Data</i></b></th>
             </tr>
             <tr>
                 <th style="background-color: #D4D4D8; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A;"><b>Id</b></th>
-                <th style="background-color: #D4D4D8; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A; border-left: 1px solid #71717A" colspan="3"><b>Borrower Name</b></th>
+                <th style="background-color: #D4D4D8; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A; border-left: 1px solid #71717A" colspan="3"><b>Borrower name</b></th>
                 <th style="background-color: #D4D4D8; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A; border-left: 1px solid #71717A" colspan="2"><b>Ammount</b></th>
+                <th style="background-color: #D4D4D8; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A; border-left: 1px solid #71717A" colspan="2"><b>Borrow date</b></th>
                 <th style="background-color: #D4D4D8; border-top: 1px solid #71717A; border-bottom: 1px solid #71717A; border-left: 1px solid #71717A" colspan="2"><b>Term of payment</b></th>
             </tr>
         </thead>
@@ -31,6 +32,7 @@
                 <td>{{ $loan->id }}</td>
                 <td style="border-left: 1px solid #71717A" colspan="3">{{ $loan->user->name }}</td>
                 <td colspan="2" style="text-align: left; border-left: 1px solid #71717A">Rp. {{ number_format($loan->ammount, null, ',', '.') }}</td>
+                <td colspan="2" style="text-align: left; border-left: 1px solid #71717A">{{ date('d-m-Y', strtotime($loan->created_at)) }}</td>
                 <td colspan="2" style="text-align: left; border-left: 1px solid #71717A">{{ date('d-m-Y', strtotime($loan->term_of_payment)) }}</td>
             </tr>
         @endforeach
