@@ -138,7 +138,7 @@ export default function LoanForm({ header, users, handleSubmit, loan }){
                         </div>
                         <div className="mt-4 text-center">
                             <div className="inline-flex items-center w-full">
-                                <PrimaryButton className="font-bold py-2 px-4 w-full justify-center">Submit</PrimaryButton>
+                                <PrimaryButton className="font-bold py-2 px-4 w-full justify-center">Simpan</PrimaryButton>
                             </div>
                         </div>
                     </form>

@@ -117,10 +117,10 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendin
                                         <Table.Content>{_.startCase(order.invoice.method)}</Table.Content>
                                         <Table.Content>
                                             {{
-                                                '1': 'Not Paid',
-                                                '2': 'Paid',
-                                                '3': 'Done',
-                                                '-': 'Expired'
+                                                '1': 'Belum Dibayar',
+                                                '2': 'Sudah Dibayar',
+                                                '3': 'Selesai',
+                                                '-': 'Kadaluwarsa'
                                             }[order.status]}
                                         </Table.Content>
                                         <Table.Content>
