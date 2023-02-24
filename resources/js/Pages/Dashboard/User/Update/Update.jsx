@@ -54,7 +54,7 @@ const UpdateUser = ({user}) => {
 
     return (
         <div className="p-6">
-            <Link className={primaryButtonClass} href={route('users.index')}><BsBack className="mr-2" /> Back</Link>
+            <Link className={primaryButtonClass} href={route('users.index')}><BsBack className="mr-2" /> Kembali</Link>
             <div className="min-h-screen py-3 flex justify-center">
                 <div className="container max-w-screen-lg mx-auto">
                 <form onSubmit={(event) => onSubmit(event, user)}>
@@ -76,7 +76,7 @@ const UpdateUser = ({user}) => {
                                         <div className="md:col-span-6 my-1">
                                             <Select
                                                 name={"role"}
-                                                placeholder="Role"
+                                                placeholder="Peran"
                                                 options={options}
                                                 onChange={handleSelect}
                                                 hasErrors={form.errors.role}
@@ -90,7 +90,7 @@ const UpdateUser = ({user}) => {
                                                 id="name"
                                                 type="text"
                                                 name="name"
-                                                placeholder="Name"
+                                                placeholder="Nama"
                                                 isFocused={true}
                                                 handleChange={handleChange}
                                                 value={form.data.name}
@@ -130,7 +130,7 @@ const UpdateUser = ({user}) => {
                                                 id="no_phone"
                                                 type="text"
                                                 name="no_phone"
-                                                placeholder="Number Phone"
+                                                placeholder="Nomor Telepon"
                                                 value={form.data.no_phone}
                                                 handleChange={handleChange}
                                                 hasErrors={form.errors.no_phone}
@@ -142,7 +142,7 @@ const UpdateUser = ({user}) => {
                             </div>
                             <div className="mt-4 text-center">
                                 <div className="inline-flex items-center w-full">
-                                    <PrimaryButton className="font-bold py-2 px-4 w-full justify-center">Submit</PrimaryButton>
+                                    <PrimaryButton className="font-bold py-2 px-4 w-full justify-center">Simpan</PrimaryButton>
                                 </div>
                             </div>
                         </div>

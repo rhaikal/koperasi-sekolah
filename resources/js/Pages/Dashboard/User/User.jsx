@@ -10,9 +10,9 @@ const User = ({users}) => {
             <Table>
                 <Table.Head>
                     <Table.Header>Id</Table.Header>
-                    <Table.Header>Profile</Table.Header>
-                    <Table.Header>Name</Table.Header>
-                    <Table.Header>Role</Table.Header>
+                    <Table.Header>Gambar</Table.Header>
+                    <Table.Header>Nama</Table.Header>
+                    <Table.Header>Peran</Table.Header>
                     <Table.Header></Table.Header>
                 </Table.Head>
                 <Table.Body>

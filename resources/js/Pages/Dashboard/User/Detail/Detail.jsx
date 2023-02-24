@@ -8,7 +8,7 @@ import { BsBack } from "react-icons/bs";
 const DetailUser = ({user}) => {
     return (
         <div className="m-6">
-            <Link className={primaryButtonClass} href={route('users.index')}><BsBack className="mr-2" /> Back</Link>
+            <Link className={primaryButtonClass} href={route('users.index')}><BsBack className="mr-2" /> Kembali</Link>
             <Overview header={"User Detail"}>
                 <Overview.Content image={(user.profile !== undefined && user.profile !== null) ? user.profile : "/img/users/placeholder.png" }>
                     <Overview.List header="Role">
@@ -17,10 +17,10 @@ const DetailUser = ({user}) => {
                             '2': 'Anggota',
                         }[user.role] || 'Pengurus'}
                     </Overview.List>
-                    <Overview.List header="Name">{user.name}</Overview.List>
+                    <Overview.List header="Nama">{user.name}</Overview.List>
                     <Overview.List header="Username">{user.username}</Overview.List>
                     <Overview.List header="Email">{user.email}</Overview.List>
-                    <Overview.List header="Number Phone">{user.no_phone}</Overview.List>
+                    <Overview.List header="Nomor Telepon">{user.no_phone}</Overview.List>
                 </Overview.Content>
             </Overview>
         </div>
