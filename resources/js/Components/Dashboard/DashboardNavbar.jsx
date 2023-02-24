@@ -24,7 +24,7 @@ export default function Navbar({user}) {
                                 <Dropdown.Link href={route('home')}>
                                     <BiExit className="mr-2 text-xl text-current self-center"/>
                                     <p className="font-semibold">
-                                        Home
+                                        Beranda
                                     </p>
                                 </Dropdown.Link>
                             </Dropdown.Content>
