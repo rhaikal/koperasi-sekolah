@@ -1,7 +1,7 @@
 import React, { forwardRef, useEffect, useRef } from 'react';
 
 export default forwardRef(function FloatingLabel(
-    { id, type = 'text', name, value, className, placeholder, autoComplete, required, isFocused, handleChange, hasErrors, max },
+    { id, type = 'text', name, value, className, placeholder, autoComplete, required, isFocused, handleChange, hasErrors, max, handleKeyUp },
     ref
 ) {
     const input = ref ? ref : useRef();
@@ -29,6 +29,7 @@ export default forwardRef(function FloatingLabel(
                 ref={input}
                 autoComplete={autoComplete}
                 required={required}
+                onKeyUp={handleKeyUp}
                 onChange={(e) => handleChange(e)}
                 onWheel={(e) => {document.activeElement.blur()}}
             />

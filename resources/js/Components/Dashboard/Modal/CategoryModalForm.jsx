@@ -35,6 +35,13 @@ export default function CategoryModalForm({onSubmit, header, button, category}) 
         form.setData(event.target.name, event.target.value)
     }
 
+    const handleSlug = (event) => {
+        let slug = event.target.value.toLowerCase();
+        slug = slug.replace(/\s+/g, '-');
+
+        form.setData('slug', slug);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
         onSubmit(form)
@@ -63,6 +70,7 @@ export default function CategoryModalForm({onSubmit, header, button, category}) 
                         name="name"
                         value={form.data.name}
                         handleChange={handleChange}
+                        handleKeyUp={handleSlug}
                         className="mt-1 block w-full"
                         isFocused
                         placeholder="Name"

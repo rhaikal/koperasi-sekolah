@@ -43,6 +43,13 @@ export default function ProductForm({categories, handleSubmit, header, product})
         form.setData(event.target.name, event.target.files[0]);
     }
 
+    const handleSlug = (event) => {
+        let slug = event.target.value.toLowerCase();
+        slug = slug.replace(/\s+/g, '-');
+
+        form.setData('slug', slug);
+    }
+
     const onSubmit = (event) => {
         event.preventDefault()
         handleSubmit(form)
@@ -91,6 +98,7 @@ export default function ProductForm({categories, handleSubmit, header, product})
                                                 placeholder="Name"
                                                 isFocused={true}
                                                 handleChange={handleChange}
+                                                handleKeyUp={handleSlug}
                                                 value={form.data.name}
                                                 hasErrors={form.errors.name}
                                             />
