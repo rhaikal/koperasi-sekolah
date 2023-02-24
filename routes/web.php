@@ -44,7 +44,6 @@ Route::get('/', function () {
 Route::get('/shop', [OrderController::class , 'index'])->name('shop.index');
 Route::get('/shop/{product}', [OrderController::class , 'show'])->name('shop.show');
 
-Route::get('/exported/loans', [ReportController::class, 'loans'])->name('exported.loans');
 
 Route::middleware('role')->group(function () {
     Route::middleware('role:pengurus')->group(function () {
@@ -57,6 +56,7 @@ Route::middleware('role')->group(function () {
         // loan page
         Route::resource('/dashboard/loans', LoanController::class)->except(['index', 'show']);
 
+        Route::get('/exported/loans', [ReportController::class, 'loans'])->name('exported.loans');
         Route::get('/exported/orders', [ReportController::class, 'orders'])->name('exported.orders');
     });
 

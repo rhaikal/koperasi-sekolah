@@ -11,7 +11,7 @@ export default function ExportForm({href, valueStartDate, valueEndDate, handleSt
                 label="Start date"
                 name="startDate"
                 disabled={disabled}
-                className="w-36"
+                className="w-[9.5rem]"
             />
             <span className={`mx-4 ${disabled ? 'text-gray-400' : 'text-gray-500'}`}>to</span>
             <Datepicker
@@ -21,7 +21,7 @@ export default function ExportForm({href, valueStartDate, valueEndDate, handleSt
                 name="endDate"
                 minDate={valueStartDate}
                 disabled={disabled}
-                className="w-36"
+                className="w-[9.5rem]"
             />
             <button type="submit" className={primaryButtonClass + ` ml-4 w-fit ${disabled && 'pointer-events-none cursor-default bg-indigo-400'}`}><MdPictureAsPdf className="mr-2 w-4 h-4" /> Export</button>
         </form>

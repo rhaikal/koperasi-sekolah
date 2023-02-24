@@ -36,8 +36,8 @@ class ReportRequest extends FormRequest
     {
         if(!!$this->startDate || !!$this->endDate)
             $this->merge([
-                'startDate' => date('Y-m-d', strtotime($this->startDate)),
-                'endDate' => date('Y-m-d', strtotime($this->endDate))
+                'startDate' => date_create_from_format("d/m/Y", $this->startDate)->format('Y-m-d'),
+                'endDate' => date_create_from_format("d/m/Y", $this->endDate)->format('Y-m-d')
             ]);
     }
 }
