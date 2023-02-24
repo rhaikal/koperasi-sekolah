@@ -49,7 +49,7 @@ const Payment = ({order}) => {
                                     <FaAngleRight className='h-4 w-4 text-gray-400' />
                                     <li className="flex items-center space-x-3 text-left sm:space-x-4">
                                         <p className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-600 text-xs font-semibold text-white ring ring-gray-600 ring-offset-2 cursor-default" href="#">3</p>
-                                        <span className="font-semibold text-gray-900">Payment</span>
+                                        <span className="font-semibold text-gray-900">Pembayaran</span>
                                     </li>
                                 </ul>
                             </div>
@@ -59,8 +59,8 @@ const Payment = ({order}) => {
                         <OrderSumarry products={order.products} containerClassnames={"lg:col-span-3"} />
                         <div className="mt-3 bg-gray-50 px-4 pb-4 pt-5 lg:mt-0 lg:col-span-2">
                             <div className="w-full h-fit flex flex-col dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 mb-6 py-5 px-4 text-center">
-                                <h1 className="text-gray-800 text-2xl dark:text-gray-100 font-bold mb-3">Successfully Checkout</h1>
-                                <p className="text-gray-800 dark:text-gray-100 text-sm">Order has been successfully checkout, then make payment with the nominal listed below {order.invoice.method == 'cash' && (<>in <b>school cooperative</b></>)}</p>
+                                <h1 className="text-gray-800 text-2xl dark:text-gray-100 font-bold mb-3">Berhasil Checkout</h1>
+                                <p className="text-gray-800 dark:text-gray-100 text-sm">Pesanan sudah berhasil dicheckout, lalu lakukan pembayaran dengan nominal yang tertera di bawah {order.invoice.method == 'cash' && (<>di <b>koperasi sekolah</b></>)}</p>
                             </div>
                             <div>
                                 <div className="p-2 flex items-center justify-between border-y border-gray-500">
@@ -68,7 +68,7 @@ const Payment = ({order}) => {
                                     <p className="text-lg font-semibold text-gray-900">{currencyFormat(order.total_price)}</p>
                                 </div>
                                 {order.invoice.method == 'e-wallet' &&
-                                    <PrimaryButton onClick={handlePayment} className='w-full mt-4 justify-center'><span className='text-sm'>Pay Now</span></PrimaryButton>
+                                    <PrimaryButton onClick={handlePayment} className='w-full mt-4 justify-center'><span className='text-sm'>Bayar sekarang</span></PrimaryButton>
                                 }
                             </div>
                         </div>

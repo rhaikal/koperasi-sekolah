@@ -44,7 +44,7 @@ const Checkout = ({cart, auth}) => {
                                     <FaAngleRight className='h-4 w-4 text-gray-400' />
                                     <li className="flex items-center space-x-3 text-left sm:space-x-4">
                                         <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-500/90 font-semibold text-white">3</span>
-                                        <span className="font-semibold text-gray-500">Payment</span>
+                                        <span className="font-semibold text-gray-500">Pembayaran</span>
                                     </li>
                                 </ul>
                             </div>
@@ -53,8 +53,8 @@ const Checkout = ({cart, auth}) => {
                     <div className="grid sm:px-10 lg:grid-cols-2">
                         <OrderSumarry products={cart.products} />
                         <div className="mt-10 bg-gray-50 px-4 pt-6 pb-5 lg:mt-0">
-                            <p className="text-xl font-medium">Payment Details</p>
-                            <p className="text-gray-400">Complete your order by selecting payment methods.</p>
+                            <p className="text-xl font-medium">Detail Pembayaran</p>
+                            <p className="text-gray-400">Selesaikan pesanan Anda dengan memilih metode pembayaran.</p>
                             <div className="mt-6 border-gray-400 border-b py-4 space-y-5">
                                 <div>
                                     <InputLabel for="name" value="Name" />
