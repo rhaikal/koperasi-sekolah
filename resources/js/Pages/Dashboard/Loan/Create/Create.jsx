@@ -9,7 +9,7 @@ const CreateLoan = ({users}) => {
     }
 
     return (
-        <LoanForm users={users} handleSubmit={handleSubmit} header={"Create Loan"}></LoanForm>
+        <LoanForm users={users} handleSubmit={handleSubmit} header={"Buat Pinjaman"}></LoanForm>
     )
 }
 

@@ -79,18 +79,18 @@ export default function LoanForm({ header, users, handleSubmit, loan }){
 
     return (
         <div className="py-8">
-            <Link className={primaryButtonClass + ' w-fit'} href={route('loans.index')}><BsBack className="mr-2" /> Back</Link>
+            <Link className={primaryButtonClass + ' w-fit'} href={route('loans.index')}><BsBack className="mr-2" /> Kembali</Link>
             <div id="wrap-grid" className={`transition-all grid grid-cols-10 py-4 gap-4`}>
                 <div
                     className={`grid rounded shadow-lg p-4 px-4 md:p-8 mb-6 order-last lg:order-first transition-opacity ease-out duration-700 ${_.isEmpty(loan) ? 'opacity-0' : 'opacity-100'} ${!selectedUser ? 'hidden' : 'col-span-10 lg:col-span-6' }`}
                 >
                     <div id="identification">
-                        <Header className="text-center">Identification</Header>
+                        <Header className="text-center">Identitas</Header>
                         { selectedUser &&
                             <Overview.Content image={ window.innerWidth > 1024 ? currentUser.profile : null}>
-                                <Overview.List header="Name">{currentUser.name}</Overview.List>
+                                <Overview.List header="Nama">{currentUser.name}</Overview.List>
                                 <Overview.List header="Email">{currentUser.email}</Overview.List>
-                                <Overview.List header="Number Phone">{currentUser.no_phone}</Overview.List>
+                                <Overview.List header="Nomor Telepon">{currentUser.no_phone}</Overview.List>
                             </Overview.Content>
                         }
                     </div>
@@ -102,7 +102,7 @@ export default function LoanForm({ header, users, handleSubmit, loan }){
                             <div className="col-span-6 my-1">
                                 <Select
                                     name={"user_id"}
-                                    placeholder="Member"
+                                    placeholder="Anggota"
                                     options={options}
                                     onChange={handleSelect}
                                     hasErrors={form.errors.user_id}
@@ -116,7 +116,7 @@ export default function LoanForm({ header, users, handleSubmit, loan }){
                                     id="ammount"
                                     type="text"
                                     name="ammount"
-                                    placeholder="Ammount"
+                                    placeholder="Jumlah"
                                     value={form.data.ammount}
                                     handleChange={handleChange}
                                     hasErrors={form.errors.ammount}
@@ -128,36 +128,11 @@ export default function LoanForm({ header, users, handleSubmit, loan }){
                                 <Datepicker
                                     disablePast={true}
                                     className="w-full"
-                                    label="Term of payment"
+                                    label="Batas Waktu"
                                     value={form.data.term_of_payment}
                                     onChange={handleDate}
                                     errors={form?.errors.term_of_payment}
                                 />
-                                {/* <LocalizationProvider dateAdapter={AdapterMoment}>
-                                    <DatePicker
-                                        disablePast={true}
-                                        views={['year', 'month', 'day']}
-                                        className="w-full"
-                                        label="Term of payment"
-                                        value={form.data.term_of_payment}
-                                        onChange={}
-                                        renderInput={(params) => <TextField sx={ (form?.errors.term_of_payment) ?
-                                        {"& .MuiOutlinedInput-root": {
-                                            "& fieldset": {
-                                                borderColor: "red"
-                                            },
-                                            "&:hover fieldset": {
-                                                borderColor: "red"
-                                            }
-                                        }} :
-                                        { "& .MuiOutlinedInput-root": {
-                                            "&:hover fieldset": {
-                                                border: "1px solid rgb(209 213 219)"
-                                            }
-                                        }}
-                                        } size="small" xs {...params} />}
-                                    />
-                                </LocalizationProvider> */}
                                 {form.hasErrors && <InputError message={form.errors.term_of_payment} className="mt-2" />}
                             </div>
                         </div>

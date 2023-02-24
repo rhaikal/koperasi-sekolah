@@ -20,7 +20,7 @@ export default function Sidebar({ auth }) {
                     {auth.user.role != '2' && <>
                         <SideLink href={route('users.index')} active={route().current('users.*')}><FaUserFriends className="w-5 h-5 mr-4 text-current"/> User</SideLink>
                     </>}
-                    <SideLink href={route('loans.index')} active={route().current('loans.*')}><GiTwoCoins className="w-5 h-5 mr-4 text-current"/> Loan</SideLink>
+                    <SideLink href={route('loans.index')} active={route().current('loans.*')}><GiTwoCoins className="w-5 h-5 mr-4 text-current"/> Pinjaman</SideLink>
                     <SideDropdown active={(route().current('order.*'))}>
                         <SideDropdown.Button><BsReceipt className="w-5 h-5 mr-4 text-current" /> Order</SideDropdown.Button>
                         <SideDropdown.Panel>

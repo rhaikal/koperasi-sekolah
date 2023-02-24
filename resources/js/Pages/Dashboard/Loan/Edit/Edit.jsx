@@ -9,7 +9,7 @@ const UpdateLoan = ({users, loan}) => {
     }
 
     return (
-        <LoanForm users={users} loan={loan} handleSubmit={handleSubmit} header={"Update Loan"}></LoanForm>
+        <LoanForm users={users} loan={loan} handleSubmit={handleSubmit} header={"Update Pinjaman"}></LoanForm>
     )
 }
 

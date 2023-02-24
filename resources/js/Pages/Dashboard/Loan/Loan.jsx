@@ -49,17 +49,17 @@ const Loan = ({ loans, query, auth }) => {
             />
             <div className="min-w-0 p-4 pt-2 overflow-x-auto rounded-lg shadow-lg">
                 <div className="flex justify-between my-4">
-                    <div className="w-80">
-                        <input type="search" onChange={handleSearch} defaultValue={query.search} id="search-dropdown" className="w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder={`Search loans by id ${auth.user.role != 2 ? 'or borrower name' : ''}`} />
+                    <div className="w-96">
+                        <input type="search" onChange={handleSearch} defaultValue={query.search} id="search-dropdown" className="w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder={`Cari pinjaman berdasarkan id ${auth.user.role != 2 ? 'atau nama peminjam' : ''}`} />
                     </div>
-                    {auth.user.role != 2 && <Link className={primaryButtonClass + ' text-gray-500 h-fit self-center'} href={route('loans.create')}>Create Loan</Link>}
+                    {auth.user.role != 2 && <Link className={primaryButtonClass + ' text-gray-500 h-fit self-center'} href={route('loans.create')}>Buat Pinjaman</Link>}
                 </div>
                 <Table>
                     <Table.Head>
                         <Table.Header>Id</Table.Header>
-                        <Table.Header>Borrower Name</Table.Header>
-                        <Table.Header>Ammount</Table.Header>
-                        <Table.Header>Borrow date</Table.Header>
+                        <Table.Header>Nama Peminjam</Table.Header>
+                        <Table.Header>Jumlah</Table.Header>
+                        <Table.Header>Tanggal Meminjam</Table.Header>
                         <Table.Header></Table.Header>
                     </Table.Head>
                     <Table.Body>
@@ -88,7 +88,7 @@ const Loan = ({ loans, query, auth }) => {
                             </Table.Row>
                         )):
                             <Table.Row>
-                                <Table.Content type="header" colSpan={"4"} className="text-center text-base text-gray-500 font-semibold italic">Loans Not Found</Table.Content>
+                                <Table.Content type="header" colSpan={"4"} className="text-center text-base text-gray-500 font-semibold italic">Tidak ada pinjaman</Table.Content>
                             </Table.Row>
                         }
                     </Table.Body>
@@ -99,6 +99,6 @@ const Loan = ({ loans, query, auth }) => {
     )
 }
 
-Loan.layout = page => <DashboardLayout children={page} header="Loan" />
+Loan.layout = page => <DashboardLayout children={page} header="Pinjaman" />
 
 export default Loan
