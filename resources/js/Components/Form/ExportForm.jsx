@@ -8,16 +8,16 @@ export default function ExportForm({href, valueStartDate, valueEndDate, handleSt
             <Datepicker
                 onChange={handleStartDate}
                 value={valueStartDate}
-                label="Start date"
+                label="Tanggal awal"
                 name="startDate"
                 disabled={disabled}
                 className="w-[9.5rem]"
             />
-            <span className={`mx-4 ${disabled ? 'text-gray-400' : 'text-gray-500'}`}>to</span>
+            <span className={`mx-4 ${disabled ? 'text-gray-400' : 'text-gray-500'}`}>sampai</span>
             <Datepicker
                 onChange={handleEndDate}
                 value={valueEndDate}
-                label="End date"
+                label="Tanggal akhir"
                 name="endDate"
                 minDate={valueStartDate}
                 disabled={disabled}
