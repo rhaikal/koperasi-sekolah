@@ -87,7 +87,7 @@ export default function CartSlideOver({open, setOpen, cart}) {
                                     <div className="flex h-full flex-col bg-white shadow-xl">
                                         <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                                             <div className="flex items-start justify-between">
-                                                <h1 className="text-lg font-medium text-gray-900">Shopping cart</h1>
+                                                <h1 className="text-lg font-medium text-gray-900">Keranjang Belanjaan</h1>
                                                 <div className="ml-3 flex h-7 items-center">
                                                 <button
                                                     type="button"
@@ -127,7 +127,7 @@ export default function CartSlideOver({open, setOpen, cart}) {
                                                                 </div>
                                                                 <div className="flex flex-1 items-end justify-between text-sm">
                                                                     <div className="flex items-center">
-                                                                        <p className="text-gray-500 mr-2">Qty</p>
+                                                                        <p className="text-gray-500 mr-2">Kuantitas</p>
                                                                         <FaAngleLeft onClick={(e) => subtractQuantity(e, product)} className='text-sm cursor-pointer w-5 text-gray-500 focus:text-gray-600' />
                                                                         <input type="number" min="1" max={product.stock} onBlur={(e) => e.target.value = product.pivot.quantity} onChangeCapture={(e) => handleChange(e, product)} defaultValue={product.pivot.quantity} name={`quantity`} className='w-5 border-0 focus:0 focus:shadow-none focus:ring-0 p-0 text-center text-sm text-gray-700' />
                                                                         <FaAngleRight onClick={(e) => addQuantity(e, product)} className='text-sm cursor-pointer w-5 text-gray-500 focus:text-gray-600' />
@@ -141,7 +141,7 @@ export default function CartSlideOver({open, setOpen, cart}) {
                                                                             className="font-medium text-indigo-600 hover:text-indigo-500"
                                                                             preserveScroll
                                                                         >
-                                                                            Remove
+                                                                            Hapus
                                                                         </Link>
                                                                     </div>
                                                                 </div>
@@ -156,10 +156,9 @@ export default function CartSlideOver({open, setOpen, cart}) {
                                         {cart ?
                                             <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                                                 <div className="flex justify-between text-base font-medium text-gray-900">
-                                                    <p>Subtotal</p>
+                                                    <p>Total</p>
                                                     <p>{currencyFormat(cart.total_price)}</p>
                                                 </div>
-                                                <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                                             <div className="mt-6">
                                                 <Link
                                                 href={route("checkout.index")}
@@ -171,14 +170,14 @@ export default function CartSlideOver({open, setOpen, cart}) {
                                             </div>
                                             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                                                 <p>
-                                                or &nbsp;
+                                                atau &nbsp;
                                                 {route().current("shop.index") ?
                                                     <button
                                                         type="button"
                                                         className="font-medium text-indigo-600 hover:text-indigo-500"
                                                         onClick={() => setOpen(false)}
                                                     >
-                                                        Continue Shopping
+                                                        Lanjut belanja
                                                         <span aria-hidden="true"> &rarr;</span>
                                                     </button> :
                                                     <Link
@@ -187,7 +186,7 @@ export default function CartSlideOver({open, setOpen, cart}) {
                                                         href={route("shop.index")}
                                                         onClick={() => setOpen(false)}
                                                     >
-                                                        Continue Shopping
+                                                        Lanjut belanja
                                                         <span aria-hidden="true"> &rarr;</span>
                                                     </Link>
                                                 }

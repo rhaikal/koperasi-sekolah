@@ -27,10 +27,10 @@ export default function Navbar() {
 
                     <div className="hidden space-x-8 sm:-my-px sm:flex">
                         <NavLink href={route('home')} active={route().current('home')}>
-                            Home
+                            Beranda
                         </NavLink>
                         <NavLink href={route('shop.index')} active={route().current('shop.*')}>
-                            Shop
+                            Toko
                         </NavLink>
                     </div>
 
@@ -66,8 +66,8 @@ export default function Navbar() {
 
                                     <Dropdown.Content containerClasses={"inset-y-4"}>
                                         {auth.user.role != '1' && <Dropdown.Link href={route('dashboard')}>Dashboard</Dropdown.Link>}
-                                        <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
-                                        <Dropdown.Link href={route('history.index')}>History</Dropdown.Link>
+                                        <Dropdown.Link href={route('profile.edit')}>Profil</Dropdown.Link>
+                                        <Dropdown.Link href={route('history.index')}>Riwayat</Dropdown.Link>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
                                             Log Out
                                         </Dropdown.Link>

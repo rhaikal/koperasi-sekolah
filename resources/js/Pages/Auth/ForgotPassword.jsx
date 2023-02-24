@@ -21,12 +21,12 @@ export default function ForgotPassword({ status }) {
     };
 
     return (
-        <GuestLayout header='Forgot Password' imgSrc='http://127.0.0.1:8000/img/auth/forgot-password-office.jpeg' imgDarkSrc='http://forgot-password-office-dark.jpeg' imgAlt='Office'>
+        <GuestLayout header='Lupa Password' imgSrc='http://127.0.0.1:8000/img/auth/forgot-password-office.jpeg' imgDarkSrc='http://forgot-password-office-dark.jpeg' imgAlt='Office'>
             <Head title="Forgot Password" />
 
             <div className="mb-4 text-sm text-gray-600">
-                Forgot your password? No problem. Just let us know your email address and we will email you a password
-                reset link that will allow you to choose a new one.
+                Lupa kata sandi anda? Tidak masalah. Beri tahu kami alamat email anda dan kami akan mengirimkan link reset password melalui email
+                yang memungkinkan anda mengubah kata sandi anda.
             </div>
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
@@ -47,7 +47,7 @@ export default function ForgotPassword({ status }) {
 
                 <div className="flex items-center mt-4">
                     <PrimaryButton className="block justify-center bg-indigo-500 w-full" processing={processing}>
-                        Send To Email
+                        Kirim Ke Email
                     </PrimaryButton>
                 </div>
             </form>

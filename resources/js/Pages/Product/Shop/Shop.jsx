@@ -17,7 +17,7 @@ const Shop = ({categories, products}) => {
 
                     <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="flex items-baseline justify-between border-b border-gray-200 pt-10 pb-6">
-                            <h1 className="text-4xl font-bold tracking-tight text-gray-900">Shop</h1>
+                            <h1 className="text-4xl font-bold tracking-tight text-gray-900">Toko</h1>
 
                             <div className="flex items-center">
                                 <button
@@ -33,18 +33,18 @@ const Shop = ({categories, products}) => {
 
                         <section aria-labelledby="products-heading" className="pt-6 pb-6">
                             <h2 id="products-heading" className="sr-only">
-                            Products
+                            Produk
                             </h2>
 
                             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
                                 <form className="hidden lg:block">
-                                    <h3 className="sr-only">Categories</h3>
+                                    <h3 className="sr-only">Kategori</h3>
                                     <Disclosure as="div" className="border-b border-gray-200 py-6">
                                         {({ open }) => (
                                         <>
                                             <h3 className="flow-root">
                                             <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
-                                                <span className="font-bold text-base text-gray-900">Categories</span>
+                                                <span className="font-bold text-base text-gray-900">Kategori</span>
                                                 <span className="ml-6 flex items-center">
                                                     {open ?
                                                         <FaMinus /> : <FaPlus />
@@ -86,7 +86,7 @@ const Shop = ({categories, products}) => {
                                     {!_.isEmpty(products.data) ?
                                         <ProductList products={products.data} links={products} /> :
                                         <div className='h-full'>
-                                            <p className='text-2xl font-bold italic text-center mt-10 text-gray-400'>Product not found!</p>
+                                            <p className='text-2xl font-bold italic text-center mt-10 text-gray-400'>Tidak ada produk</p>
                                         </div>
                                     }
                                 </div>

@@ -23,7 +23,7 @@ export default function Pagination({links, from, to, total }) {
     return (
         <div className="flex flex-col items-center">
             <span className="text-sm text-gray-700 dark:text-gray-400">
-                Showing <span className="font-semibold text-gray-900 dark:text-white">{from}</span> to <span className="font-semibold text-gray-900 dark:text-white">{to}</span> of <span className="font-semibold text-gray-900 dark:text-white">{total}</span> Entries
+                Menampilkan <span className="font-semibold text-gray-900 dark:text-white">{from}</span> - <span className="font-semibold text-gray-900 dark:text-white">{to}</span> dari <span className="font-semibold text-gray-900 dark:text-white">{total}</span> data
             </span>
             <div className="inline-flex mt-2 xs:mt-0">
                 {prevButton}

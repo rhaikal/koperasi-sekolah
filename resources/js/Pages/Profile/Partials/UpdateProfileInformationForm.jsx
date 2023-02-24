@@ -31,10 +31,10 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Profile Information</h2>
+                <h2 className="text-lg font-medium text-gray-900">Informasi Profil</h2>
 
                 <p className="mt-1 text-sm text-gray-600">
-                    Update your account's profile information and email address.
+                    Perbarui informasi profil akun dan alamat email anda.
                 </p>
             </header>
 
@@ -51,7 +51,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                     </div>
                     <div className='ml-8 col-span-1'>
                         <div className='mb-2'>
-                            <InputLabel for="name" value="Name" />
+                            <InputLabel for="name" value="Nama" />
 
                             <TextInput
                                 id="name"
@@ -100,7 +100,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         </div>
 
                         <div className='mb-2'>
-                            <InputLabel for="no_phone" value="Number Phone" />
+                            <InputLabel for="no_phone" value="No Telepon" />
 
                             <TextInput
                                 id="no-phone"
@@ -140,7 +140,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 )}
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton processing={form.processing}>Save</PrimaryButton>
+                    <PrimaryButton processing={form.processing}>Simpan</PrimaryButton>
 
                     <Transition
                         show={form.recentlySuccessful}
@@ -148,7 +148,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         leaveTo="opacity-0"
                         className="transition ease-in-out"
                     >
-                        <p className="text-sm text-gray-600">Saved.</p>
+                        <p className="text-sm text-gray-600">Tersimpan.</p>
                     </Transition>
                 </div>
             </form>

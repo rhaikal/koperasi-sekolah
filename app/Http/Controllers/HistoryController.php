@@ -24,7 +24,7 @@ class HistoryController extends Controller
     {
         $orders = $this->orderService->getOrders(10);
 
-        $orders->load('invoice:order_id,method');
+        $orders->load('invoice:order_id,method,created_at');
 
         return inertia('Order/History/History', [
             'orders' => $orders

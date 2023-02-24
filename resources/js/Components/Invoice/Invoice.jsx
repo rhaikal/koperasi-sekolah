@@ -1,39 +1,39 @@
-import { currencyFormat, formatDate } from "@/helper"
+import { currencyFormat, dateFormat } from "@/helper"
 import Table from "../Card/Table/Table"
 
 export default function Invoice({order}){
     return (
         <>
             <div className="border-b border-gray-200 p-6">
-                <h1 className="text-4xl font-bold tracking-tight text-gray-900">Invoice #{order.shortId}</h1>
+                <h1 className="text-4xl font-bold tracking-tight text-gray-900">Nota #{order.shortId}</h1>
             </div>
             <div className="pt-2 sm:pt-4 lg:pt-6 px-4 sm:px-6 lg:px-8 flex flex-col">
                 <div className="grid grid-cols-6">
                     <div className="col-span-3 lg:col-span-2">
-                        <p className="text-gray-600 text-sm">Name : {order.user.name}</p>
+                        <p className="text-gray-600 text-sm">Nama : {order.user.name}</p>
                         <p className="text-gray-600 text-sm">Email : {order.user.email}</p>
-                        <p className="text-gray-600 text-sm">Number Phone : {order.user.no_phone}</p>
+                        <p className="text-gray-600 text-sm">Nomor Telepon : {order.user.no_phone}</p>
                     </div>
                     <div className="col-span-3 lg:col-span-2">
-                        <p className="text-gray-600 text-sm">Date : {formatDate(order.invoice.created_at)}</p>
+                        <p className="text-gray-600 text-sm">Tanggal : {dateFormat(order.invoice.created_at)}</p>
                         <p className="text-gray-600 text-sm">
                             {
-                                order.status == 1 || order.status == '-' ? `Due Date ${formatDate(order.invoice.due_date)}`:
-                                order.status == 2 ? `Payment Date ${formatDate(order.invoice.payment.payment_date)}` :
-                                `Picked Date ${formatDate(order.pickup.picked_at)}`
+                                order.status == 1 || order.status == '-' ? `Batas Pembayaran : ${dateFormat(order.invoice.due_date)}`:
+                                order.status == 2 ? `Tanggal Pembayaran : ${dateFormat(order.invoice.payment.payment_date)}` :
+                                `Tanggal Pengambilan : ${dateFormat(order.pickup.picked_at)}`
                             }
                         </p>
-                        <p className="text-gray-600 text-sm">Payment Method : {order.invoice.method}</p>
+                        <p className="text-gray-600 text-sm">Metode Pembayaran : {_.capitalize(order.invoice.method)}</p>
                     </div>
                 </div>
             </div>
             <div className="pt-8">
                 <Table>
                     <Table.Head>
-                        <Table.Header>image</Table.Header>
-                        <Table.Header>name</Table.Header>
-                        <Table.Header>price</Table.Header>
-                        <Table.Header>quantity</Table.Header>
+                        <Table.Header>gambar</Table.Header>
+                        <Table.Header>nama</Table.Header>
+                        <Table.Header>harga</Table.Header>
+                        <Table.Header>kuantitas</Table.Header>
                         <Table.Header>subtotal</Table.Header>
                     </Table.Head>
                     <Table.Body>

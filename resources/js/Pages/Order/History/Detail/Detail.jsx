@@ -10,10 +10,10 @@ const DetailHistory = ({order}) => {
     return (
         <div className="py-12">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <Link className={primaryButtonClass + ' mr-3'} href={route('history.index')}><BsBack className="mr-2 h-4" /> Back</Link>
+                <Link className={primaryButtonClass + ' mr-3'} href={route('history.index')}><BsBack className="mr-2 h-4" /> Kembali</Link>
                 {order.status > 0 && order.status < 3 &&
                     <>
-                        {order.status > 1 && <a className={primaryButtonClass} href={route('exported.order', order)}><TbFileExport className="mr-2 w-4 h-4" /> Export</a>}
+                        {order.status > 1 && <a className={primaryButtonClass} href={route('exported.order', order)}><TbFileExport className="mr-2 w-4 h-4" /> Cetak</a>}
                         <div className="bg-white overflow-x-auto shadow-sm sm:rounded-lg p-3 mt-6">
                             <Header className={"text-center italic"}>*Note</Header>
                             {{

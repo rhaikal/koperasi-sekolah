@@ -23,8 +23,8 @@ export default function ProductPagination({links}) {
             <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                 <div>
                     <p className="text-sm text-gray-700">
-                        Showing <span className="font-medium">{links.from}</span> to <span className="font-medium">{links.to}</span> of{' '}
-                        <span className="font-medium">{links.total}</span> results
+                        Menampilkan <span className="font-medium">{links.from}</span> - <span className="font-medium">{links.to}</span> dari{' '}
+                        <span className="font-medium">{links.total}</span> hasil
                     </p>
                 </div>
                 <div>

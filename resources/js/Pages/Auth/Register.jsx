@@ -36,13 +36,13 @@ export default function Register() {
     };
 
     return (
-        <GuestLayout header='Create account' imgSrc='http://127.0.0.1:8000/img/auth/create-account-office.jpeg' imgDarkSrc='http://127.0.0.1:8000/img/auth/create-account-office-dark.jpeg' imgAlt='Office...'>
+        <GuestLayout header='Buat akun baru' imgSrc='http://127.0.0.1:8000/img/auth/create-account-office.jpeg' imgDarkSrc='http://127.0.0.1:8000/img/auth/create-account-office-dark.jpeg' imgAlt='Office...'>
             <Head title="Register" />
 
             <form onSubmit={submit}>
                 <div>
                     <InputLabel>
-                        <Label>Name</Label>
+                        <Label>Nama</Label>
 
                         <TextInput
                             type="text"

@@ -19,10 +19,10 @@ export default function ResponsiveNavbar() {
         >
             <div className="pt-2 pb-3 space-y-1">
                 <ResponsiveNavLink href={route('home')} active={route().current('home')}>
-                    Home
+                    Beranda
                 </ResponsiveNavLink>
                 <ResponsiveNavLink href={route('shop.index')} active={route().current('shop.index')}>
-                    Shop
+                    Toko
                 </ResponsiveNavLink>
             </div>
 
@@ -40,8 +40,8 @@ export default function ResponsiveNavbar() {
 
                     <div className="mt-3 space-y-1">
                         {auth.user.role != '1' && <ResponsiveNavLink href={route('dashboard')}>dashboard</ResponsiveNavLink>}
-                        <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('history.index')}>History</ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('profile.edit')}>Profil</ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('history.index')}>Riwayat</ResponsiveNavLink>
                         <ResponsiveNavLink method="post" href={route('logout')} as="button">
                             Log Out
                         </ResponsiveNavLink>

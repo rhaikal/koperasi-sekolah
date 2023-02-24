@@ -29,7 +29,7 @@ export default function Detail({errors, auth, product}) {
             <div className="py-12 px-5 sm:px-10">
                 <div className="max-w-7xl">
                     <Link href={route('shop.index')} className={primaryButtonClass + ' mb-5'}>
-                        <BsBack className='mr-2' /> Back
+                        <BsBack className='mr-2' /> Kembali
                     </Link>
                     <div className="bg-white overflow-hidden shadow-md sm:rounded-lg p-3">
                         <div className="flex flex-col overflow-y-auto md:flex-row">
