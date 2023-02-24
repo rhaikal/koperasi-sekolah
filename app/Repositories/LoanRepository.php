@@ -7,14 +7,15 @@ use App\Models\Loan;
 class LoanRepository
 {
     private $loans;
+    private $request;
 
     public function __construct()
     {
-        $request = request();
+        $this->request = request();
         $this->loans = Loan::with('user:id,name')->latest();
 
-        if($request->search)
-            $this->loans = $this->loans->keyword($request->search);
+        if($this->request->search)
+            $this->loans = $this->loans->keyword($this->request->search);
     }
 
     public function getAll()
@@ -24,6 +25,13 @@ class LoanRepository
 
     public function paginate($paginate)
     {
+        $keyword = $this->request->search;
+
+        if($keyword)
+            $this->loans = $this->loans->orWhereHas('user', function($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+            });
+
         return $this->loans->paginate($paginate);
     }
 

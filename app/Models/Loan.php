@@ -30,12 +30,6 @@ class Loan extends Model
     {
         $query = $query->where('id', 'LIKE', '%' . $keyword . '%');
 
-        if(auth()->hasUser() && auth()->user()->role != 2){
-            $query = $query->orWhereHas('user', function($query) use ($keyword) {
-                $query->where('name', 'LIKE', '%' . $keyword . '%');
-            });
-        }
-
         return $query;
     }
 
