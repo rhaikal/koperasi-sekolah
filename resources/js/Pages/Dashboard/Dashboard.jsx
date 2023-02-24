@@ -9,7 +9,7 @@ import React, { useEffect } from "react";
 import { FaBoxes, FaCoins, FaMoneyCheck, FaReceipt, FaUsers } from "react-icons/fa";
 import { SlOptionsVertical } from "react-icons/sl";
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 let revenueData = [];
 
 const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendingPayments, pendingPickups}) => {
@@ -31,7 +31,7 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendin
                         <FaMoneyCheck className="h-5 w-5 text-current"/>
                     }
                     iconClass="text-green-500 bg-green-100"
-                    text="Revenue"
+                    text="Pendapatan"
                     count={currencyFormat(revenue)}
                 />}
                 <Label
@@ -39,7 +39,7 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendin
                         <FaCoins className="w-5 h-5 text-current"/>
                     }
                     iconClass="text-orange-500 bg-orange-100"
-                    text="Total loans"
+                    text="Total Pinjaman"
                     count={loans.total}
                 />
                 <Label
@@ -47,7 +47,7 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendin
                         <FaReceipt className="w-5 h-5 text-current"/>
                     }
                     iconClass="text-blue-500 bg-blue-100"
-                    text="Pending payments"
+                    text="Menunggu Dibayar"
                     count={pendingPayments}
                 />
                 <Label
@@ -55,20 +55,20 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendin
                         <FaBoxes className="w-5 h-5 text-current" />
                     }
                     iconClass="text-teal-500 bg-teal-100"
-                    text="Pending pickups"
+                    text="Menunggu Diambil"
                     count={pendingPickups}
                 />
             </div>
             <div className={`grid gap-6 mb-8  ${auth.user.role == '2' ? 'lg:grid-cols-2' : 'lg:grid-cols-3'}`}>
                 <div className={`${auth.user.role == '2' ? 'col-span-1' : 'col-span-3'} scale-100`}>
-                    <h1 className="font-medium text-lg text-stone-600">Recent Loans</h1>
+                    <h1 className="font-medium text-lg text-stone-600">Peminjaman Terbaru</h1>
                     <div className="min-w-0 mt-4 overflow-x-auto rounded-lg shadow-lg">
                         <Table>
                             <Table.Head>
                                 <Table.Header>Id</Table.Header>
-                                <Table.Header>Borrower name</Table.Header>
-                                <Table.Header>Ammount</Table.Header>
-                                <Table.Header>Borrow date</Table.Header>
+                                <Table.Header>Nama peminjam</Table.Header>
+                                <Table.Header>jumlah</Table.Header>
+                                <Table.Header>Tanggal meminjam</Table.Header>
                                 <Table.Header></Table.Header>
                             </Table.Head>
                             <Table.Body>
@@ -99,13 +99,13 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendin
                     </div>
                 </div>
                 <div className={`${auth.user.role == '2' ? 'col-span-1' : 'col-span-2'} scale-100`}>
-                    <h1 className="font-medium text-lg text-stone-600">Recent Orders</h1>
+                    <h1 className="font-medium text-lg text-stone-600">Pesanan Terbaru</h1>
                     <div className="min-w-0 mt-4 overflow-x-auto rounded-lg shadow-lg">
                         <Table>
                             <Table.Head>
                                 <Table.Header>Id</Table.Header>
-                                <Table.Header>Customer Name</Table.Header>
-                                <Table.Header>Method</Table.Header>
+                                <Table.Header>Nama Siswa</Table.Header>
+                                <Table.Header>Metode</Table.Header>
                                 <Table.Header>Status</Table.Header>
                                 <Table.Header></Table.Header>
                             </Table.Head>
@@ -146,14 +146,14 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendin
                 { auth.user.role != '2' &&
                     <div className="col-span-2 lg:col-span-1">
                         <div className="flex justify-between items-center">
-                            <h1 className="font-medium text-lg text-stone-600">Stock Condition</h1>
+                            <h1 className="font-medium text-lg text-stone-600">Kondisi Persediaan</h1>
                             <Link href={route('products.index')} className="text-[10px] text-white bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 px-2 p-1 font-semibold rounded">SEE ALL</Link>
                         </div>
                         <div className="min-w-0 mt-4 overflow-x-auto rounded-lg shadow-lg">
                             <Table>
                                 <Table.Head>
-                                    <Table.Header>Name</Table.Header>
-                                    <Table.Header>Stock</Table.Header>
+                                    <Table.Header>Nama</Table.Header>
+                                    <Table.Header>Stok</Table.Header>
                                 </Table.Head>
                                 <Table.Body>
                                     {!_.isEmpty(products) ? products.map((product) => (
@@ -175,11 +175,11 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendin
             { auth.user.role != '2' &&
                 <div className={`grid gap-6 mb-8 grid-cols-1`}>
                     <div>
-                        <h1 className="font-medium text-lg text-stone-600">Revenue Graphic</h1>
+                        <h1 className="font-medium text-lg text-stone-600">Grafik Pendapatan</h1>
                         <div className="relative flex flex-col min-w-0 break-words bg-white w-full mt-6 shadow-lg rounded">
                             <div className="p-4 flex-auto">
                                 {/* Chart */}
-                                <LineChart labels={labels} label={"revenue"} data={revenueData} />
+                                <LineChart labels={labels} label={"pendapatan"} data={revenueData} />
                             </div>
                         </div>
                     </div>
