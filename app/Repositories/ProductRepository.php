@@ -47,6 +47,11 @@ class productRepository
         return $products->paginate($paginate)->appends(request()->query());
     }
 
+    public function limit($limit)
+    {
+        return Product::latest()->limit($limit)->get();
+    }
+
     public function create($data)
     {
         $product = Product::create($data);

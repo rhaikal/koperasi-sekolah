@@ -2,8 +2,9 @@ import React from 'react';
 import HomeLayout from '@/Layouts/HomeLayout';
 import { Head, Link } from '@inertiajs/inertia-react';
 import { primaryButtonClass } from '@/Components/Button/PrimaryButton';
+import ProductList from './Product/Shop/Partials/ProductList';
 
-const Home = () => {
+const Home = ({products}) => {
     return (
         <>
             <Head title="Home" />
@@ -23,6 +24,10 @@ const Home = () => {
                         <img className="w-full h-full lg:max-w-3xl" src="/img/hero/Catalogue-pana.svg" alt="Catalogue-pana.svg" />
                     </div>
                 </div>
+            </div>
+            <div className='container px-6 py-16 mx-auto bg-indigo-400'>
+                <h1 className="text-2xl font-bold text-white capitalize lg:text-3xl dark:text-white mb-8">produk terbaru </h1>
+                <ProductList products={products} containerClasses="w-[80%] mx-auto" />
             </div>
         </>
     );

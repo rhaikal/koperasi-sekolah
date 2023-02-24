@@ -1,21 +1,22 @@
 <?php
 
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoanController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PickupController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\OrderController as DashboardOrderController;
-use App\Http\Controllers\Dashboard\ProductController;
-use App\Http\Controllers\Dashboard\UserController;
-use App\Http\Controllers\HistoryController;
-use App\Http\Controllers\LoanController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\PickupController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ReportController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,9 +38,7 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/shop', [OrderController::class , 'index'])->name('shop.index');
 Route::get('/shop/{product}', [OrderController::class , 'show'])->name('shop.show');

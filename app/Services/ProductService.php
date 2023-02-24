@@ -16,11 +16,13 @@ class ProductService
         $this->productRepository = $productRepository;
     }
 
-    public function getProducts($paginate = null)
+    public function getProducts($paginate = null, $limit = null)
     {
         $products = null;
         if($paginate){
             $products = $this->productRepository->paginate($paginate);
+        } else if($limit) {
+            $products = $this->productRepository->limit($limit);
         } else {
             $products = $this->productRepository->getAll();
         }

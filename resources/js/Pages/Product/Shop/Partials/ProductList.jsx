@@ -3,15 +3,15 @@ import { currencyFormat } from "@/helper"
 import { Link } from "@inertiajs/inertia-react"
 import { BiSearch } from "react-icons/bi"
 
-export default function ProductList({products, links}) {
+export default function ProductList({products, links = null, containerClasses = 'bg-white'}) {
     return (
         <>
-            <div className="bg-white">
+            <div className={containerClasses}>
                 <div className="mx-auto max-w-2xl lg:max-w-7xl">
                     <h2 className="sr-only">Products</h2>
                     <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
                     {products.map((product) => (
-                        <div key={product.id} className="flex justify-between flex-col product-item overflow-hidden group shadow-lg p-2">
+                        <div key={product.id} className="flex justify-between flex-col product-item overflow-hidden group shadow-lg p-2 bg-white rounded-lg">
                             <div>
                             <div className="relative product-item-pic aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                                 <img
@@ -43,7 +43,7 @@ export default function ProductList({products, links}) {
                     </div>
                 </div>
             </div>
-            {links.links.length > 3 && <ProductPagination links={links} />}
+            {links && links.links.length > 3 && <ProductPagination links={links} />}
         </>
     )
 }
