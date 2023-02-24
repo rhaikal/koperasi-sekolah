@@ -32,7 +32,7 @@ export default function Sidebar({ auth }) {
                         </SideDropdown.Panel>
                     </SideDropdown>
                     {auth.user.role != '2' && <>
-                        <SideLink href={route('categories.index')} active={route().current('categories.index')}><BiCategoryAlt className="w-5 h-5 mr-4 text-current"/> Category</SideLink>
+                        <SideLink href={route('categories.index')} active={route().current('categories.index')}><BiCategoryAlt className="w-5 h-5 mr-4 text-current"/> Kategori</SideLink>
                         <SideLink href={route('products.index')} active={route().current('products.*')}><BsArchiveFill className="w-5 h-5 mr-4 text-current"/> Product</SideLink>
                     </>}
                 </ul>

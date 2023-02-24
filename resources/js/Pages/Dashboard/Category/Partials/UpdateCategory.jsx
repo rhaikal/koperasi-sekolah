@@ -11,7 +11,7 @@ export default function UpdateCategory({category}) {
     }
 
     return (
-        <Dropdown.Link onClick={(e) => {e.preventDefault; openModal(handleSubmit, 'Edit Category', 'Change', category)}}>
+        <Dropdown.Link onClick={(e) => {e.preventDefault; openModal(handleSubmit, 'Update Kategori', 'Simpan', category)}}>
             Update
         </Dropdown.Link>
     )

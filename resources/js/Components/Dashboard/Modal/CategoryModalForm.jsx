@@ -62,7 +62,7 @@ export default function CategoryModalForm({onSubmit, header, button, category}) 
                 </h2>
 
                 <div className="mt-6">
-                    <InputLabel for="name" value="Name" />
+                    <InputLabel for="name" value="Nama" />
 
                     <TextInput
                         id="name"

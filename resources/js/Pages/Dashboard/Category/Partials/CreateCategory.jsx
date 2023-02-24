@@ -11,8 +11,8 @@ export default function CreateCategory() {
     }
 
     return (
-        <PrimaryButton onClick={() => (openModal(handleSubmit, 'Add New Category', 'Create'))} className="mb-4 text-gray-500 float-right bg-violet-500 focus:bg-violet-600 focus:ring-violet-400 hover:bg-violet-600 dark:bg-gray-200">
-            Create Category
+        <PrimaryButton onClick={() => (openModal(handleSubmit, 'Buat Kategori Baru', 'Simpan'))} className="mb-4 float-right">
+            Buat Kategori
         </PrimaryButton>
     )
 }

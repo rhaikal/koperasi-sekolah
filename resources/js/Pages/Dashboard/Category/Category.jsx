@@ -33,7 +33,7 @@ const Category = ({categories}) => {
                 <Table>
                     <Table.Head>
                         <Table.Header>Id</Table.Header>
-                        <Table.Header>Name</Table.Header>
+                        <Table.Header>Nama</Table.Header>
                         <Table.Header>Slug</Table.Header>
                         <Table.Header></Table.Header>
                     </Table.Head>
@@ -68,6 +68,6 @@ const Category = ({categories}) => {
     )
 }
 
-Category.layout = page => <DashboardLayout children={page} header="Category"/>
+Category.layout = page => <DashboardLayout children={page} header="Kategori"/>
 
 export default Category
