@@ -3,7 +3,7 @@ import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/Input/InputError';
 import InputLabel from '@/Components/Input/InputLabel';
 import PrimaryButton from '@/Components/Button/PrimaryButton';
-import SecondaryButton from '@/Components/Button/SecondaryButton';
+import SecondaryButton, { secondaryButtonClass } from '@/Components/Button/SecondaryButton';
 import TextInput from '@/Components/Input/TextInput';
 import Label from '@/Components/Input/Label';
 import { FaGithub } from 'react-icons/fa';
@@ -140,17 +140,10 @@ export default function Register() {
             <hr className='my-8'/>
 
             <div className='block ms-0 mt-4'>
-                <SecondaryButton processing={processing} className='w-full justify-center hover:ring-1 hover:ring-gray-500'>
-                    <FaGithub className='text-base mr-2' />
-                    Github
-                </SecondaryButton>
-            </div>
-
-            <div className='block ms-0 mt-4'>
-                <SecondaryButton processing={processing} className='w-full justify-center hover:ring-1 hover:ring-gray-500'>
+                <a className={secondaryButtonClass + ' w-full justify-center hover:ring-1 hover:ring-gray-500'} href={route('socialite.redirect', 'google')}>
                     <FcGoogle className='text-base mr-2'/>
                     Google
-                </SecondaryButton>
+                </a>
             </div>
 
             <div className="flex items-center mt-4">
@@ -158,7 +151,7 @@ export default function Register() {
                     href={route('login')}
                     className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                    Already registered?
+                    Sudah terdaftar?
                 </Link>
             </div>
         </GuestLayout>
