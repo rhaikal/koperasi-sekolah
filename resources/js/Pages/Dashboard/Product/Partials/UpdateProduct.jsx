@@ -9,7 +9,7 @@ const UpdateProduct = ({categories, product}) => {
     }
 
     return (
-        <ProductForm product={product} categories={categories} handleSubmit={handleSubmit} header={"Update Product"}></ProductForm>
+        <ProductForm product={product} categories={categories} handleSubmit={handleSubmit} header={"Update Produk"}></ProductForm>
     )
 }
 

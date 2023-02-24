@@ -9,7 +9,7 @@ const CreateProduct = ({categories}) => {
     }
 
     return (
-        <ProductForm categories={categories} handleSubmit={handleSubmit} header={"Create Product"}></ProductForm>
+        <ProductForm categories={categories} handleSubmit={handleSubmit} header={"Buat Produk"}></ProductForm>
     )
 }
 

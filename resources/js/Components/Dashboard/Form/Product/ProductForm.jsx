@@ -71,7 +71,7 @@ export default function ProductForm({categories, handleSubmit, header, product})
 
     return (
         <div className="p-6">
-            <Link className={primaryButtonClass} href={route('products.index')}><BsBack className="mr-2" /> Back</Link>
+            <Link className={primaryButtonClass} href={route('products.index')}><BsBack className="mr-2" /> Kembali</Link>
             <div className="min-h-screen py-3 flex justify-center">
                 <div className="container max-w-screen-lg mx-auto">
                     <form onSubmit={onSubmit}>
@@ -95,7 +95,7 @@ export default function ProductForm({categories, handleSubmit, header, product})
                                                 id="name"
                                                 type="text"
                                                 name="name"
-                                                placeholder="Name"
+                                                placeholder="Nama"
                                                 isFocused={true}
                                                 handleChange={handleChange}
                                                 handleKeyUp={handleSlug}
@@ -121,7 +121,7 @@ export default function ProductForm({categories, handleSubmit, header, product})
                                         <div className="md:col-span-6 my-1">
                                             <Select
                                                 name={"category_id"}
-                                                placeholder="Category"
+                                                placeholder="Kategori"
                                                 options={options}
                                                 onChange={handleSelect}
                                                 hasErrors={form.errors.category_id}
@@ -135,7 +135,7 @@ export default function ProductForm({categories, handleSubmit, header, product})
                                                 id="price"
                                                 type="text"
                                                 name="price"
-                                                placeholder="Price"
+                                                placeholder="Harga"
                                                 value={form.data.price}
                                                 handleChange={handleChange}
                                                 hasErrors={form.errors.price}
@@ -148,7 +148,7 @@ export default function ProductForm({categories, handleSubmit, header, product})
                                                 id="stock"
                                                 type="number"
                                                 name="stock"
-                                                placeholder="Stock"
+                                                placeholder="Stok"
                                                 value={form.data.stock}
                                                 handleChange={handleChange}
                                                 hasErrors={form.errors.stock}
@@ -157,14 +157,14 @@ export default function ProductForm({categories, handleSubmit, header, product})
                                         </div>
 
                                         <div className="md:col-span-6 my-1">
-                                            <textarea id="description" name="description" value={form.data.description} onChange={handleChange} rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description"></textarea>
+                                            <textarea id="description" name="description" value={form.data.description} onChange={handleChange} rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Deskripsi"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="mt-4 text-center">
                                 <div className="inline-flex items-center w-full">
-                                    <PrimaryButton className="font-bold py-2 px-4 w-full justify-center">Submit</PrimaryButton>
+                                    <PrimaryButton className="font-bold py-2 px-4 w-full justify-center">Simpan</PrimaryButton>
                                 </div>
                             </div>
                         </div>

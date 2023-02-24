@@ -49,7 +49,7 @@ const Product = ({products, categories, query }) => {
             <div className="flex justify-between py-4">
                 <div className="scale-100 flex">
                     <Dropdown>
-                        <Dropdown.Trigger className="flex"><button className="flex z-10 items-center px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">{currentCategory?.name ?? "Category"} <FaAngleDown className="ml-2 w-4 h-4"></FaAngleDown></button></Dropdown.Trigger>
+                        <Dropdown.Trigger className="flex"><button className="flex z-10 items-center px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">{currentCategory?.name ?? "Kategori"} <FaAngleDown className="ml-2 w-4 h-4"></FaAngleDown></button></Dropdown.Trigger>
                         <Dropdown.Content align="left">
                             {categoriesList.map((category) => (
                                 <Dropdown.Link key={category.id} only={['products', 'query']} href={route('products.index')} data={{ category: category.slug }}>{category.name}</Dropdown.Link>
@@ -60,20 +60,20 @@ const Product = ({products, categories, query }) => {
                             </div>
                         </Dropdown.Content>
                     </Dropdown>
-                    <div className="w-80">
-                        <input type="search" defaultValue={query?.search ?? null} onChange={handleSearch} id="search-dropdown" className="w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search products by name or slug" />
+                    <div className="w-96">
+                        <input type="search" defaultValue={query?.search ?? null} onChange={handleSearch} id="search-dropdown" className="w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Cari produk berdasarkan nama atau slug" />
                     </div>
                 </div>
-                <Link className={primaryButtonClass + ' text-gray-500 h-fit self-center'} href={route("products.create")}>Create Product</Link>
+                <Link className={primaryButtonClass + ' text-gray-500 h-fit self-center'} href={route("products.create")}>Buat Produk</Link>
             </div>
             <Table>
                 <Table.Head>
                     <Table.Header>Id</Table.Header>
-                    <Table.Header>Image</Table.Header>
-                    <Table.Header>Name</Table.Header>
-                    <Table.Header>Category</Table.Header>
-                    <Table.Header>Price</Table.Header>
-                    <Table.Header>Stock</Table.Header>
+                    <Table.Header>Gambar</Table.Header>
+                    <Table.Header>Nama</Table.Header>
+                    <Table.Header>Kategori</Table.Header>
+                    <Table.Header>Harga</Table.Header>
+                    <Table.Header>Stok</Table.Header>
                     <Table.Header></Table.Header>
                 </Table.Head>
                 <Table.Body>
