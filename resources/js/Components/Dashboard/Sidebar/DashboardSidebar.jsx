@@ -22,13 +22,13 @@ export default function Sidebar({ auth }) {
                     </>}
                     <SideLink href={route('loans.index')} active={route().current('loans.*')}><GiTwoCoins className="w-5 h-5 mr-4 text-current"/> Pinjaman</SideLink>
                     <SideDropdown active={(route().current('order.*'))}>
-                        <SideDropdown.Button><BsReceipt className="w-5 h-5 mr-4 text-current" /> Order</SideDropdown.Button>
+                        <SideDropdown.Button><BsReceipt className="w-5 h-5 mr-4 text-current" /> Pesanan</SideDropdown.Button>
                         <SideDropdown.Panel>
-                            <SideDropdown.Link href={route('order.index')} current={route().current('order.index', {filter: undefined})}>All</SideDropdown.Link>
-                            <SideDropdown.Link href={route('order.index', {filter: 'unpaid'})} current={route().current('order.index', {filter: 'unpaid'})}>Unpaid</SideDropdown.Link>
-                            <SideDropdown.Link href={route('order.index', {filter: 'paid'})} current={route().current('order.index', {filter: 'paid'})}>Paid</SideDropdown.Link>
-                            <SideDropdown.Link href={route('order.index', {filter: 'done'})} current={route().current('order.index', {filter: 'done'})}>Done</SideDropdown.Link>
-                            <SideDropdown.Link href={route('order.index', {filter: 'expired'})} current={route().current('order.index', {filter: 'expired'})}>Expired</SideDropdown.Link>
+                            <SideDropdown.Link href={route('order.index')} current={route().current('order.index', {filter: undefined})}>Semua</SideDropdown.Link>
+                            <SideDropdown.Link href={route('order.index', {filter: 'unpaid'})} current={route().current('order.index', {filter: 'unpaid'})}>Belum Dibayar</SideDropdown.Link>
+                            <SideDropdown.Link href={route('order.index', {filter: 'paid'})} current={route().current('order.index', {filter: 'paid'})}>Sudah Dibayar</SideDropdown.Link>
+                            <SideDropdown.Link href={route('order.index', {filter: 'done'})} current={route().current('order.index', {filter: 'done'})}>Selesai</SideDropdown.Link>
+                            <SideDropdown.Link href={route('order.index', {filter: 'expired'})} current={route().current('order.index', {filter: 'expired'})}>Kadaluwarsa</SideDropdown.Link>
                         </SideDropdown.Panel>
                     </SideDropdown>
                     {auth.user.role != '2' && <>

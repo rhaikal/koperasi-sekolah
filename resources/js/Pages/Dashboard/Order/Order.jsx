@@ -13,19 +13,19 @@ import { useEffect, useState } from "react"
 
 const statusList = [
     {
-        label: 'Unpaid',
+        label: 'Belum Dibayar',
         value: 'unpaid'
     },
     {
-        label: 'Paid',
+        label: 'Sudah Dibayar',
         value: 'paid'
     },
     {
-        label: 'Done',
+        label: 'Selesai',
         value: 'done'
     },
     {
-        label: 'Expired',
+        label: 'Kadaluwarsa',
         value: 'expired'
     },
 ]
@@ -86,16 +86,16 @@ const Order = ({ orders, query, auth }) => {
                             ))}
                         </Dropdown.Content>
                     </Dropdown>
-                    <div className="w-80">
-                        <input type="search" defaultValue={query?.search ?? null} onChange={handleSearch} id="search-dropdown" className="w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search orders by id or customer name" />
+                    <div className="w-96">
+                        <input type="search" defaultValue={query?.search ?? null} onChange={handleSearch} id="search-dropdown" className="w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Cari pesanan berdasarkan id atau nama siswa" />
                     </div>
                 </div>
                 <Table>
                     <Table.Head>
                         <Table.Header>Id</Table.Header>
-                        <Table.Header>Customer Name</Table.Header>
-                        <Table.Header>Total Price</Table.Header>
-                        <Table.Header>Method</Table.Header>
+                        <Table.Header>Nama Siswa</Table.Header>
+                        <Table.Header>Total Harga</Table.Header>
+                        <Table.Header>Metode</Table.Header>
                         <Table.Header>Status</Table.Header>
                         <Table.Header></Table.Header>
                     </Table.Head>
@@ -108,10 +108,10 @@ const Order = ({ orders, query, auth }) => {
                                 <Table.Content>{_.startCase(order.invoice.method)}</Table.Content>
                                 <Table.Content>
                                     {{
-                                        '1': 'Not Paid',
-                                        '2': 'Paid',
-                                        '3': 'Done',
-                                        '-': 'Expired'
+                                        '1': 'Belum Dibayar',
+                                        '2': 'Sudah Dibayar',
+                                        '3': 'Selesai',
+                                        '-': 'Kadaluwarsa'
                                     }[order.status]}
                                 </Table.Content>
                                 <Table.Content>
@@ -121,16 +121,16 @@ const Order = ({ orders, query, auth }) => {
                                         </Dropdown.Trigger>
                                         <Dropdown.Content>
                                             <Dropdown.Link href={route('order.show', order)}>Detail</Dropdown.Link>
-                                            {order.status == 1 && order.invoice.method == 'cash' && <Dropdown.Link onClick={(e) => handlePayment(e, order)}>Pay</Dropdown.Link>}
-                                            {order.status == 2 && <Dropdown.Link onClick={(e) => handlePickup(e, order)}>Take</Dropdown.Link>}
-                                            {order.status > 1 && <Dropdown.Link href={route('exported.order', order)} onClick={() => {'export'}}>Export</Dropdown.Link>}
+                                            {order.status == 1 && order.invoice.method == 'cash' && <Dropdown.Link onClick={(e) => handlePayment(e, order)}>Bayar</Dropdown.Link>}
+                                            {order.status == 2 && <Dropdown.Link onClick={(e) => handlePickup(e, order)}>Ambil</Dropdown.Link>}
+                                            {order.status > 1 && <Dropdown.Link href={route('exported.order', order)} onClick={() => {'export'}}>Cetak</Dropdown.Link>}
                                         </Dropdown.Content>
                                     </Dropdown>
                                 </Table.Content>
                             </Table.Row>
                         )):
                             <Table.Row>
-                                <Table.Content type="header" colSpan={"6"} className="text-center text-base text-gray-500 font-semibold italic">Order Not Found</Table.Content>
+                                <Table.Content type="header" colSpan={"6"} className="text-center text-base text-gray-500 font-semibold italic">Tidak ada pesanan</Table.Content>
                             </Table.Row>
                         }
                     </Table.Body>
@@ -141,6 +141,6 @@ const Order = ({ orders, query, auth }) => {
     )
 }
 
-Order.layout = page => <DashboardLayout children={page} header="Order" />
+Order.layout = page => <DashboardLayout children={page} header="Pesanan" />
 
 export default Order
