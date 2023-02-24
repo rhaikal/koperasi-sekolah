@@ -1,6 +1,5 @@
 import React from 'react';
 import FrontLayout from '@/Layouts/HomeLayout';
-import DeleteUserForm from './Partials/DeleteUserForm';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
 import { Head } from '@inertiajs/inertia-react';
