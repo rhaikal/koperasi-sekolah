@@ -1,7 +1,8 @@
-ol {
+ol.list-custom {
     counter-reset: item
 }
-li:before {
+
+li.list-custom:before {
     content: counters(item, ".") ". ";
     counter-increment: item
 }
