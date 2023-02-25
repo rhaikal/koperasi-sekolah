@@ -10,7 +10,7 @@ export default function Footer(){
                 </Link>
                 <ul className="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
                     <li>
-                        <Link href="#" className="mr-4 hover:underline md:mr-6">Privacy Policy</Link>
+                        <Link href={route('privacy-policy')} className="mr-4 hover:underline md:mr-6">Privacy Policy</Link>
                     </li>
                     <li>
                         <Link href="#" className="mr-4 hover:underline md:mr-6 ">Terms & Conditions</Link>

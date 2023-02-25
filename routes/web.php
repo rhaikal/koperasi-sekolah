@@ -43,6 +43,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shop', [OrderController::class , 'index'])->name('shop.index');
 Route::get('/shop/{product}', [OrderController::class , 'show'])->name('shop.show');
 
+Route::get('/privacy-policy', function () {
+    return Inertia::render("PrivacyPolicy");
+})->name('privacy-policy');
 
 Route::middleware('role')->group(function () {
     Route::middleware('role:pengurus')->group(function () {
