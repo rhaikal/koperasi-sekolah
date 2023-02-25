@@ -19,7 +19,7 @@ class UserFactory extends Factory
     {
         return [
             'profile' => '/img/users/placeholder.png',
-            'role' => rand(1, 6),
+            'role' => rand(1, 3),
             'name' => fake()->name(),
             'username' => fake()->userName(),
             'no_phone' => fake()->e164PhoneNumber(),
