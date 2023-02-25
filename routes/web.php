@@ -47,6 +47,10 @@ Route::get('/privacy-policy', function () {
     return Inertia::render("PrivacyPolicy");
 })->name('privacy-policy');
 
+Route::get('/term-condition', function () {
+    return Inertia::render("TermCondition");
+})->name('term-condition');
+
 Route::middleware('role')->group(function () {
     Route::middleware('role:pengurus')->group(function () {
         // products page

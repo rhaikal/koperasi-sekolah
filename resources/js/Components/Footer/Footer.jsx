@@ -13,7 +13,7 @@ export default function Footer(){
                         <Link href={route('privacy-policy')} className="mr-4 hover:underline md:mr-6">Privacy Policy</Link>
                     </li>
                     <li>
-                        <Link href="#" className="mr-4 hover:underline md:mr-6 ">Terms & Conditions</Link>
+                        <Link href={route('term-condition')} className="mr-4 hover:underline md:mr-6 ">Terms & Conditions</Link>
                     </li>
                 </ul>
             </div>
