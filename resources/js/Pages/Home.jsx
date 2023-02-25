@@ -7,7 +7,7 @@ import ProductList from './Product/Shop/Partials/ProductList';
 const Home = ({products}) => {
     return (
         <>
-            <Head title="Home" />
+            <Head title="Beranda" />
             <div className="container px-6 py-16 mx-auto">
                 <div className="items-center lg:flex">
                     <div className="w-full lg:w-1/2">
