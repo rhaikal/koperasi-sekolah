@@ -60,7 +60,7 @@ const Payment = ({order}) => {
                         <div className="mt-3 bg-gray-50 px-4 pb-4 pt-5 lg:mt-0 lg:col-span-2">
                             <div className="w-full h-fit flex flex-col dark:bg-gray-800 bg-white dark:border-gray-700 rounded-lg border border-gray-400 mb-6 py-5 px-4 text-center">
                                 <h1 className="text-gray-800 text-2xl dark:text-gray-100 font-bold mb-3">Berhasil Checkout</h1>
-                                <p className="text-gray-800 dark:text-gray-100 text-sm">Pesanan sudah berhasil dicheckout, lalu lakukan pembayaran dengan nominal yang tertera di bawah {order.invoice.method == 'cash' && (<>di <b>koperasi sekolah</b></>)}</p>
+                                <p className="text-gray-800 dark:text-gray-100 text-sm">Pesanan sudah berhasil dicheckout, lalu lakukan pembayaran dengan nominal yang tertera di bawah ini {order.invoice.method == 'cash' && (<>di <b>koperasi sekolah</b></>)}</p>
                             </div>
                             <div>
                                 <div className="p-2 flex items-center justify-between border-y border-gray-500">

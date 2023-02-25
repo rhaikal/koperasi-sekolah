@@ -17,8 +17,8 @@ const DetailHistory = ({order}) => {
                         <div className="bg-white overflow-x-auto shadow-sm sm:rounded-lg p-3 mt-6">
                             <Header className={"text-center italic"}>*Note</Header>
                             {{
-                                1: <p className="text-gray-800 text-center dark:text-gray-100">Order has been successfully checkout, then make sure to pay with the nominal listed below {order.invoice.method == 'cash' && (<>in <b>school cooperative</b></>)}</p>,
-                                2: <p className="text-gray-800 text-center dark:text-gray-100">Order has been successfully paid, then make sure to pickup the product you have purchase in <b>school cooperative</b></p>,
+                                1: <p className="text-gray-800 text-center dark:text-gray-100">Pesanan sudah berhasil dicheckout, lalu lakukan pembayaran dengan nominal yang tertera di bawah ini {order.invoice.method == 'cash' && (<>di <b>koperasi sekolah</b></>)}</p>,
+                                2: <p className="text-gray-800 text-center dark:text-gray-100">Pesanan telah berhasil dibayar, selanjutnya pastikan untuk mengambil produk yang telah dibeli di <b>koperasi sekolah</b></p>,
                             }[order.status]}
                         </div>
                     </>
