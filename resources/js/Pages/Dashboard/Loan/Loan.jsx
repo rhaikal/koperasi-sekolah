@@ -7,7 +7,7 @@ import Pagination from "@/Components/Pagination/Pagination"
 import { currencyFormat, dateFormat } from "@/helper"
 import DashboardLayout from "@/Layouts/DashboardLayout"
 import { Inertia } from "@inertiajs/inertia"
-import { Link } from "@inertiajs/inertia-react"
+import { Head, Link } from "@inertiajs/inertia-react"
 import { useEffect, useState } from "react"
 import { SlOptionsVertical } from "react-icons/sl"
 
@@ -38,6 +38,7 @@ const Loan = ({ loans, query, auth }) => {
 
     return (
         <>
+            <Head title="Pinjaman" />
             <ExportForm
                 href={route('exported.loans')}
                 className="mb-2"

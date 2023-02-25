@@ -10,6 +10,7 @@ import { handlePickup } from "./Partials/Payments/Paid"
 import { handlePayment } from "./Partials/Payments/Unpaid"
 import ExportForm from "@/Components/Form/ExportForm"
 import { useEffect, useState } from "react"
+import { Head } from "@inertiajs/inertia-react"
 
 const statusList = [
     {
@@ -65,6 +66,7 @@ const Order = ({ orders, query, auth }) => {
 
     return (
         <>
+            <Head title="Pesanan" />
             { auth.user.role != 2 &&
                 <ExportForm
                     href={route('exported.orders')}

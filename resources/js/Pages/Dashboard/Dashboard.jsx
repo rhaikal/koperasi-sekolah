@@ -4,7 +4,7 @@ import LineChart from "@/Components/Charts/LineChart";
 import Dropdown from "@/Components/Dropdown/Dropdown";
 import { currencyFormat, dateFormat } from "@/helper";
 import DashboardLayout from "@/Layouts/DashboardLayout";
-import { Link } from "@inertiajs/inertia-react";
+import { Head, Link } from "@inertiajs/inertia-react";
 import React, { useEffect } from "react";
 import { FaBoxes, FaCoins, FaMoneyCheck, FaReceipt, FaUsers } from "react-icons/fa";
 import { SlOptionsVertical } from "react-icons/sl";
@@ -25,6 +25,7 @@ const Dashboard = ({orders, products, auth, revenue, revenueChart, loans, pendin
 
     return (
         <>
+            <Head title="Dashboard" />
             <div className={`grid gap-6 mb-8 md:grid-cols-2 ${auth.user.role == '2' ? 'xl:grid-cols-3' : 'xl:grid-cols-4'}`}>
                 {auth.user.role != '2' && <Label
                     icon={
