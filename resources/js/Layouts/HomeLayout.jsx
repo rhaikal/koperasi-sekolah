@@ -3,6 +3,7 @@ import Navbar from '@/Components/Navbar/Navbar';
 import { useEffect } from 'react';
 import Swal from 'sweetalert2/dist/sweetalert2.all';
 import { usePage } from '@inertiajs/inertia-react';
+import Footer from '@/Components/Footer/Footer';
 
 export const NavigationContext = createContext();
 
@@ -29,12 +30,13 @@ export default function Authenticated({ auth, children }) {
     }, [flash])
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="flex flex-col min-h-screen bg-gray-100">
             <NavigationContext.Provider value={{ auth, showingNavigationDropdown, setShowingNavigationDropdown }}>
                 <Navbar />
             </NavigationContext.Provider>
 
-            <main className='mt-12 scale-100'>{children}</main>
+            <main className='min-h-[100vh] mt-12 scale-100'>{children}</main>
+            <Footer />
         </div>
     );
 }
