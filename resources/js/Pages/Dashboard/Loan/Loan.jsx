@@ -17,7 +17,7 @@ const Loan = ({ loans, query, auth }) => {
     const [emptyLoans, setEmptyLoans] = useState(false)
 
     const handleSearch = _.debounce((e) => {
-        if(e.target.value) Inertia.reload({only: ['loans', 'query'], data: {search: e.target.value}})
+        if(e.target.value) Inertia.visit(route('loans.index'), {only: ['loans', 'query'], data: {search: e.target.value}})
         else Inertia.visit(route('loans.index'), {only: ['loans', 'query']})
     }, 1000)
 

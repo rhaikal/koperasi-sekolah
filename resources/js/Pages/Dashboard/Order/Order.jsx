@@ -60,7 +60,7 @@ const Order = ({ orders, query, auth }) => {
             filter: query?.filter
         };
 
-        if(e.target.value) Inertia.reload({only:['orders', 'query'], data: {...preserveQuery, search: e.target.value} })
+        if(e.target.value) Inertia.visit(route('order.index') ,{only:['orders', 'query'], data: {...preserveQuery, search: e.target.value} })
         else Inertia.visit(route('order.index'), {only:['orders', 'query'], data: {...preserveQuery}})
     }, 1000)
 

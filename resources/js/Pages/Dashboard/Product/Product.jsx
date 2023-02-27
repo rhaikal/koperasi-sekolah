@@ -40,7 +40,7 @@ const Product = ({products, categories, query }) => {
             category: query?.category
         }
 
-        if(e.target.value) Inertia.reload({only: ['products', 'query'], data: {...preserveQuery, search: e.target.value}})
+        if(e.target.value) Inertia.visit(route('products.index'), {only: ['products', 'query'], data: {...preserveQuery, search: e.target.value}})
         else Inertia.visit(route('products.index'), {only: ['products', 'query'], data: {...preserveQuery}})
     }, 1000)
 
