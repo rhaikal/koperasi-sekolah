@@ -32,7 +32,7 @@ const Detail = ({product}) => {
                     <div className="bg-white overflow-hidden shadow-md sm:rounded-lg p-3">
                         <div className="flex flex-col overflow-y-auto md:flex-row">
                             <div className="h-auto md:h-auto md:w-1/2">
-                                <Image src={"/storage/img/products/placeholder.jpg"} alt={"product"}></Image>
+                                <Image src={`/storage/${product.image}`} alt={"product"}></Image>
                             </div>
                             <div className="sm:p-8 md:w-1/2 flex items-center">
                                 <div>

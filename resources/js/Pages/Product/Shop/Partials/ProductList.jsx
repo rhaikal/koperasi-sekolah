@@ -13,9 +13,9 @@ export default function ProductList({products, links = null, containerClasses = 
                     {products.map((product) => (
                         <div key={product.id} className="flex justify-between flex-col product-item overflow-hidden group shadow-lg p-2 bg-white rounded-lg">
                             <div>
-                            <div className="relative product-item-pic aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                            <div className="relative product-item-pic max-h-[200px] aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                                 <img
-                                src={"/storage/img/products/placeholder.jpg"}
+                                src={`storage/${product.image}`}
                                 alt={product.imageAlt}
                                 className="h-full w-full rounded-lg object-cover object-center group-hover:opacity-75"
                                 />
