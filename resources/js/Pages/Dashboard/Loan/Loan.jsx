@@ -39,7 +39,7 @@ const Loan = ({ loans, query, auth }) => {
     return (
         <>
             <Head title="Pinjaman" />
-            <ExportForm
+            {auth.user.role > 2 && <ExportForm
                 href={route('exported.loans')}
                 className="mb-2"
                 valueStartDate={startDate}
@@ -47,7 +47,7 @@ const Loan = ({ loans, query, auth }) => {
                 valueEndDate={endDate}
                 handleEndDate={handleEndDate}
                 disabled={emptyLoans}
-            />
+            />}
             <div className="min-w-0 p-4 pt-2 overflow-x-auto rounded-lg shadow-lg">
                 <div className="flex justify-between my-4">
                     <div className="w-96">
