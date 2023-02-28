@@ -77,6 +77,14 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        if($category->products()->exists())
+            return Redirect::back()->with('alert',[
+                'icon' => 'error',
+                'message' => 'Kategori ini sudah ada yang memakai'
+            ]);
+
+
+            dd('success');
         if($this->categoryService->delete($category)) {
             return Redirect::back()->with('alert', [
                 'icon' => 'success',
