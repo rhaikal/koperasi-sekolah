@@ -51,7 +51,7 @@ const Detail = ({product}) => {
                                                     id="quantity"
                                                     type="number"
                                                     name="quantity"
-                                                    placeholder="Quantity"
+                                                    placeholder="Kuantitas"
                                                     max={product.stock}
                                                     handleChange={handleChange}
                                                     hasErrors={form.errors.quantity}
@@ -59,7 +59,7 @@ const Detail = ({product}) => {
                                                 {form.hasErrors && <InputError message={form.errors.quantity} className="mt-2" />}
                                             </div>
                                             <div className='col-span-10 text-center mt-3 lg:mt-0 lg:col-span-3'>
-                                                <PrimaryButton className='uppercase' processing={form.processing}>Add To Cart</PrimaryButton>
+                                                <PrimaryButton className='uppercase' processing={form.processing}>Tambahkan</PrimaryButton>
                                             </div>
                                         </form>
                                     }
