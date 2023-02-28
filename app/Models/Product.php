@@ -48,6 +48,11 @@ class Product extends Model
                     ->orWhere('slug', 'LIKE', '%' . $keyword . '%');
     }
 
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'carts');
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

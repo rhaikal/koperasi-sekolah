@@ -127,11 +127,17 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        if($this->productService->delete($product)){
+        if($product->orders()->exists()){
+            return Redirect::back()->with('alert', [
+                'icon' => 'error',
+                'message' => 'Produk ini sudah ada yang pesan'
+            ]);
+        }
+
+        if($this->productService->delete($product))
             return Redirect::back()->with('alert', [
                 'icon' => 'success',
                 'message' => 'Berhasil menghapus product',
             ]);
-        }
     }
 }
