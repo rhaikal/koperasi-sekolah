@@ -111,7 +111,7 @@ export default function CartSlideOver({open, setOpen, cart}) {
                                                             <li key={product.id} className="flex py-6">
                                                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                                                     <img
-                                                                        src={"/storage" + product.image}
+                                                                        src={"/storage/" + product.image}
                                                                         className="h-full w-full object-cover object-center"
                                                                     />
                                                                 </div>
