@@ -7,6 +7,7 @@ import { FaAngleRight } from 'react-icons/fa';
 import Select from "@/Components/Input/Select";
 import InputLabel from '@/Components/Input/InputLabel';
 import OrderSumarry from '../Partials/OrderSummary';
+import { handleCheckout } from './Partials/Reminder';
 
 const Checkout = ({cart, auth}) => {
     const form = useForm({
@@ -15,10 +16,6 @@ const Checkout = ({cart, auth}) => {
 
     const handleSelect = (data, attributes) => {
         form.setData(attributes.name, data.value);
-    }
-
-    const handleSubmit = () => {
-        form.post(route('checkout.store'))
     }
 
     return (
@@ -83,7 +80,7 @@ const Checkout = ({cart, auth}) => {
                                     <p className="text-sm font-medium text-gray-900">Total</p>
                                     <p className="text-2xl font-semibold text-gray-900">{currencyFormat(cart.total_price)}</p>
                                 </div>
-                                <PrimaryButton className='w-full mt-4 justify-center' onClick={handleSubmit}><span className='text-sm'>Checkout</span></PrimaryButton>
+                                <PrimaryButton className='w-full mt-4 justify-center' onClick={(e) => handleCheckout(e, form)}><span className='text-sm'>Checkout</span></PrimaryButton>
                             </div>
                         </div>
                     </div>
