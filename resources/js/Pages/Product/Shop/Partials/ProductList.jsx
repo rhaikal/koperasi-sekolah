@@ -1,5 +1,6 @@
 import ProductPagination from "@/Components/Pagination/ProductPagination"
 import { currencyFormat } from "@/helper"
+import { Inertia } from "@inertiajs/inertia"
 import { Link } from "@inertiajs/inertia-react"
 import { BiSearch } from "react-icons/bi"
 
@@ -15,9 +16,10 @@ export default function ProductList({products, links = null, containerClasses = 
                             <div>
                             <div className="relative product-item-pic max-h-[200px] aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                                 <img
-                                src={`storage/${product.image}`}
-                                alt={product.imageAlt}
-                                className="h-full w-full rounded-lg object-cover object-center group-hover:opacity-75"
+                                    onClick={() => {Inertia.get(route('shop.show', product))}}
+                                    src={`storage/${product.image}`}
+                                    alt={product.imageAlt}
+                                    className="h-full w-full rounded-lg object-cover object-center group-hover:opacity-75 hover:cursor-pointer"
                                 />
                                 <ul className="product-hover invisible absolute top-6 right-[-200px] cursor-pointer transition-all duration-700">
                                     <li className={`rounded border ${product.stock > 0 ? 'bg-indigo-100 border-indigo-400' : 'bg-rose-100 border-rose-400' }`}>
