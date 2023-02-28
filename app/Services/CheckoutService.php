@@ -27,7 +27,7 @@ class CheckoutService
             $processedData = [
                 'order_id' => $order->id,
                 'method' => $data['method'],
-                'due_date' => $data['method'] == 'cash' ? now()->addDays(2) : now()->addHours(2),
+                'due_date' => $data['method'] == 'cash' ? now()->addDays(2) : now()->addHours(),
             ];
 
             $product_detail = [];
@@ -64,9 +64,8 @@ class CheckoutService
                     ],
                     'item_details' => $product_detail,
                     "expiry" => [
-                        "start_time"=> now()->isoFormat('YYYY-MM-DD HH:mm:ss ZZ'),
                         "unit"=> "hour",
-                        "duration"=> 2
+                        "duration"=> 1
                     ],
                     "enabled_payments" => ["shopeepay",'gopay'],
                 ];

@@ -10,6 +10,7 @@ use App\Services\PaymentService;
 use Illuminate\Support\Facades\Redirect;
 use Midtrans\Notification;
 use Midtrans\Transaction;
+use Throwable;
 
 class PaymentController extends Controller
 {
@@ -73,10 +74,15 @@ class PaymentController extends Controller
         $validatedData = $request->validated();
 
         $notification = null;
-        if(!!$validatedData) $notification = Transaction::status($validatedData['notification']['transaction_id']);
-        else $notification = new Notification();
+        if(!!$validatedData) {
+            try {
+                $notification = Transaction::status($validatedData['notification']['transaction_id'] ?? $validatedData['notification']['order_id']);
+            } catch(Throwable $e) {
+                $notification = null;
+            }
+        } else $notification = new Notification();
 
-        $order = $this->orderService->getOrderById((explode('-',$notification->order_id))[0]);
+        $order = $this->orderService->getOrderById(substr($notification->order_id, 0, strrpos($notification->order_id, '-')));
 
         if(!!$notification && $order->status == '1' && $order->invoice->method == 'e-wallet') {
             $payment = $this->paymentService->eWalletPayment($order, $notification);

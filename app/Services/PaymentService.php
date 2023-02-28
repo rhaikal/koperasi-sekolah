@@ -38,13 +38,6 @@ class PaymentService
     public function eWalletPayment($order, $notification)
     {
         if($this->isSignatureKeyVerified($order, $notification)){
-            if($notification->transaction_status == 'expire'){
-                foreach($order->products as $product){
-                    $this->productRepository->update($product, ['stock' => $product->stock + $product->pivot->quantity]);
-                } $this->orderRepository->update(['status' => '-'], $order);
-                return 'expired';
-            }
-
             $fraudStatus = !empty($notification->fraud_status) ? ($notification->fraud_status == 'accept') : true;
             if($notification->status_code == 200 && $fraudStatus && $notification->transaction_status == 'settlement'){
                 $this->orderRepository->update(['status' => '2'], $order);
@@ -60,6 +53,14 @@ class PaymentService
                 return 'success';
             }
 
+            foreach($order->products as $product){
+                $this->productRepository->update($product, ['stock' => $product->stock + $product->pivot->quantity]);
+            } $this->orderRepository->update(['status' => '-'], $order);
+
+            if($notification->transaction_status == 'expire'){
+                return 'expired';
+            }
+
             return 'error';
         } else abort(403);
     }
@@ -72,6 +73,5 @@ class PaymentService
         $serverKey = env('Midtrans_Server_Key');
         $input = $orderId . $statusCode . $grossAmount . $serverKey;
         return (openssl_digest($input, 'sha512') == $notification->signature_key);
-
     }
 }

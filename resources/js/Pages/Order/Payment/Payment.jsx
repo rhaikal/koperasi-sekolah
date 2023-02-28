@@ -16,15 +16,18 @@ const Payment = ({order}) => {
             onSuccess: function(result){
                 Inertia.post(route('payment.store.e-wallet'), { notification: result });
             },
-            onError: function(result){
-                if(result.status_code == 407 && result.transaction_status == 'expired'){
-                    Inertia.post(route('payment.store.e-wallet'), { notification: result });
-                }
+            onPending: function(result){
+                return;
             },
             onClose: function(){
-                return;
+                Inertia.post(route('payment.store.e-wallet'), {notification: {order_id: order.id + '-' + Math.floor(new Date(order.created_at).getTime() / 1000)}});
+            },
+            onError: function(result){
+                if(result.status_code == 407){
+                    Inertia.post(route('payment.store.e-wallet'), { notification: result });
+                }
             }
-          })
+        })
     }
 
     return (
