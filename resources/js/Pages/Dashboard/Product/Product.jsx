@@ -15,13 +15,26 @@ import { Inertia } from "@inertiajs/inertia";
 const Product = ({products, categories, query }) => {
     const [categoriesList, setCategoriesList] = useState([]);
     const [categoryStart, setCategoryStart] = useState(0);
-    const currentCategory = categories.find((value) => {
-        return value.slug == query.category;
-    })
+    const [emptyProducts, setEmptyProducts] = useState(false);
+    const [currentCategory, setCurrentCategory] = useState({});
+    // const currentCategory = categories.find((value) => {
+    //     return value.slug == query.category;
+    // })
 
     useEffect(() => {
         setCategoriesList(categories.slice(categoryStart, categoryStart + 5));
     }, [categoryStart]);
+
+    useEffect(() => {
+        setCurrentCategory(categories.find((value) => {
+            return value.slug == query.category;
+        }))
+    }, [query?.category])
+
+    useEffect(() => {
+        if(_.isEmpty(products?.data))
+            setEmptyProducts(true);
+    }, [])
 
     const nextCategories = (e) => {
         e.preventDefault();
@@ -79,7 +92,7 @@ const Product = ({products, categories, query }) => {
                         <Table.Header></Table.Header>
                     </Table.Head>
                     <Table.Body>
-                        {!(_.isEmpty(products.data)) ? products.data.map((product) => (
+                        {!emptyProducts ? products.data.map((product) => (
                             <Table.Row key={product.id}>
                                 <Table.Content type="header" className="w-auto">{product.id}</Table.Content>
                                 <Table.Content type="image"><img src={ "/storage/"+product.image} alt="test" /></Table.Content>
@@ -105,13 +118,11 @@ const Product = ({products, categories, query }) => {
                                 <Table.Content type="header" colSpan={"7"} className="text-center text-base text-gray-500 font-semibold italic">Product Not Found</Table.Content>
                             </Table.Row>
                         }
-                        <Table.Row>
-                            <Table.Content colSpan={7} className="pb-0">
-                                <Pagination links={products.links} from={products.from} to={products.to} total={products.total} />
-                            </Table.Content>
-                        </Table.Row>
                     </Table.Body>
                 </Table>
+                { !emptyProducts &&
+                    <Pagination links={products.links} from={products.from} to={products.to} total={products.total} />
+                }
             </div>
         </>
     )

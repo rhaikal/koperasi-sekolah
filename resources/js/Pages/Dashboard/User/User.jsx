@@ -3,9 +3,18 @@ import Dropdown from "@/Components/Dropdown/Dropdown";
 import Pagination from "@/Components/Pagination/Pagination";
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import { Head } from "@inertiajs/inertia-react";
+import { useEffect, useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
 
 const User = ({users}) => {
+    const [emptyUsers, setEmptyUsers] = useState(false);
+
+    useEffect(() => {
+      if(_.isEmpty(users?.data)){
+        setEmptyUsers(true);
+      }
+    }, [])
+
     return (
         <>
             <Head title="User" />
@@ -19,7 +28,7 @@ const User = ({users}) => {
                         <Table.Header></Table.Header>
                     </Table.Head>
                     <Table.Body>
-                        {users.data.map((user) =>
+                        {!emptyUsers ? users.data.map((user) =>
                             <Table.Row key={user.id}>
                                 <Table.Content type="header" className="w-auto">{user.id}</Table.Content>
                                 <Table.Content type="image"><img src={user.profile ? "/storage/"+user.profile : "/storage/img/users/placeholder.png" } alt="test" /></Table.Content>
@@ -41,11 +50,14 @@ const User = ({users}) => {
                                         </Dropdown.Content>
                                     </Dropdown>
                                 </Table.Content>
+                            </Table.Row>) :
+                            <Table.Row>
+                                <Table.Content type="header" colSpan={"4"} className="text-center text-base text-gray-500 font-semibold italic">Tidak ada kategori</Table.Content>
                             </Table.Row>
-                        )}
+                        }
                     </Table.Body>
                 </Table>
-                <Pagination links={users.links} from={users.from} to={users.to} total={users.total} />
+                {!emptyUsers && <Pagination links={users.links} from={users.from} to={users.to} total={users.total} />}
             </div>
         </>
     )

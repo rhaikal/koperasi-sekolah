@@ -1,5 +1,5 @@
 import DashboardLayout from "@/Layouts/DashboardLayout";
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import Table from "@/Components/Card/Table/Table";
 import Dropdown from "@/Components/Dropdown/Dropdown";
 import { SlOptionsVertical } from 'react-icons/sl'
@@ -15,6 +15,12 @@ export const ModalContext = createContext()
 const Category = ({categories}) => {
     const [open, setOpen] = useState(false);
     const [modal, setModal] = useState(Object);
+    const [emptyCategory, setEmptyCategory] = useState(false);
+
+    useEffect(() => {
+        if(_.isEmpty(categories?.data))
+            setEmptyCategory(true);
+    }, [])
 
     const openModal = (onSubmit, header, button, category=null) => {
         setModal({
@@ -41,31 +47,34 @@ const Category = ({categories}) => {
                             <Table.Header></Table.Header>
                         </Table.Head>
                         <Table.Body>
-                            {categories.data.map((category) => (
-                                <Table.Row key={category.id}>
-                                    <Table.Content type="header" className="w-auto">{category.id}</Table.Content>
-                                    <Table.Content>{category.name}</Table.Content>
-                                    <Table.Content>{category.slug}</Table.Content>
-                                    <Table.Content>
-                                        <Dropdown>
-                                            <Dropdown.Trigger>
-                                                <SlOptionsVertical className="float-right hover:cursor-pointer" />
-                                            </Dropdown.Trigger>
-                                            <Dropdown.Content>
-                                                <UpdateCategory category={category} />
-                                                <DeleteDrodownLink href={route('categories.destroy', category)} />
-                                            </Dropdown.Content>
-                                        </Dropdown>
-                                    </Table.Content>
+                            {
+                                !emptyCategory ? categories.data.map((category) => (
+                                    <Table.Row key={category.id}>
+                                        <Table.Content type="header" className="w-auto">{category.id}</Table.Content>
+                                        <Table.Content>{category.name}</Table.Content>
+                                        <Table.Content>{category.slug}</Table.Content>
+                                        <Table.Content>
+                                            <Dropdown>
+                                                <Dropdown.Trigger>
+                                                    <SlOptionsVertical className="float-right hover:cursor-pointer" />
+                                                </Dropdown.Trigger>
+                                                <Dropdown.Content>
+                                                    <UpdateCategory category={category} />
+                                                    <DeleteDrodownLink href={route('categories.destroy', category)} />
+                                                </Dropdown.Content>
+                                            </Dropdown>
+                                        </Table.Content>
+                                    </Table.Row>
+                                )) :
+                                <Table.Row>
+                                    <Table.Content type="header" colSpan={"4"} className="text-center text-base text-gray-500 font-semibold italic">Tidak ada kategori</Table.Content>
                                 </Table.Row>
-                            ))}
-                            <Table.Row>
-                                <Table.Content colSpan={4} className="pb-0">
-                                    <Pagination links={categories.links} from={categories.from} to={categories.to} total={categories.total} />
-                                </Table.Content>
-                            </Table.Row>
+                            }
                         </Table.Body>
                     </Table>
+                    {!emptyCategory &&
+                        <Pagination links={categories.links} from={categories.from} to={categories.to} total={categories.total} />
+                    }
                 </div>
             </ModalContext.Provider>
         </>

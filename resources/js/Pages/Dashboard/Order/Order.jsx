@@ -102,7 +102,7 @@ const Order = ({ orders, query, auth }) => {
                         <Table.Header></Table.Header>
                     </Table.Head>
                     <Table.Body>
-                        {!_.isEmpty(orders.data) ? orders.data.map((order) => (
+                        {!emptyOrders ? orders.data.map((order) => (
                             <Table.Row key={order.id}>
                                 <Table.Content type="header">{order.shortId}</Table.Content>
                                 <Table.Content>{order.user.name}</Table.Content>
@@ -137,7 +137,7 @@ const Order = ({ orders, query, auth }) => {
                         }
                     </Table.Body>
                 </Table>
-                {!_.isEmpty(orders.data) && <Pagination links={orders.links} from={orders.from} to={orders.to} total={orders.total} />}
+                {!emptyOrders && <Pagination links={orders.links} from={orders.from} to={orders.to} total={orders.total} />}
             </div>
         </>
     )

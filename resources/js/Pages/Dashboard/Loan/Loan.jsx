@@ -64,7 +64,7 @@ const Loan = ({ loans, query, auth }) => {
                         <Table.Header></Table.Header>
                     </Table.Head>
                     <Table.Body>
-                        {!_.isEmpty(loans?.data) ? loans.data.map((loan) => (
+                        {!emptyLoans ? loans.data.map((loan) => (
                             <Table.Row key={loan.id}>
                                 <Table.Content type="header" className="w-auto">{loan.id}</Table.Content>
                                 <Table.Content>{loan.user.name}</Table.Content>
@@ -94,7 +94,7 @@ const Loan = ({ loans, query, auth }) => {
                         }
                     </Table.Body>
                 </Table>
-                {!_.isEmpty(loans?.data) && <Pagination links={loans.links} from={loans.from} to={loans.to} total={loans.total} />}
+                {!emptyLoans && <Pagination links={loans.links} from={loans.from} to={loans.to} total={loans.total} />}
             </div>
         </>
     )
