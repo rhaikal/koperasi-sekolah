@@ -5,13 +5,13 @@ export const handlePickup = (e, order) => {
     e.preventDefault()
 
     Swal.fire({
-        title: 'Has this order been taken',
+        title: 'Apakah pesanan ini telah diambil',
         icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        cancelButtonText: 'No',
-        confirmButtonText: 'Yes'
+        cancelButtonText: 'Tidak',
+        confirmButtonText: 'Ya'
     }).then((result) => {
         if (result.isConfirmed) {
             Inertia.post(route('pickup.store', order))
