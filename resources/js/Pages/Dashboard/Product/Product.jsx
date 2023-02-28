@@ -128,6 +128,6 @@ const Product = ({products, categories, query }) => {
     )
 }
 
-Product.layout = page => <DashboardLayout children={page} header="Product"></DashboardLayout>
+Product.layout = page => <DashboardLayout children={page} header="Produk"></DashboardLayout>
 
 export default Product
