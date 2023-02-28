@@ -3,7 +3,7 @@ import { primaryButtonClass } from '@/Components/Button/PrimaryButton';
 import Invoice from '@/Components/Invoice/Invoice';
 import HomeLayout from '@/Layouts/HomeLayout';
 import { Head, Link } from '@inertiajs/inertia-react';
-import { BsBack } from 'react-icons/bs';
+import { BsBack, BsWallet2 } from 'react-icons/bs';
 import { TbFileExport } from 'react-icons/tb';
 
 const DetailHistory = ({order}) => {
@@ -15,6 +15,7 @@ const DetailHistory = ({order}) => {
                     <Link className={primaryButtonClass + ' mr-3'} href={route('history.index')}><BsBack className="mr-2 h-4" /> Kembali</Link>
                     {order.status > 0 && order.status < 3 &&
                         <>
+                            {order.status == 1 && <Link className={primaryButtonClass} href={route('payment.show', order)}><BsWallet2 className="mr-2 w-4 h-4" /> Bayar</Link>}
                             {order.status > 1 && <a className={primaryButtonClass} href={route('exported.order', order)}><TbFileExport className="mr-2 w-4 h-4" /> Cetak</a>}
                             <div className="bg-white overflow-x-auto shadow-sm sm:rounded-lg p-3 mt-6">
                                 <Header className={"text-center italic"}>*Note</Header>
