@@ -1,5 +1,6 @@
 import DashboardLayout from "@/Layouts/DashboardLayout"
 import ProductForm from "@/Components/Dashboard/Form/Product/ProductForm"
+import { Head } from "@inertiajs/inertia-react"
 
 const CreateProduct = ({categories}) => {
     const handleSubmit = (form) => {
@@ -9,7 +10,10 @@ const CreateProduct = ({categories}) => {
     }
 
     return (
-        <ProductForm categories={categories} handleSubmit={handleSubmit} header={"Buat Produk"}></ProductForm>
+        <>
+            <Head title="Buat Produk" />
+            <ProductForm categories={categories} handleSubmit={handleSubmit} header={"Buat Produk"}></ProductForm>
+        </>
     )
 }
 

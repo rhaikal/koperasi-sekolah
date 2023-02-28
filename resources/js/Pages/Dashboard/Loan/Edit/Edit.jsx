@@ -1,4 +1,5 @@
 import DashboardLayout from "@/Layouts/DashboardLayout"
+import { Head } from "@inertiajs/inertia-react";
 import LoanForm from "../Partials/LoanForm";
 
 const UpdateLoan = ({users, loan}) => {
@@ -9,7 +10,10 @@ const UpdateLoan = ({users, loan}) => {
     }
 
     return (
-        <LoanForm users={users} loan={loan} handleSubmit={handleSubmit} header={"Update Pinjaman"}></LoanForm>
+        <>
+            <Head title="Update Pinjaman" />
+            <LoanForm users={users} loan={loan} handleSubmit={handleSubmit} header={"Update Pinjaman"}></LoanForm>
+        </>
     )
 }
 
