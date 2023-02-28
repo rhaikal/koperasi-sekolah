@@ -26,11 +26,11 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'role' => ['required', Rule::in(['1', '2', '3']), Rule::excludeIf(auth()->user()->role != '3')],
+            'role' => [Rule::in(['1', '2', '3']), Rule::excludeIf(auth()->user()->role != '3')],
             'name' => 'required|string|max:255',
             'username' => ['required', Rule::unique('users', 'username')->ignore($this->user->id)],
             'email' => ['required', Rule::unique('users', 'email')->ignore($this->user->id)],
-            'no_phone' => 'required|regex:/\\d/'
+            'no_phone' => 'sometimes|regex:/\\d/|nullable'
         ];
 
         if(!empty($this->profile)) $rules['profile'] = 'file|image|dimensions:max_width=2000,max_height=2000|max:1000';
