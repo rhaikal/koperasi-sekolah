@@ -3,10 +3,13 @@ import { Transition } from '@headlessui/react'
 import { IoMdClose } from "react-icons/io"
 import { currencyFormat } from '@/helper'
 import { Link, usePage } from '@inertiajs/inertia-react'
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+import { FaAngleLeft, FaAngleRight, FaUserSlash } from 'react-icons/fa'
+import { MdRemoveShoppingCart } from 'react-icons/md'
 import { Inertia } from '@inertiajs/inertia'
 
 export default function CartSlideOver({open, setOpen, cart}) {
+    const auth = usePage().props.auth;
+
     const handleChange = _.debounce((e, product) => {
         if(e.target.value) {
             if(e.target.value > product.stock) e.target.value = product.stock
@@ -194,8 +197,33 @@ export default function CartSlideOver({open, setOpen, cart}) {
                                                 </p>
                                             </div>
                                             </div>
-                                        :
-                                            <></>
+                                        : auth.user ?
+                                            <div className="relative flex flex-col items-center top-[-35%]">
+                                                <MdRemoveShoppingCart className='mb-5 w-20 h-20 font-bold text-center text-blue-200' />
+
+                                                <p className="mb-8 text-center text-gray-500 md:text-lg">
+                                                    Keranjang Kosong
+                                                </p>
+
+                                                <Link
+                                                    href={route('shop.index')}
+                                                    className="px-6 py-2 text-sm font-semibold text-blue-800 bg-blue-100"
+                                                    >Belanja Sekarang
+                                                </Link>
+                                            </div> :
+                                            <div className="relative flex flex-col items-center top-[-35%]">
+                                                <FaUserSlash className='mb-5 w-20 h-20 font-bold text-center text-blue-200' />
+
+                                                <p className="mb-8 text-center text-gray-500 md:text-lg">
+                                                    Harap login terlebih dahulu
+                                                </p>
+
+                                                <Link
+                                                    href={route('login')}
+                                                    className="px-6 py-2 text-sm font-semibold text-blue-800 bg-blue-100"
+                                                    >Login
+                                                </Link>
+                                            </div>
                                         }
                                     </div>
                                 </div>
