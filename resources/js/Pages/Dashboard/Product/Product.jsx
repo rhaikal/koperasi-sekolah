@@ -17,9 +17,6 @@ const Product = ({products, categories, query }) => {
     const [categoryStart, setCategoryStart] = useState(0);
     const [emptyProducts, setEmptyProducts] = useState(false);
     const [currentCategory, setCurrentCategory] = useState({});
-    // const currentCategory = categories.find((value) => {
-    //     return value.slug == query.category;
-    // })
 
     useEffect(() => {
         setCategoriesList(categories.slice(categoryStart, categoryStart + 5));
@@ -38,7 +35,7 @@ const Product = ({products, categories, query }) => {
 
     const nextCategories = (e) => {
         e.preventDefault();
-        if(categoryStart < categories.length - 6)
+        if(categoryStart < categories.length - 5)
             setCategoryStart(categoryStart + 5);
     }
 
