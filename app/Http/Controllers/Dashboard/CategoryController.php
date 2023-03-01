@@ -83,8 +83,6 @@ class CategoryController extends Controller
                 'message' => 'Kategori ini sudah ada yang memakai'
             ]);
 
-
-            dd('success');
         if($this->categoryService->delete($category)) {
             return Redirect::back()->with('alert', [
                 'icon' => 'success',
