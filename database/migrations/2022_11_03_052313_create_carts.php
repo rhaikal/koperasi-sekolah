@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignUuid('order_id');
             $table->foreignId('product_id');
-            $table->tinyInteger('quantity');
+            $table->smallInteger('quantity');
             $table->integer('subtotal_price');
             $table->timestamps();
         });
