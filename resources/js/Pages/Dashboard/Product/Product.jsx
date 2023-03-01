@@ -10,6 +10,7 @@ import { primaryButtonClass } from "@/Components/Button/PrimaryButton";
 import { Head, Link } from "@inertiajs/inertia-react";
 import { FaAngleDown } from "react-icons/fa";
 import { Inertia } from "@inertiajs/inertia";
+import { TbArrowsUpDown } from "react-icons/tb";
 
 
 const Product = ({products, categories, query }) => {
@@ -47,12 +48,23 @@ const Product = ({products, categories, query }) => {
 
     const handleSearch = _.debounce((e) => {
         const preserveQuery = {
-            category: query?.category
+            category: query?.category,
+            sortByPrice: query?.sortByPrice,
+            sortByStock: query?.sortByStock,
         }
 
         if(e.target.value) Inertia.visit(route('products.index'), {only: ['products', 'query'], data: {...preserveQuery, search: e.target.value}})
         else Inertia.visit(route('products.index'), {only: ['products', 'query'], data: {...preserveQuery}})
     }, 1000)
+
+    const handleSort = (sort) => {
+        const preserveQuery = {
+            category: query?.category,
+            search: query?.search
+        }
+
+        Inertia.visit(route('products.index'), {only: ['products', 'query'], data: {...preserveQuery, ...sort}})
+    }
 
     return (
         <>
@@ -84,8 +96,8 @@ const Product = ({products, categories, query }) => {
                         <Table.Header>Gambar</Table.Header>
                         <Table.Header>Nama</Table.Header>
                         <Table.Header>Kategori</Table.Header>
-                        <Table.Header>Harga</Table.Header>
-                        <Table.Header>Stok</Table.Header>
+                        <Table.Header><span onClick={() => handleSort({sortByPrice: query?.sortByPrice == 'DESC' ? 'ASC' : 'DESC'})} className="flex cursor-pointer"><TbArrowsUpDown className="mr-2" /> Harga</span></Table.Header>
+                        <Table.Header><span onClick={() => handleSort({sortByStock: query?.sortByStock == 'DESC' ? 'ASC' : 'DESC'})} className="flex cursor-pointer"><TbArrowsUpDown className="mr-2" /> Stok</span></Table.Header>
                         <Table.Header></Table.Header>
                     </Table.Head>
                     <Table.Body>
