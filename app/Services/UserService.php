@@ -23,12 +23,12 @@ class UserService
 
     public function getMembers($paginate = null)
     {
-        return $this->userRepository->getByRole('2', null, $paginate, ['id', 'name', 'email', 'no_phone', 'profile']);
+        return $this->userRepository->getByRole('2', null, $paginate, ['id', 'name', 'email', 'no_phone', 'profile', 'grade', 'major']);
     }
 
     public function getUsers($paginate = null)
     {
-        $columns = ['id', 'profile', 'name', 'role'];
+        $columns = ['id', 'profile', 'name', 'role', 'grade', 'major'];
         $users = $this->userRepository->getAll($paginate, auth()->id(), $columns);
 
         return $users;

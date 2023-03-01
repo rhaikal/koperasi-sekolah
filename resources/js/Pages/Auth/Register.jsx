@@ -3,12 +3,35 @@ import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/Input/InputError';
 import InputLabel from '@/Components/Input/InputLabel';
 import PrimaryButton from '@/Components/Button/PrimaryButton';
-import SecondaryButton, { secondaryButtonClass } from '@/Components/Button/SecondaryButton';
+import { secondaryButtonClass } from '@/Components/Button/SecondaryButton';
 import TextInput from '@/Components/Input/TextInput';
 import Label from '@/Components/Input/Label';
-import { FaGithub } from 'react-icons/fa';
+import Select from "@/Components/Input/Select";
 import { FcGoogle } from 'react-icons/fc';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
+
+export const grades = [
+    {
+        value: '10',
+        label: '10'
+    },
+    {
+        value: '11',
+        label: '11'
+    },
+    {
+        value: '12',
+        label: '12'
+    },
+    {
+        value: '13',
+        label: '13'
+    },
+    {
+        value: 'alumni',
+        label: 'Alumni'
+    }
+];
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -17,6 +40,8 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
+        grade: '',
+        major: ''
     });
 
     useEffect(() => {
@@ -24,6 +49,10 @@ export default function Register() {
             reset('password', 'password_confirmation');
         };
     }, []);
+
+    const handleSelect = (data, attributes) => {
+        setData(attributes.name, data.value);
+    }
 
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
@@ -56,6 +85,43 @@ export default function Register() {
                         />
 
                         <InputError message={errors.name} className="mt-2" />
+                    </InputLabel>
+                </div>
+
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4'>
+                    <InputLabel className={"col-span-1"}>
+                        <Label>Kelas</Label>
+
+                        <Select
+                            name={"grade"}
+                            options={grades}
+                            onChange={handleSelect}
+                            hasErrors={errors.grade}
+                            defaultValue={data.grade}
+                            controlStyles={{
+                                marginTop: '4px',
+                                height: '41.33px',
+                            }}
+                        />
+
+                        <InputError message={errors.grade} className="mt-2" />
+                    </InputLabel>
+
+                    <InputLabel className={"col-span-1"}>
+                        <Label>Jurusan</Label>
+
+                        <TextInput
+                            type="text"
+                            name="major"
+                            placeholder="RPL-1"
+                            value={data.major}
+                            className="mt-1 block w-full"
+                            autoComplete="major"
+                            handleChange={onHandleChange}
+                            required
+                        />
+
+                        <InputError message={errors.major} className="mt-2" />
                     </InputLabel>
                 </div>
 
@@ -132,7 +198,7 @@ export default function Register() {
 
                 <div className='block ms-0 mt-4'>
                     <PrimaryButton processing={processing} className="w-full justify-center bg-indigo-500">
-                        Log in
+                        Daftar
                     </PrimaryButton>
                 </div>
             </form>

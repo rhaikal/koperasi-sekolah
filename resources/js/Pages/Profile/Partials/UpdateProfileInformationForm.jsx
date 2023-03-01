@@ -6,6 +6,8 @@ import TextInput from '@/Components/Input/TextInput';
 import { Link, useForm, usePage } from '@inertiajs/inertia-react';
 import { Transition } from '@headlessui/react';
 import ImageUpload from '@/Components/Input/ImageUpload';
+import Select from "@/Components/Input/Select";
+import { grades } from '@/Pages/Auth/Register';
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className }) {
     const user = usePage().props.auth.user;
@@ -16,8 +18,14 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
         username: user.username,
         email: user.email,
         no_phone: user.no_phone ?? null,
+        grade: user.grade ?? null,
+        major: user.major ?? null,
         _method: 'PATCH'
     });
+
+    const handleSelect = (data, attributes) => {
+        form.setData(attributes.name, data.value);
+    }
 
     const handleFile = (event) => {
         form.setData(event.target.name, event.target.files[0]);
@@ -65,6 +73,42 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                             />
 
                             <InputError className="mt-2" message={form.errors.name} />
+                        </div>
+
+                        <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2'>
+                            <div className='col-span-1'>
+                                <InputLabel for="grade" value="Kelas" />
+                                <Select
+                                    name={"grade"}
+                                    options={grades}
+                                    onChange={handleSelect}
+                                    hasErrors={form.errors.grade}
+                                    defaultValue={form.data.grade}
+                                    controlStyles={{
+                                        marginTop: '4px',
+                                        height: '41.33px',
+                                    }}
+                                />
+
+                                <InputError message={form.errors.grade} className="mt-2" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="major" value="Jurusan" />
+
+                                <TextInput
+                                    type="text"
+                                    name="major"
+                                    placeholder="RPL-1"
+                                    value={form.data.major}
+                                    className="mt-1 block w-full"
+                                    autoComplete="major"
+                                    handleChange={(e) => form.setData('major', e.target.value)}
+                                    required
+                                />
+
+                                <InputError message={form.errors.major} className="mt-2" />
+                            </div>
                         </div>
 
                         <div className='mb-2'>

@@ -30,7 +30,9 @@ class UpdateUserRequest extends FormRequest
             'name' => 'required|string|max:255',
             'username' => ['required', Rule::unique('users', 'username')->ignore($this->user->id)],
             'email' => ['required', Rule::unique('users', 'email')->ignore($this->user->id)],
-            'no_phone' => 'sometimes|regex:/\\d/|nullable'
+            'no_phone' => 'sometimes|regex:/\\d/|nullable',
+            'grade' => ['required', Rule::in(['10', '11', '12', '13', 'alumni'])],
+            'major' => 'required|regex:/^[a-zA-Z]{3,4}-\d{1}$/'
         ];
 
         if(!empty($this->profile)) $rules['profile'] = 'file|image|dimensions:max_width=2000,max_height=2000|max:1000';

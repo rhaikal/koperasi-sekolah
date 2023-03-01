@@ -20,7 +20,7 @@ export default function LoanForm({ header, users, handleSubmit, loan }){
         users.forEach(user => {
             options.push({
                 value: user.id,
-                label: user.name,
+                label: `${user.name} (${user.grade} ${user.major})`,
             })
         })
     }, [users])
@@ -89,13 +89,15 @@ export default function LoanForm({ header, users, handleSubmit, loan }){
                         { selectedUser &&
                             <Overview.Content image={ window.innerWidth > 1024 ? currentUser.profile : null}>
                                 <Overview.List header="Nama">{currentUser.name}</Overview.List>
+                                <Overview.List header="Kelas">{currentUser.grade}</Overview.List>
+                                <Overview.List header="Jurusan">{currentUser.major}</Overview.List>
                                 <Overview.List header="Email">{currentUser.email}</Overview.List>
                                 <Overview.List header="Nomor Telepon">{currentUser.no_phone}</Overview.List>
                             </Overview.Content>
                         }
                     </div>
                 </div>
-                <div className={`grid rounded shadow-lg p-4 px-4 md:p-8 mb-6 order-first lg:order-last ${!selectedUser ? 'col-span-10' : 'col-span-10 lg:col-span-4'}`}>
+                <div className={`grid rounded shadow-lg p-4 px-4 md:p-8 mb-6 order-first lg:order-last  items-center ${!selectedUser ? 'col-span-10' : 'col-span-10 lg:col-span-4'}`}>
                     <form onSubmit={onSubmit}>
                         <Header className="text-center">{header}</Header>
                         <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">

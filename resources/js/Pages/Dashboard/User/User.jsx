@@ -25,6 +25,8 @@ const User = ({users}) => {
                         <Table.Header>Gambar</Table.Header>
                         <Table.Header>Nama</Table.Header>
                         <Table.Header>Peran</Table.Header>
+                        <Table.Header>Kelas</Table.Header>
+                        <Table.Header>Jurusan</Table.Header>
                         <Table.Header></Table.Header>
                     </Table.Head>
                     <Table.Body>
@@ -39,6 +41,8 @@ const User = ({users}) => {
                                         '2': 'Anggota',
                                     }[user.role] || 'Pengurus'}
                                 </Table.Content>
+                                <Table.Content className="capitalize">{user.grade}</Table.Content>
+                                <Table.Content>{user.major}</Table.Content>
                                 <Table.Content>
                                     <Dropdown>
                                         <Dropdown.Trigger>
@@ -52,7 +56,7 @@ const User = ({users}) => {
                                 </Table.Content>
                             </Table.Row>) :
                             <Table.Row>
-                                <Table.Content type="header" colSpan={"4"} className="text-center text-base text-gray-500 font-semibold italic">Tidak ada kategori</Table.Content>
+                                <Table.Content type="header" colSpan={"6"} className="text-center text-base text-gray-500 font-semibold italic">Tidak ada kategori</Table.Content>
                             </Table.Row>
                         }
                     </Table.Body>

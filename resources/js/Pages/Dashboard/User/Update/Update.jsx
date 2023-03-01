@@ -8,6 +8,7 @@ import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import React from "react";
 import { BsBack } from "react-icons/bs";
 import Select from "@/Components/Input/Select";
+import { grades } from "@/Pages/Auth/Register";
 
 const UpdateUser = ({user}) => {
     const form = useForm({
@@ -17,6 +18,8 @@ const UpdateUser = ({user}) => {
         username: user.username,
         email: user.email,
         no_phone: user.no_phone,
+        grade: user.grade,
+        major: user.major,
         _method: 'PATCH'
     });
 
@@ -85,6 +88,35 @@ const UpdateUser = ({user}) => {
                                                     defaultValue={form.data.role}
                                                 />
                                                 {form.hasErrors && <InputError message={form.errors.role} className="mt-2" />}
+                                            </div>
+
+                                            <div className="md:col-span-3 my-1">
+                                                <Select
+                                                    name={"grade"}
+                                                    placeholder="Kelas"
+                                                    options={grades}
+                                                    onChange={handleSelect}
+                                                    hasErrors={form.errors.grade}
+                                                    defaultValue={form.data.grade}
+                                                    controlStyles={{
+                                                        height: '47.33px'
+                                                    }}
+                                                />
+                                                {form.hasErrors && <InputError message={form.errors.grade} className="mt-2" />}
+                                            </div>
+
+                                            <div className="md:col-span-3 my-1">
+                                                <FloatingLabel
+                                                    id="major"
+                                                    type="text"
+                                                    name="major"
+                                                    placeholder="Jurusan"
+                                                    isFocused={true}
+                                                    handleChange={handleChange}
+                                                    value={form.data.major}
+                                                    hasErrors={form.errors.major}
+                                                />
+                                                {form.hasErrors && <InputError message={form.errors.major} className="mt-2" />}
                                             </div>
 
                                             <div className="md:col-span-3 my-1">
