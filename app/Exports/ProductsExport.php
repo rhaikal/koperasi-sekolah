@@ -30,7 +30,7 @@ class ProductsExport implements FromView
             DB::raw('sum(carts.quantity) as sold'),
         )->where('orders.status', '>', '1');
 
-        if((isset($this->date['startDate'], $this->date['endDate']) && $this->date['startDate'] && $this->date['endDate']) && $this->date['startDate'] > $this->date['endDate'])
+        if((isset($this->date['startDate'], $this->date['endDate']) && $this->date['startDate'] && $this->date['endDate']) && $this->date['endDate'] > $this->date['startDate'])
             $products = $products->whereBetween('payments.payment_date', [$this->date['startDate'], $this->date['endDate']]);
         else if((isset($this->date['startDate'], $this->date['endDate']) && $this->date['startDate'] && $this->date['endDate']) && $this->date['startDate'] == $this->date['endDate'])
             $products = $products->where('payments.payment_date', 'LIKE', '%'.$this->date['startDate'].'%');

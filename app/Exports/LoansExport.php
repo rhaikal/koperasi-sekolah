@@ -19,7 +19,7 @@ class LoansExport implements FromView
     {
         $loans = Loan::with(['user:id,name'])->latest();
 
-        if((isset($this->date['startDate'], $this->date['endDate']) && $this->date['startDate'] && $this->date['endDate']) && $this->date['startDate'] > $this->date['endDate'])
+        if((isset($this->date['startDate'], $this->date['endDate']) && $this->date['startDate'] && $this->date['endDate']) && $this->date['endDate'] > $this->date['startDate'])
             $loans = $loans->whereBetween('term_of_payment', [$this->date['startDate'], $this->date['endDate']]);
         else if((isset($this->date['startDate'], $this->date['endDate']) && $this->date['startDate'] && $this->date['endDate']) && $this->date['startDate'] == $this->date['endDate'])
             $loans = $loans->where('term_of_payment', 'LIKE', '%'.$this->date['startDate'].'%');

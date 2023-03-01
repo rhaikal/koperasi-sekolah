@@ -20,7 +20,7 @@ class OrdersExport implements FromView
         $orders = Order::with(['user:id,name', 'invoice', 'payment'])->where('status', '>', '1')->latest();
 
         $date = $this->date;
-        if((isset($this->date['startDate'], $this->date['endDate']) && $this->date['startDate'] && $this->date['endDate']) && $this->date['startDate'] > $this->date['endDate'])
+        if((isset($this->date['startDate'], $this->date['endDate']) && $this->date['startDate'] && $this->date['endDate']) && $this->date['endDate'] > $this->date['startDate'])
             $orders = $orders->whereHas('payment', function ($query) use ($date) {
                 return $query->whereBetween('payment_date', [$date['startDate'], $date['endDate']]);
             });
