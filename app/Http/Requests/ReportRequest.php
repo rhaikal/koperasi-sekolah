@@ -24,8 +24,8 @@ class ReportRequest extends FormRequest
     public function rules()
     {
         return [
-            'startDate' => 'date',
-            'endDate' => 'date|after_or_equal:startDate',
+            'startDate' => 'date|nullable',
+            'endDate' => 'date|after_or_equal:startDate|nullable',
         ];
     }
 
