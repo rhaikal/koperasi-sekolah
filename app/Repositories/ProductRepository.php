@@ -11,7 +11,7 @@ class productRepository
     public function __construct()
     {
         $request = request();
-        $this->products = Product::with('category');
+        $this->products = Product::with('category')->latest();
 
         if($request->has('category')){
             $this->products = $this->products->whereHas('category',function ($query) use ($request) {
