@@ -64,6 +64,7 @@ Route::middleware('role')->group(function () {
 
         Route::get('/exported/loans', [ReportController::class, 'loans'])->name('exported.loans');
         Route::get('/exported/orders', [ReportController::class, 'orders'])->name('exported.orders');
+        Route::get('/exported/products', [ReportController::class, 'products'])->name('exported.products');
     });
 
     // main page

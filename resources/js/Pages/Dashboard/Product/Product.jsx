@@ -11,6 +11,7 @@ import { Head, Link } from "@inertiajs/inertia-react";
 import { FaAngleDown } from "react-icons/fa";
 import { Inertia } from "@inertiajs/inertia";
 import { TbArrowsUpDown } from "react-icons/tb";
+import ExportForm from "@/Components/Form/ExportForm";
 
 
 const Product = ({products, categories, query }) => {
@@ -18,6 +19,8 @@ const Product = ({products, categories, query }) => {
     const [categoryStart, setCategoryStart] = useState(0);
     const [emptyProducts, setEmptyProducts] = useState(false);
     const [currentCategory, setCurrentCategory] = useState({});
+    const [startDate, setStartDate] = useState(null)
+    const [endDate, setEndDate] = useState(null)
 
     useEffect(() => {
         setCategoriesList(categories.slice(categoryStart, categoryStart + 5));
@@ -66,9 +69,28 @@ const Product = ({products, categories, query }) => {
         Inertia.visit(route('products.index'), {only: ['products', 'query'], data: {...preserveQuery, ...sort}})
     }
 
+    const handleStartDate = (newValue) => {
+        setStartDate(newValue);
+        if(startDate == endDate || newValue > endDate) setEndDate(newValue);
+    }
+
+    const handleEndDate = (newValue) => {
+        setEndDate(newValue);
+        if(startDate == endDate && startDate == null || endDate == null) setStartDate(newValue);
+    }
+
     return (
         <>
             <Head title="Produk" />
+            <ExportForm
+                href={route('exported.products')}
+                className="mb-2"
+                valueStartDate={startDate}
+                handleStartDate={handleStartDate}
+                valueEndDate={endDate}
+                handleEndDate={handleEndDate}
+                disabled={emptyProducts}
+            />
             <div className="min-w-0 p-4 overflow-x-auto rounded-lg shadow-lg">
                 <div className="flex justify-between py-4">
                     <div className="scale-100 flex">
